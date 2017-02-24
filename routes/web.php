@@ -19,8 +19,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/posts', 'PostsController@index');
+//Route::resource('posts','PostsController');
 
-Route::get('/posts/createpost', 'PostsController@create');
+Route::get('posts', 'PostsController@index');
 
-Route::post('/posts/createpost', 'PostsController@store');
+Route::post('posts', 'PostsController@destroy');
+
+Route::post('posts', 'PostsController@store');
+
+Route::post('/posts/editposts', 'PostsController@show');
+
+Route::put('editposts{id}', 'PostsController@update');
