@@ -31,7 +31,6 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">News</div>
-
                     <div class="panel-body">
                         <table class="table table-striped">
                             <thead>
@@ -43,16 +42,10 @@
                                 </th>
                                 <th>
                                     @if(Auth::check() && Auth::user()->id == $post->id_usuario)
-                                        <form action="/posts/editposts" class="form-horizontal" method="post">
-                                            <input type="hidden" class="form-control" name="id" value="{{ $post->id }}">
-                                            <input type="submit" class="btn btn-primary" value="Edit">
-                                        </form></th>
+                                <a href="/posts/editposts/{{$post->id}}" ><button class="btn btn-primary">Edit</button> </a>
+                                </th>
                                 <th>
-
-                                   <form action="posts" class="form-horizontal" method="get">
-                                       <input type="hidden" class="form-control" name="id" value="{{ $post->id }}">
-                                       <input type="submit" class="btn btn-danger" value="Delete">
-                                   </form>
+                                    <a href="/posts/delete/{{$post->id}}" ><button class="btn btn-danger">Delete</button> </a>
                                     @endif
                                 </th>
                             </tr>

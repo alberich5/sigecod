@@ -23,10 +23,10 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('posts', 'PostsController@index');
 
-Route::post('posts', 'PostsController@destroy');
+Route::get('posts/delete/{id}', 'PostsController@destroy');
 
 Route::post('posts', 'PostsController@store');
 
-Route::post('/posts/editposts', 'PostsController@show');
+Route::get('/posts/editposts/{id}', 'PostsController@show');
 
-Route::put('editposts{id}', 'PostsController@update');
+Route::post('/posts/editposts/{id}', 'PostsController@update');
