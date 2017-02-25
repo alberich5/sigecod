@@ -19,8 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-//Route::resource('posts','PostsController');
-
 Route::get('posts', 'PostsController@index');
 
 Route::get('posts/delete/{id}', 'PostsController@destroy');
@@ -30,3 +28,15 @@ Route::post('posts', 'PostsController@store');
 Route::get('/posts/editposts/{id}', 'PostsController@show');
 
 Route::post('/posts/editposts/{id}', 'PostsController@update');
+
+Route::get('/users/editprofile/{id}', 'UsersController@show');
+
+Route::post('/users/editprofile/{id}', 'UsersController@update');
+
+Route::get('users/manageprofiles', 'UsersController@index');
+
+Route::get('users/delete/{id}', 'UsersController@destroy');
+
+Route::group(['middleware'=> 'rol:admin'], function(){
+
+});
