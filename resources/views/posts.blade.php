@@ -41,7 +41,7 @@
                                     {{$post->contenido}}
                                 </th>
                                 <th>
-                                    @if(Auth::check() && Auth::user()->id == $post->id_usuario)
+                                    @if(Auth::check() && Auth::user()->id == $post->id_usuario || Auth::check() && Auth::user()->rol == 'admin')
                                 <a href="/posts/editposts/{{$post->id}}" ><button class="btn btn-primary">Edit</button> </a>
                                 </th>
                                 <th>

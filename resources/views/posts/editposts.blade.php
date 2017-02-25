@@ -19,7 +19,7 @@
                             @endif
                             <label>Author:</label>
                             <input type="hidden" class="form-control" name="id" value="{{ $post->id }}">
-                            <input type="hidden" class="form-control" name="id_usuario" readonly="readonly" value="{{ Auth::user()->id }}">
+                            <input type="hidden" class="form-control" name="id_usuario" readonly="readonly" value="{{ $post->id_usuario }}">
                             <input type="text" class="form-control" name="nombre_usuario" readonly="readonly" value="{{ Auth::user()->name }}">
                             <label>Content:</label>
                             <input type="text" class="form-control" name="contenido" value="{{$post->contenido}}">
