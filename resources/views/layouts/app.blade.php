@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('GoldFinch', 'GoldFinch') }}</title>
+    <title>{{ config('Comercializacion', 'Comercializacion') }}</title>
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
@@ -37,7 +37,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('GoldFinch', 'GoldFinch') }}
+                        {{ config('Atencion', 'Atencion') }}
                     </a>
                 </div>
 
@@ -54,9 +54,9 @@
                             <li><a href="{{ url('/posts') }}">Posts</a></li>
                             <li><a href="{{ url('/login') }}">Login</a></li>
                             <li><a href="{{ url('/register') }}">Register</a></li>
-                            <li><a href="{{ url('/howto') }}">How to use</a></li>
+                            <li><a href="{{ url('/howto') }}">Como usar ?</a></li>
                         @else
-                            <li><a href="{{ url('/posts') }}">Posts</a></li>
+                            <li><a href="{{ url('/posts') }}">Quejas</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -80,7 +80,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="{{ url('/howto') }}">How to use</a></li>
+                            <li><a href="{{ url('/howto') }}">Como usar ?</a></li>
                         @endif
                     </ul>
                 </div>
