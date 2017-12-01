@@ -84,7 +84,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    GOLDFINCH
+                    ATENCION CLIENTES
                 </div>
                 <div>
                     <img src="{{ asset('img/goldfinch.jpg') }}">

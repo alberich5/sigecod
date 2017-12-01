@@ -20,6 +20,8 @@ class CreatePostsTable extends Migration
                 ->references('id')->on('users')->onDetele('set null');
             $table->string('nombre_usuario');
             $table->mediumText('contenido');
+            $table->mediumText('fecha_recibio');
+            $table->mediumText('entrada');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });
