@@ -19,9 +19,19 @@ class CreatePostsTable extends Migration
             $table->foreign('id_usuario')
                 ->references('id')->on('users')->onDetele('set null');
             $table->string('nombre_usuario');
-            $table->mediumText('contenido');
-            $table->mediumText('fecha_recibio');
-            $table->mediumText('entrada');
+            $table->date('fecha')->nullable();
+            $table->string('tipo')->nullable();
+            $table->string('entrada')->nullable();
+            $table->string('mes')->nullable();
+            $table->string('empresa')->nullable();
+            $table->string('representante')->nullable();
+            $table->text('domicilio')->nullable();
+            $table->string('ambito')->nullable();
+            $table->string('delegacion')->nullable();
+            $table->text('contenido')->nullable();
+            $table->text('codigo')->nullable();
+            $table->text('codigoqueja')->nullable();
+            $table->string('status')->nullable();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });

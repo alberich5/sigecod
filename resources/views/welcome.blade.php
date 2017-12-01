@@ -76,7 +76,7 @@
                     @else
                         <!--<a href="{{ url('/posts') }}">Atenciones</a>-->
                         <a href="{{ url('/login') }}">Login</a>
-                        <!--<a href="{{ url('/register') }}">Registrarse</a>-->
+                        <a href="{{ url('/register') }}">Registrarse</a>
                         <!--<a href="{{ url('/howto') }}">Como usar?</a>-->
                     @endif
                 </div>

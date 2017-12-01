@@ -20,7 +20,9 @@ class PostsController extends Controller
             'id_usuario'=>'required',
            'nombre_usuario' => 'required',
             'contenido' => 'required',
+
         ]);
+        //dd($request->all());
         Post::create($request->all());
 
         return redirect('posts');

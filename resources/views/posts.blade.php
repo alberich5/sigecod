@@ -24,14 +24,14 @@
 
                 <div class="form-group">
                     <div class="col-sm-10">
-                      <label for="">Fecha que recibio la queja:</label>
-                        <input type="date" class="form-control" name="contenido" >
+                      <label for="fecha">Fecha que recibio la queja:</label>
+                        <input type="date" class="form-control" name="fecha" >
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-10">
-                      <label for="">Tipo de queja:</label>
+                      <label for="tipo">Tipo de queja:</label>
                       <select name="tipo" class="form-control">
                           <option value="Queja">Queja</option>
         	            		<option value="Sugerencia">Sugerencia</option>
@@ -41,8 +41,8 @@
 
                 <div class="form-group">
                     <div class="col-sm-10">
-                      <label for="">Entrada:</label>
-                      <select name="tipo" class="form-control">
+                      <label for="entrada">Entrada:</label>
+                      <select name="entrada" class="form-control">
                           <option value="Llamada">Llamada Telefónica</option>
                           <option value="Correo">Correo Electrónico</option>
                           <option value="Escrito">Escrito</option>
@@ -52,8 +52,8 @@
 
                 <div class="form-group">
                     <div class="col-sm-10">
-                      <label for="tipo">Mes:</label>
-                      <select name="tipo" class="form-control">
+                      <label for="mes">Mes:</label>
+                      <select name="mes" class="form-control">
                           <option value="enero">Enero</option>
                           <option value="febrero">Febrero</option>
                           <option value="marzo">Marzo</option>
@@ -73,21 +73,21 @@
                 <div class="form-group">
                     <div class="col-sm-10">
                       <label for="empresa">Empresa:</label>
-                        <input type="text" class="form-control" name="empresa" placeholder="Empresa..." value="{{old('contenido')}}">
+                        <input type="text" class="form-control" name="empresa" placeholder="Empresa..." value="{{old('empresa')}}">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-10">
                       <label for="representante">Representante legal:</label>
-                        <input type="text" class="form-control" name="representante" placeholder="Empresa..." value="{{old('contenido')}}">
+                        <input type="text" class="form-control" name="representante" placeholder="Empresa..." value="{{old('representante')}}">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-10">
                       <label for="domicilio">Domicilio del Servicio:</label>
-                        <input type="text" class="form-control" name="domicilio" placeholder="Empresa..." value="{{old('contenido')}}">
+                        <input type="text" class="form-control" name="domicilio" placeholder="Empresa..." value="{{old('domicilio')}}">
                     </div>
                 </div>
 
@@ -117,8 +117,8 @@
 
                 <div class="form-group">
                     <div class="col-sm-10">
-                      <label for="delegacion">Codigo:</label>
-                      <select name="delegacion" class="form-control">
+                      <label for="codigo">Codigo:</label>
+                      <select name="codigo" class="form-control">
                           <option value="problemas_operatividad">PROBLEMAS DE OPERATIVIDAD</option>
 
                       </select>
@@ -127,8 +127,8 @@
 
                 <div class="form-group">
                     <div class="col-sm-10">
-                      <label for="delegacion">Codigo de Queja:</label>
-                      <select name="delegacion" class="form-control">
+                      <label for="codigo_queja">Codigo de Queja:</label>
+                      <select name="codigo_queja" class="form-control">
                           <option value="mala_atencion">MALA ATENCION DE LA DELEGACIÓN</option>
                       </select>
                     </div>
@@ -136,8 +136,8 @@
 
                 <div class="form-group">
                     <div class="col-sm-10">
-                      <label for="delegacion">Status:</label>
-                      <select name="delegacion" class="form-control">
+                      <label for="status">Status:</label>
+                      <select name="status" class="form-control">
                           <option value="atendida">Atendida</option>
                           <option value="pendiente">Pendiente</option>
                       </select>
@@ -146,7 +146,7 @@
 
                 <div class="form-group">
                     <div class="col-sm-10">
-                      <label for="delegacion">Quejas</label>
+                      <label for="contenido">Quejas</label>
                         <input type="text-area" class="form-control" name="contenido" placeholder="Escribe la Queja..." value="{{old('contenido')}}">
                     </div>
                 </div>
@@ -165,16 +165,40 @@
                             <thead>
                             @foreach($posts as $post)
                             <tr>
-                                <th>{{$post->nombre_usuario}}
+                                <th><h4>{{$post->nombre_usuario}}</h4>
                                     <br>
-                                    {{$post->contenido}}
+                                    FECHA RECIBIO:{{$post->fecha}}
+                                    <br>
+                                    TIPO:{{$post->tipo}}
+                                    <br>
+                                    Tipo de Entrada:{{$post->entrada}}
+                                    <br>
+                                    MES:{{$post->mes}}
+                                    <br>
+                                    EMPRESA:{{$post->empresa}}
+                                    <br>
+                                    REPRESENTANTE:{{$post->representante}}
+                                    <br>
+                                    DOMICILIO:{{$post->domicilio}}
+                                    <br>
+                                    AMBITO:{{$post->ambito}}
+                                    <br>
+                                    DELEGACION:{{$post->delegacion}}
+                                    <br>
+                                    CODIGO:{{$post->codigo}}
+                                    <br>
+                                    CODIGO QUEJA:{{$post->codigoqueja}}
+                                    <br>
+                                    STATUS:{{$post->status}}
+                                    <br>
+                                    DESCRIPCION DE LA QUEJA:{{$post->contenido}}
                                 </th>
                                 <th>
                                     @if(Auth::check() && Auth::user()->id == $post->id_usuario || Auth::check() && Auth::user()->rol == 'admin')
                                 <a href="/posts/editposts/{{$post->id}}" ><button class="btn btn-primary">Edit</button> </a>
                                 </th>
                                 <th>
-                                    <a href="/posts/delete/{{$post->id}}" ><button class="btn btn-danger">Delete</button> </a>
+                                    <!--<a href="/posts/delete/{{$post->id}}" ><button class="btn btn-danger">Delete</button> </a>-->
                                     @endif
                                 </th>
                             </tr>

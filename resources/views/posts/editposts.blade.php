@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Editing Post</div>
+                    <div class="panel-heading">Editar Quejas</div>
                     <div class="panel-body">
                         <form action="" class="form-horizontal" method="post">
                             @if(count($errors) > 0)
