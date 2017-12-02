@@ -99,30 +99,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
     <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.6/sweetalert2.js"></script>
+    <script type="text/javascript" src="js/nieve.js"></script>
 
-    <script type="text/javascript">
-    var vm = new Vue({
-            //id asignado al div en el que funcionara vue
-            el: '#app',
-            //funcion al crear el objet
-            data:{
-                errors:[],
-                usuarios:[],
-                fecha:'',
-                searchUsuario:{'username':'','nombre':'','paterno':'','materno':''},
-                    },
-            methods:{
-                mostrarAlert:function(){
-                  swal(
-                'Listo',
-                'Se a guardado la queja',
-                'success'
-              );
-                },
-                mostrarCancelar:function(){
-                    toastr.success('Eliminado');
-                },
-        }});
-    </script>
 </body>
 </html>

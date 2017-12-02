@@ -26,12 +26,17 @@ class PostsController extends Controller
             'id_usuario'=>'required',
            'nombre_usuario' => 'required',
             'contenido' => 'required',
-
+            'fecha' => 'required',
+            'empresa' => 'required',
+            'mes' => 'required',
+            'representante' => 'required',
+            'delegacion' => 'required',
+            'delegacion' => 'required',
         ]);
         //dd($request->all());
         Post::create($request->all());
 
-        return redirect('posts');
+        return redirect('quejas');
     }
 
     public function destroy($id)

@@ -93,8 +93,8 @@
 
                 <div class="form-group">
                     <div class="col-sm-10">
-                      <label for="Ambito">Ambito:</label>
-                      <select name="Ambito" class="form-control">
+                      <label for="ambito">Ambito:</label>
+                      <select name="ambito" class="form-control">
                           <option value="privada">Privada</option>
                           <option value="federal">Federal</option>
                           <option value="estatal">Estatal</option>
@@ -138,8 +138,8 @@
                     <div class="col-sm-10">
                       <label for="status">Status:</label>
                       <select name="status" class="form-control">
+                        <option value="pendiente">Pendiente</option>
                           <option value="atendida">Atendida</option>
-                          <option value="pendiente">Pendiente</option>
                       </select>
                     </div>
                 </div>
@@ -165,28 +165,5 @@
 @endsection
 
 @section('js')
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="https://unpkg.com/vue"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
-  <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  <script type="text/javascript">
-  var vm = new Vue({
-          //id asignado al div en el que funcionara vue
-          el: '#app',
-          //funcion al crear el objet
-          data:{
-              errors:[],
-              usuarios:[],
-              fecha:'',
-              searchUsuario:{'username':'','nombre':'','paterno':'','materno':''},
-                  },
-          methods:{
-              mostrarAgregar:function(){
-                  alert("agregar");
-              },
-              mostrarCancelar:function(){
-                  toastr.success('Eliminado');
-              },
-      }});
-  </script>
+
 @endsection

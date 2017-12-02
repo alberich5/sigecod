@@ -9,7 +9,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-        <link rel="shortcut icon" href="img/favicon.ico">
+        <link rel="shortcut icon" href="img/poli.ico">
 
         <!-- Styles -->
         <style>
@@ -64,6 +64,7 @@
                 margin-bottom: 30px;
             }
         </style>
+        <script type="text/javascript" src="js/nieve.js"></script>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
