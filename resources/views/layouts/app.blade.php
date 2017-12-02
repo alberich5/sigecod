@@ -92,6 +92,29 @@
     </div>
 
     <!-- Scripts -->
-    @yield('js')
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    var vm = new Vue({
+            //id asignado al div en el que funcionara vue
+            el: '#app',
+            //funcion al crear el objet
+            data:{
+                errors:[],
+                usuarios:[],
+                fecha:'',
+                searchUsuario:{'username':'','nombre':'','paterno':'','materno':''},
+                    },
+            methods:{
+                mostrarAgregar:function(){
+                    alert("agregar");
+                },
+                mostrarCancelar:function(){
+                    toastr.success('Eliminado');
+                },
+        }});
+    </script>
 </body>
 </html>
