@@ -56,22 +56,23 @@
                             <li><a href="{{ url('/register') }}">Register</a></li>
                             <li><a href="{{ url('/howto') }}">Como usar ?</a></li>
                         @else
-                            <li><a href="{{ url('/posts') }}">Quejas</a></li>
+                          <li><a href="{{ url('/posts') }}">Agregar</a></li>
+                            <li><a href="{{ url('/quejas') }}">Quejas</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/home') }}">Home</a></li>
+                                    <li><a href="{{ url('/home') }}">Inicio</a></li>
                                     @if(Auth::user()->rol == 'admin')
-                                        <li><a href="{{ url('/users/manageprofiles') }}">Manage</a></li>
+                                        <li><a href="{{ url('/users/manageprofiles') }}">Administrar</a></li>
                                         @endif
                                     <li>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Salir
                                         </a>
 
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
@@ -91,6 +92,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
+    @yield('js')
 </body>
 </html>

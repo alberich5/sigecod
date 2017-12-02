@@ -21,6 +21,8 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('posts', 'PostsController@index');
 
+Route::get('quejas', 'PostsController@queja');
+
 Route::get('howto', function (){
 
     return view('howto');

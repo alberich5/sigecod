@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container" id="app">
         @if (Auth::check())
             <form action="posts" class="form-horizontal" method="post">
                 @if(count($errors) > 0)
@@ -151,64 +151,42 @@
                     </div>
                 </div>
 
-                <input type="submit" class="btn btn-primary" value="Guardar" >
+                <input type="submit" class="btn btn-primary" value="Guardar" v-on:click="mostrarAlert">
             </form>
 
 
        @endif
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Quejas</div>
-                    <div class="panel-body">
-                        <table class="table table-striped">
-                            <thead>
-                            @foreach($posts as $post)
-                            <tr>
-                                <th><h4>{{$post->nombre_usuario}}</h4>
-                                    <br>
-                                    FECHA RECIBIO:{{$post->fecha}}
-                                    <br>
-                                    TIPO:{{$post->tipo}}
-                                    <br>
-                                    Tipo de Entrada:{{$post->entrada}}
-                                    <br>
-                                    MES:{{$post->mes}}
-                                    <br>
-                                    EMPRESA:{{$post->empresa}}
-                                    <br>
-                                    REPRESENTANTE:{{$post->representante}}
-                                    <br>
-                                    DOMICILIO:{{$post->domicilio}}
-                                    <br>
-                                    AMBITO:{{$post->ambito}}
-                                    <br>
-                                    DELEGACION:{{$post->delegacion}}
-                                    <br>
-                                    CODIGO:{{$post->codigo}}
-                                    <br>
-                                    CODIGO QUEJA:{{$post->codigoqueja}}
-                                    <br>
-                                    STATUS:{{$post->status}}
-                                    <br>
-                                    DESCRIPCION DE LA QUEJA:{{$post->contenido}}
-                                </th>
-                                <th>
-                                    @if(Auth::check() && Auth::user()->id == $post->id_usuario || Auth::check() && Auth::user()->rol == 'admin')
-                                <a href="/posts/editposts/{{$post->id}}" ><button class="btn btn-primary">Edit</button> </a>
-                                </th>
-                                <th>
-                                    <!--<a href="/posts/delete/{{$post->id}}" ><button class="btn btn-danger">Delete</button> </a>-->
-                                    @endif
-                                </th>
-                            </tr>
-                                @endforeach
-                            </thead>
-                        </table>
-                        {{$posts->links()}}
-                    </div>
-                </div>
-            </div>
+       <div class="row">
+          <div class="col-xs-12">
+            <pre>@{{$data}}</pre>
+          </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
+  <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+  var vm = new Vue({
+          //id asignado al div en el que funcionara vue
+          el: '#app',
+          //funcion al crear el objet
+          data:{
+              errors:[],
+              usuarios:[],
+              fecha:'',
+              searchUsuario:{'username':'','nombre':'','paterno':'','materno':''},
+                  },
+          methods:{
+              mostrarAgregar:function(){
+                  alert("agregar");
+              },
+              mostrarCancelar:function(){
+                  toastr.success('Eliminado');
+              },
+      }});
+  </script>
 @endsection

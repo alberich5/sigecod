@@ -17,14 +17,19 @@
                                     </ul>
                                 </div>
                             @endif
-                            <label>Author:</label>
+                            <label>Capturo:</label>
                             <input type="hidden" class="form-control" name="id" value="{{ $post->id }}">
                             <input type="hidden" class="form-control" name="id_usuario" readonly="readonly" value="{{ $post->id_usuario }}">
                             <input type="text" class="form-control" name="nombre_usuario" readonly="readonly" value="{{ Auth::user()->name }}">
-                            <label>Content:</label>
+                            <label>Descripcion de la queja:</label>
                             <input type="text" class="form-control" name="contenido" value="{{$post->contenido}}">
+                            <label for="status">Status:</label>
+                            <select name="status" class="form-control">
+                                <option value="atendida">Atendida</option>
+                                <option value="pendiente">Pendiente</option>
+                            </select>
                             <br>
-                            <input type="submit" class="btn btn-primary" value="Edit">
+                            <input type="submit" class="btn btn-primary" value="Actualizar">
                         </form>
                     </div>
                 </div>

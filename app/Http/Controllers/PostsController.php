@@ -14,6 +14,12 @@ class PostsController extends Controller
         return view('posts',compact("posts"));
     }
 
+    public function queja()
+    {
+        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+        return view('quejas',compact("posts"));
+    }
+
     public function store(Request $request)
     {
         $this->validate($request,[
