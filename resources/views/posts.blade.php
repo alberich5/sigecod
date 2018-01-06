@@ -165,5 +165,28 @@
 @endsection
 
 @section('js')
-
+  <script type="text/javascript">
+    var vm = new Vue({
+            //id asignado al div en el que funcionara vue
+            el: '#app',
+            //funcion al crear el objet
+            data:{
+                errors:[],
+                usuarios:[],
+                fecha:'',
+                searchUsuario:{'username':'','nombre':'','paterno':'','materno':''},
+                    },
+            methods:{
+                mostrarAlert:function(){
+                  swal(
+                'Listo',
+                'Se a guardado la queja',
+                'success'
+              );
+                },
+                mostrarCancelar:function(){
+                    toastr.success('Eliminado');
+                },
+        }});
+    </script>
 @endsection

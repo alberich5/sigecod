@@ -46,7 +46,7 @@
                                 </th>
                                 <th>
                                     @if(Auth::check() && Auth::user()->id == $post->id_usuario || Auth::check() && Auth::user()->rol == 'admin')
-                                <a href="/posts/editposts/{{$post->id}}" ><button class="btn btn-primary">Edit</button> </a>
+                                <a href="http://localhost/comer/proyecto3/public/posts/editposts/{{$post->id}}" ><button class="btn btn-primary">Editar</button> </a>
                                 </th>
                                 <th>
                                     <!--<a href="/posts/delete/{{$post->id}}" ><button class="btn btn-danger">Delete</button> </a>-->

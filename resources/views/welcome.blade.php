@@ -72,7 +72,7 @@
                 <div class="top-right links">
                     @if (Auth::check())
                         <a href="{{ url('/home') }}">Inicio</a>
-                        <a href="{{ url('/posts') }}">Atenciones</a>
+                        <a href="{{ url('/posts') }}">Queja</a>
                         <a href="{{ url('/howto') }}">Como usar?</a>
                     @else
                         <!--<a href="{{ url('/posts') }}">Atenciones</a>-->

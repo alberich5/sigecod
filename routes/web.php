@@ -22,6 +22,12 @@ Route::get('/home', 'HomeController@index');
 Route::get('posts', 'PostsController@index');
 
 Route::get('quejas', 'PostsController@queja');
+Route::get('grafica', 'PostsController@grafica');
+Route::get('filtro', 'PostsController@filtro');
+
+//consumir
+Route::get('atendidas', 'PostsController@atendida');
+Route::get('pendientes', 'PostsController@pendiente');
 
 Route::get('howto', function (){
 

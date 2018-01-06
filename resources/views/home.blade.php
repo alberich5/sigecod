@@ -7,11 +7,11 @@
         <div class="col-sm-3">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <img class="img-thumbnail" src="/img/moustache.png" width="80" height="80">
+                        <img class="img-thumbnail" src="{{ url('/img/moustache.png') }}" width="80" height="80">
                         <br>
-                        <span class="label label-info">Name: {{Auth::user()->name}}</span><br>
-                        <span class="label label-info">Email: {{Auth::user()->email}}</span><br>
-                        <a href="/users/editprofile/{{Auth::user()->id}}"><button class="btn btn-primary">Editar</button></a>
+                        <span class="label label-info">Nombre: {{Auth::user()->name}}</span><br>
+                        <span class="label label-info">Correo: {{Auth::user()->email}}</span><br>
+                        <!--<a href="/users/editprofile/{{Auth::user()->id}}"><button class="btn btn-primary">Editar</button></a>-->
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                                     {{$post->contenido}}
                                 </th>
                                 <th>
-                                    <a href="/posts/editposts/{{$post->id}}" ><button class="btn btn-primary">Editar</button> </a>
+                                    <a href="http://localhost/comer/proyecto3/public/posts/editposts/{{$post->id}}" ><button class="btn btn-primary">Editar</button> </a>
                                 <th>
                                   <!--  <a href="/posts/delete/{{$post->id}}" ><button class="btn btn-danger">Delete</button> </a>-->
                                 </th>

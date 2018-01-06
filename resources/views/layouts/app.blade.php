@@ -11,9 +11,9 @@
     <title>{{ config('Comercializacion', 'Comercializacion') }}</title>
 
     <!-- Styles -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.6/sweetalert2.css">
-    <link href="css/codigo.css" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link rel="{{ asset('css/sweetalert.css') }}">
+    <link href="{{ asset('css/codigo.css') }}" rel="stylesheet">
     <link rel="shortcut icon" href="img/poli.ico">
 
     <!-- Scripts -->
@@ -53,13 +53,15 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ url('/posts') }}">Posts</a></li>
+                            <li><a href="{{ url('/posts') }}">Atenciones</a></li>
                             <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
+                           <!-- <li><a href="{{ url('/register') }}">Register</a></li>-->
                             <li><a href="{{ url('/howto') }}">Como usar ?</a></li>
                         @else
                           <li><a href="{{ url('/posts') }}">Agregar</a></li>
                             <li><a href="{{ url('/quejas') }}">Quejas</a></li>
+                            <li><a href="{{ url('/grafica') }}">Descargar</a></li>
+                            <li><a href="{{ url('/filtro') }}">Filtro</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -94,35 +96,12 @@
     </div>
 
     <!-- Scripts -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://unpkg.com/vue"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
-    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.6/sweetalert2.js"></script>
-
-    <script type="text/javascript">
-    var vm = new Vue({
-            //id asignado al div en el que funcionara vue
-            el: '#app',
-            //funcion al crear el objet
-            data:{
-                errors:[],
-                usuarios:[],
-                fecha:'',
-                searchUsuario:{'username':'','nombre':'','paterno':'','materno':''},
-                    },
-            methods:{
-                mostrarAlert:function(){
-                  swal(
-                'Listo',
-                'Se a guardado la queja',
-                'success'
-              );
-                },
-                mostrarCancelar:function(){
-                    toastr.success('Eliminado');
-                },
-        }});
-    </script>
+    <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/vue.js') }}"></script>
+    <script src="{{ asset('js/axios.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/sweetalert.min.js') }}"></script>
+    @yield('js')
+    
 </body>
 </html>
