@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Status;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+    }
     //funcion para mostrar el index
     public function index()
     {
@@ -19,17 +25,34 @@ class PostsController extends Controller
         $posts = Post::orderBy('created_at', 'desc')->paginate(10);
         return view('quejas',compact("posts"));
     }
+
+    //funcion para salidas
+    public function salida()
+    {
+        return view('servicio.salida');
+    }
+    //funcion para entradas
+    public function entrada()
+    {
+        return view('servicio.entrada');
+    }
+    //funcion para entradas
+    public function cliente()
+    {
+        return view('servicio.cliente');
+    }
+
     //funcion para mostrar las graficas
     public function grafica()
     {
-        
+
         return view('grafica');
     }
 
     //funcion para mostrar filtro
     public function filtro()
     {
-        
+
         return view('filtro');
     }
 
@@ -37,14 +60,20 @@ class PostsController extends Controller
     public function atendida()
     {
         $posts = Post::select('nombre_usuario','contenido','status')->where('status','atendida')->get();
-        return $posts;  
+        return $posts;
+    }
+
+    public function status()
+    {
+         $status = Status::all();
+        return $status;
     }
 
      //funcion para mostrar quejas pendientes
     public function pendiente()
     {
         $posts = Post::select('nombre_usuario','contenido','status')->where('status','pendiente')->get();
-        return $posts;  
+        return $posts;
     }
 
     public function store(Request $request)
@@ -91,7 +120,7 @@ class PostsController extends Controller
         $input = $request->all();
         $post->fill($input)->save();
 
-        return redirect("posts");
+        return redirect("quejas");
     }
 
 }

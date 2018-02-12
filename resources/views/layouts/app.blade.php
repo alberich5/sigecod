@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('Comercializacion', 'Comercializacion') }}</title>
+    <title>{{ config('ServiciosGenerales', 'ServiciosGenerales') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
@@ -39,7 +39,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('Atencion', 'Atencion') }}
+                        {{ config('Servicios', 'Servicios') }}
                     </a>
                 </div>
 
@@ -53,15 +53,42 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ url('/posts') }}">Atenciones</a></li>
+                          <!--  <li><a href="{{ url('/posts') }}">Atenciones</a></li>-->
                             <li><a href="{{ url('/login') }}">Login</a></li>
                            <!-- <li><a href="{{ url('/register') }}">Register</a></li>-->
                             <li><a href="{{ url('/howto') }}">Como usar ?</a></li>
                         @else
-                          <li><a href="{{ url('/posts') }}">Agregar</a></li>
-                            <li><a href="{{ url('/quejas') }}">Quejas</a></li>
+                          <li><a href="{{ url('/entrada') }}">Entrada</a></li>
+                            <li><a href="{{ url('/salida') }}">Salida</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    Agregar <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+
+                                        <li><a href="{{ url('/cliente') }}">Cliente</a></li>
+                                        <li><a href="{{ url('/unidad') }}">Unidad</a></li>
+
+
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    Ver <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+
+                                        <li><a href="{{ url('/articulos') }}">Articulos</a></li>
+                                        <li><a href="{{ url('/mosclientes') }}">Clientes</a></li>
+
+
+                                </ul>
+                            </li>
+
                             <li><a href="{{ url('/grafica') }}">Descargar</a></li>
-                            <li><a href="{{ url('/filtro') }}">Filtro</a></li>
+                          <!--  <li><a href="{{ url('/filtro') }}">Filtro</a></li>-->
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -102,6 +129,6 @@
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/sweetalert.min.js') }}"></script>
     @yield('js')
-    
+
 </body>
 </html>

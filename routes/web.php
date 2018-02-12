@@ -24,10 +24,18 @@ Route::get('posts', 'PostsController@index');
 Route::get('quejas', 'PostsController@queja');
 Route::get('grafica', 'PostsController@grafica');
 Route::get('filtro', 'PostsController@filtro');
+Route::get('status', 'PostsController@status');
 
+//servicios gernerales
+Route::get('salida', 'PostsController@salida');
+Route::get('entrada', 'PostsController@entrada');
+Route::get('unidad', 'UnidadController@index');
+Route::get('articulos', 'EntradaController@mostrar');
+Route::get('mosclientes', 'ClienteController@mostrar');
 //consumir
-Route::get('atendidas', 'PostsController@atendida');
+Route::get('traerUnidad', 'UnidadController@traerUnidad');
 Route::get('pendientes', 'PostsController@pendiente');
+Route::get('cliente', 'PostsController@cliente');
 
 Route::get('howto', function (){
 
@@ -40,6 +48,9 @@ Route::group(['middleware'=> 'Role:admin'], function(){
     Route::get('posts/delete/{id}', 'PostsController@destroy');
 
     Route::post('posts', 'PostsController@store');
+    Route::get('/clientes', 'ClienteController@guardar');
+    Route::get('/unidades', 'UnidadController@guardar');
+    Route::get('/entradas', 'EntradaController@guardar');
 
     Route::get('/posts/editposts/{id}', 'PostsController@show');
 

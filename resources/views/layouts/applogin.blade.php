@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('Comercializacion', 'Comercializacion') }}</title>
+    <title>{{ config('ServiciosGenerales', 'ServiciosGenerales') }}</title>
 
     <!-- Styles -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -39,7 +39,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('Atencion', 'Atencion') }}
+                        {{ config('Sericio', 'Servicio') }}
                     </a>
                 </div>
 
@@ -53,13 +53,13 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ url('/posts') }}">Atenciones</a></li>
+                            <!--<li><a href="{{ url('/posts') }}">Atenciones</a></li>-->
                             <li><a href="{{ url('/login') }}">Login</a></li>
                             <!--<li><a href="{{ url('/register') }}">Register</a></li>-->
                             <li><a href="{{ url('/howto') }}">Como usar ?</a></li>
                         @else
                           <li><a href="{{ url('/posts') }}">Agregar</a></li>
-                            <li><a href="{{ url('/quejas') }}">Quejas</a></li>
+                            <li><a href="{{ url('/quejas') }}">Servicios</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>

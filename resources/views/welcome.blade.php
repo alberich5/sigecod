@@ -72,7 +72,7 @@
                 <div class="top-right links">
                     @if (Auth::check())
                         <a href="{{ url('/home') }}">Inicio</a>
-                        <a href="{{ url('/posts') }}">Queja</a>
+                        <a href="{{ url('/posts') }}">Servicios</a>
                         <a href="{{ url('/howto') }}">Como usar?</a>
                     @else
                         <!--<a href="{{ url('/posts') }}">Atenciones</a>-->
@@ -85,7 +85,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    ATENCION CLIENTES
+                    SERVICIOS GENERALES
                 </div>
                 <div>
                     <img src="{{ asset('img/goldfinch.jpg') }}">

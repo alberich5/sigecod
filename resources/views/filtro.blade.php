@@ -12,14 +12,15 @@
 	                    <div class="col-sm-9">
 	                      <label for="status">Status:</label>
 	                      <select name="status" class="form-control">
-	                        <option value="pendiente">Pendiente</option>
-	                          <option value="atendida">Atendida</option>
+	                        <option v-for="statu in status" class="lista">
+		                      @{{ statu.nombre}}
+		                    </option>
 	                      </select>
 	                    </div>
 	                  </div>
 					
 	                    <div class="col-sm-3">
-	                     <button class="btn btn-primary">Mostrar</button>
+	                     <button class="btn btn-primary" v-on:click.prevent="Mostrar()">Mostrar</button>
 	                    </div>
 	                  
 
@@ -43,17 +44,25 @@
             //id asignado al div en el que funcionara vue
             el: '#filtro',
             //funcion al crear el objet
+            created: function() {
+				this.Mostrar();
+			},
             data:{
-                errors:[],
-                usuarios:[],
-                fecha:'',
+                status:[],
+                sucursal:'',
+                pen:'',
                 searchUsuario:{'username':'','nombre':'','paterno':'','materno':''},
                     },
             methods:{
                
-                mostrarCancelar:function(){
-                    toastr.success('Eliminado');
+                Mostrar:function(){
+                    var urlStatus = 'status';
+					axios.get(urlStatus).then(response => {
+					this.status = response.data
+				});
                 },
+                CargarSucursal:function(){
+                	},
         }});
     </script>
 @endsection
