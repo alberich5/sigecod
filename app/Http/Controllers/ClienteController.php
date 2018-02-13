@@ -32,4 +32,10 @@ class ClienteController extends Controller
     return view('servicio.clientes',compact("clientes"));
 
   }
+
+  public function traerCliente()
+  {
+      $clientes = Cliente::select('id','nombre')->get();
+      return $clientes;
+  }
 }

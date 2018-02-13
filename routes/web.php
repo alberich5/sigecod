@@ -34,6 +34,7 @@ Route::get('articulos', 'EntradaController@mostrar');
 Route::get('mosclientes', 'ClienteController@mostrar');
 //consumir
 Route::get('traerUnidad', 'UnidadController@traerUnidad');
+Route::get('traerCliente', 'ClienteController@traerCliente');
 Route::get('pendientes', 'PostsController@pendiente');
 Route::get('cliente', 'PostsController@cliente');
 
