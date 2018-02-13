@@ -13,6 +13,12 @@ class UsersController extends Controller
         return view('users/manageprofiles',compact("users"));
     }
 
+    public function mostrar()
+    {
+        $users = User::orderBy('created_at', 'desc')->paginate(10);
+        return $users;
+    }
+
     public function destroy($id)
     {
         User::destroy($id);

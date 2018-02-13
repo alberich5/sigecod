@@ -32,6 +32,7 @@ Route::get('entrada', 'PostsController@entrada');
 Route::get('unidad', 'UnidadController@index');
 Route::get('articulos', 'EntradaController@mostrar');
 Route::get('mosclientes', 'ClienteController@mostrar');
+Route::get('mostraruser', 'UsersController@mostrar');
 //consumir
 Route::get('traerUnidad', 'UnidadController@traerUnidad');
 Route::get('traerCliente', 'ClienteController@traerCliente');

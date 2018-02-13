@@ -72,7 +72,11 @@
         <input type="submit" class="btn btn-primary" value="Guardar" >
     </form>
 
-
+    <div class="row">
+       <div class="col-xs-12">
+         <pre>@{{$data}}</pre>
+       </div>
+     </div>
   </div>
 @endsection
 
