@@ -84,7 +84,6 @@
                     <div class="panel-body">
                       <table class="table table-striped table-bordered table-condensed table-hover">
                         <thead>
-                          <th>Id</th>
                           <th>Fecha Ingreso</th>
                           <th>Descripcion</th>
                           <th>Marca</th>
@@ -93,7 +92,6 @@
                         </thead>
                         <tbody>
                           <tr v-for="total in totalCargado">
-                            <td>@{{ total.id }}</td>
                             <td>@{{ total.fecha_ingreso }}</td>
                             <td>@{{ total.descripcion }}</td>
                             <td>@{{ total.marca }}</td>
