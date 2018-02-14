@@ -15,8 +15,8 @@ class UnidadController extends Controller
   //funcion para mostrar el index
   public function index()
   {
-
-      return view('servicio.unidad');
+      $unidad = Unidad::select('id','nombre')->get();
+      return view('servicio.unidad',compact("unidad"));
   }
 
   public function traerUnidad()
@@ -32,7 +32,7 @@ class UnidadController extends Controller
       $unidad->nombre=strtoupper($request->get('nombre'));
       $unidad->save();
 
-      return redirect('posts');
+      return redirect('unidad');
   }
 
 

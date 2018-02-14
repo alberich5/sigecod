@@ -36,6 +36,13 @@ Route::get('mostraruser', 'UsersController@mostrar');
 Route::get('mostrararticulos', 'EntradaController@mostrarArticulos');
 
 
+//ruta de Excel
+Route::get('/export-users', 'ExcelController@exportUsers');
+Route::get('/export-entradas', 'ExcelController@exportEntradas');
+Route::get('/export-salidas', 'ExcelController@exportSalidas');
+Route::get('/export-productos', 'ExcelController@exportProducto');
+Route::get('/export-mensual', 'ExcelController@exportMensual');
+
 //consumir
 Route::get('traerUnidad', 'UnidadController@traerUnidad');
 Route::get('traerCliente', 'ClienteController@traerCliente');

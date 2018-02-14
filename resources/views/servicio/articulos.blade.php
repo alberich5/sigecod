@@ -17,16 +17,29 @@
     					<th>Cantidad</th>
     				</thead>
                    @foreach ($entradas as $entra)
-    				<tr>
+            <tr>
     					<td>{{ $entra->id}}</td>
               <td>{{ $entra->fecha_ingreso}}</td>
-              <td>{{ $entra->descripcion}}</td>
+              <td>
+                @if('0'  == $entra->cantidad)
+                  <span class="label label-warning">{{ $entra->descripcion}}</span>
+                @endif
+                @if('0'  < $entra->cantidad)
+                  {{ $entra->descripcion}}
+                @endif
+              </td>
               <td>{{ $entra->marca}}</td>
     					<td>$ {{ $entra->precio_iva}}</td>
-              <td>{{ $entra->cantidad}}</td>
-
+              <td>
+                @if('0'  == $entra->cantidad)
+                  <span class="label label-warning">{{ $entra->cantidad}}</span>
+                @endif
+                @if('0'  < $entra->cantidad)
+                  {{ $entra->cantidad}}
+                @endif
+              </td>
     				</tr>
-
+            </span>
     				@endforeach
     			</table>
     		</div>

@@ -16,6 +16,7 @@
     <link href="{{ asset('css/codigo.css') }}" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="img/poli.ico">
+    @yield('css')
 
     <!-- Scripts -->
     <script>
