@@ -40,4 +40,13 @@ class EntradaController extends Controller
     return view('servicio.articulos',compact("entradas"));
 
   }
+
+  public function mostrarArticulos(Request $request)
+  {
+    $consul=$request->get('query');
+    $entradas = Entrada::orderBy('created_at', 'desc')
+    ->where('descripcion','LIKE', "%$consul%")
+    ->get();
+    return $entradas;
+  }
 }

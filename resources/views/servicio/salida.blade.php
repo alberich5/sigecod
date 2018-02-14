@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="container" id="salida">
-    <form action="posts" class="form-horizontal" method="post">
+
         @if(count($errors) > 0)
             <div class="errors">
                 <ul class="alert-danger">
@@ -31,18 +31,18 @@
         <div class="form-group">
             <div class="col-sm-10">
               <label for="buscar">Buscar:</label>
-                <input type="search" class="form-control" name="buscar" >
+                <input type="search" class="form-control" name="buscar" v-model="buscar" >
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-sm-10">
-              
+
             </div>
         </div>
 
-        <input type="submit" class="btn btn-primary" value="Guardar" v-on:click="mostrarAlert">
-    </form>
+        <input type="submit" class="btn btn-primary" value="buscar" v-on:click="mostrarArticulos()">
+
 
     <div class="row">
        <div class="col-xs-12">
@@ -63,15 +63,22 @@
             },
             data:{
                 clientes:[],
-                unidad:[],
+                buscar:'',
+                articulos:[],
                 fecha:'',
                 searchUsuario:{'username':'','nombre':'','paterno':'','materno':''},
                     },
             methods:{
                 enviar:function(){
-                  var urlStatus = 'traerUnidad';
+                  var urlStatus = '/traerUnidad';
                   axios.get(urlStatus).then(response => {
                   this.unidad = response.data
+                });
+                },
+                mostrarArticulos:function(){
+                    var urlStatus = '/mostrararticulos?query=' + this.buscar;
+                  axios.get(urlStatus).then(response => {
+                  this.articulos = response.data
                 });
                 },
         }});
