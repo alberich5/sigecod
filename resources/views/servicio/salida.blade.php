@@ -70,7 +70,15 @@
                             <td>@{{ art.marca }}</td>
                             <td>@{{ art.precio_iva }}</td>
                             <td>@{{ art.cantidad }}</td>
-                            <td><button class="btn btn-danger" v-on:click.prevent="agregar(art)">Agregar</button></td>
+                            <td>
+                              <div v-if="art.cantidad > 0">
+                                <button class="btn btn-danger" v-on:click.prevent="agregar(art)">Agregar</button>
+                              </div>
+                              <div v-else>
+                                No Hay articulos
+                              </div>
+
+                            </td>
                           </tr>
                         </tbody>
                       </table>
