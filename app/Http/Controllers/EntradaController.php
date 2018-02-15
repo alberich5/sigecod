@@ -47,6 +47,7 @@ class EntradaController extends Controller
     $entradas = Entrada::orderBy('created_at', 'desc')
     ->where('descripcion','LIKE', "%$consul%")
     ->get();
+
     return $entradas;
   }
 }
