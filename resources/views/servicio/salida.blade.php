@@ -107,7 +107,7 @@
                             <td>@{{ total.descripcion }}</td>
                             <td>@{{ total.marca }}</td>
                             <td>@{{ total.precio_iva }}</td>
-                            <td><input type="number" min="1" max="5" value="1" >
+                            <td><input type="number" min="1" max="5" value="1">
                             </td>
 
                           </tr>
