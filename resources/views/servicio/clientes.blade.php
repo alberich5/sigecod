@@ -3,7 +3,7 @@
 @section('content')
   <div class="container" id="app">
     <center><h1>Listado de Clientes</h1></center>
-
+    <div id="articulo">
     <div class="row">
     	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     		<div class="table-responsive">
@@ -26,7 +26,7 @@
     	</div>
     </div>
 
-
+    </div>
   </div>
 
 

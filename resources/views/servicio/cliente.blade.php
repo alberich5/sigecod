@@ -12,6 +12,7 @@
                 </ul>
             </div>
         @endif
+      <div id="entrada">
         <div class="form-group">
             <div class="col-sm-10">
                 <input type="hidden" class="form-control" name="id_usuario" value="{{ Auth::user()->id }}">
@@ -28,7 +29,7 @@
         </div>
         <input type="submit" class="btn btn-primary" value="Guardar" v-on:click="mostrarAlert">
     </form>
-
+  </div>
 
 
 

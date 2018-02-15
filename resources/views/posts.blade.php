@@ -11,7 +11,7 @@
             <div class="content">
               <div class="content-txt">
                 <h1>Papeleria</h1>
-                <h2 id="color">Nam ultrices pellentesque facilisis. In semper tellus mollis nisl pulvinar vitae vulputate lorem consequat. Fusce odio tortor, pretium sit amet auctor ut, ultrices vel nibh.</h2>
+                <h2 id="color">Todo lo relacionado con lo que utilizan las Areas de la Policia Auxiliar, Bancaria y Comercial.</h2>
               </div>
             </div>
             <div class="image">
@@ -23,7 +23,7 @@
             <div class="content">
               <div class="content-txt">
                 <h1>Equipos</h1>
-                <h2 id="color">Nam ultrices pellentesque facilisis. In semper tellus mollis nisl pulvinar vitae vulputate lorem consequat. Fusce odio tortor, pretium sit amet auctor ut, ultrices vel nibh.</h2>
+                <h2 id="color">Todo lo relacionado con lo que utilizan las Areas de la Policia Auxiliar, Bancaria y Comercial.</h2>
               </div>
             </div>
             <div class="image">
@@ -34,8 +34,8 @@
             <div class="legend"></div>
             <div class="content">
               <div class="content-txt">
-                <h1>Lorem ipsum dolor</h1>
-                <h2 id="color">Nam ultrices pellentesque facilisis. In semper tellus mollis nisl pulvinar vitae vulputate lorem consequat. Fusce odio tortor, pretium sit amet auctor ut, ultrices vel nibh.</h2>
+                <h1>Otros</h1>
+                <h2 id="color">Todo lo relacionado con lo que utilizan las Areas de la Policia Auxiliar, Bancaria y Comercial.</h2>
               </div>
             </div>
             <div class="image">
@@ -46,8 +46,8 @@
             <div class="legend"></div>
             <div class="content">
               <div class="content-txt">
-                <h1>Lorem ipsum dolor</h1>
-                <h2 id="color">Nam ultrices pellentesque facilisis. In semper tellus mollis nisl pulvinar vitae vulputate lorem consequat. Fusce odio tortor, pretium sit amet auctor ut, ultrices vel nibh.</h2>
+                <h1>Otros</h1>
+                <h2 id="color">Todo lo relacionado con lo que utilizan las Areas de la Policia Auxiliar, Bancaria y Comercial.</h2>
               </div>
             </div>
             <div class="image">

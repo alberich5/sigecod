@@ -12,6 +12,9 @@
                 </ul>
             </div>
         @endif
+        <div id="entrada">
+
+
         <div class="form-group">
             <div class="col-sm-10">
                 <input type="hidden" class="form-control" name="id_usuario" value="{{ Auth::user()->id }}">
@@ -71,13 +74,14 @@
 
         <input type="submit" class="btn btn-primary" value="Guardar" >
     </form>
-
+    </div>
+    <!--
     <div class="row">
        <div class="col-xs-12">
          <pre>@{{$data}}</pre>
        </div>
      </div>
-  </div>
+  </div>-->
 @endsection
 
 @section('js')
