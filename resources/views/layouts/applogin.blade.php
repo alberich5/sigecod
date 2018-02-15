@@ -22,8 +22,16 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+    <style media="screen">
+    #welcome{
+       background-image: url("img/fondito.jpg");
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size:100% 100%;
+    }
+    </style>
 </head>
-<body>
+<body id="welcome">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top" id="navegacion">
             <div class="container">

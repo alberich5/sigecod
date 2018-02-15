@@ -2,11 +2,13 @@
 
 @section('content')
     <div class="container" id="salida">
-      <div class="articulo">
+
+      <div class="descargas">
+
 
 
       <form action="export-users" class="form-horizontal" method="get">
-        <h5>Aqui van las graficas</h5>
+        <center><h3>Reportes</h3></center>
         <input type="submit" class="btn btn-primary" value="Usuarios Registrados" >
     </form>
     <br><br>
@@ -67,7 +69,7 @@
 
     </div>
     </form>
-    </div>
+</div>
     </div>
 @endsection
 @section('js')

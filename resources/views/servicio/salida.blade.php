@@ -12,6 +12,9 @@
                 </ul>
             </div>
         @endif
+      <div class="salida">
+
+
         <div class="col-md-8 col-md-offset-2">
         <div class="form-group">
             <div class="col-sm-6">
@@ -105,7 +108,9 @@
                     </div>
                 </div>
             </div>
+
         </div>
+  </div>
 
 
     <div class="row">
