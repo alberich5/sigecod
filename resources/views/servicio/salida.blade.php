@@ -72,7 +72,7 @@
                             <td>@{{ art.cantidad }}</td>
                             <td>
                               <div v-if="art.cantidad > 0">
-                                <button class="btn btn-danger" v-on:click.prevent="agregar(art)">Agregar</button>
+                                <button class="btn btn-primary" v-on:click.prevent="agregar(art)">Agregar</button>
                               </div>
                               <div v-else>
                                 No Hay articulos
@@ -100,20 +100,26 @@
                           <th>Marca</th>
                           <th>Precio con Iva</th>
                           <th>Cantidad</th>
+                          <th>Opciones</th>
                         </thead>
                         <tbody>
-                          <tr v-for="total in totalCargado">
+                          <tr v-for="(total, index) in totalCargado">
                             <td>@{{ total.fecha_ingreso }}</td>
                             <td>@{{ total.descripcion }}</td>
                             <td>@{{ total.marca }}</td>
                             <td>@{{ total.precio_iva }}</td>
-                            <td><input type="number" min="1" max="5" value="1">
+                            <td><input type="number" min="1" max="5" value="1"></td>
+                            <td><button type="button" class="btn btn-danger" v-on:click.prevent="quitarEl(index)">Eliminar</button>
+                                <button type="button" class="btn btn-success" v-on:click.prevent="guadarBD()">ok</button>
                             </td>
-
                           </tr>
                         </tbody>
                       </table>
                     </div>
+
+
+
+
                 </div>
             </div>
 
@@ -162,6 +168,20 @@
                 agregar:function(art){
                   this.totalCargado.push(art);
                   swal("Agregado Correctamente", "Se agrego bien", "success");
+                },
+
+                quitarEl: function(index) {
+                  this.totalCargado.splice(index, 1);
+                  swal('Removido...','Se quito elemento','error');
+
+                },
+
+                guadarBD:function(){
+                  var urlStatus = '/guardarSalida?query=' + this.totalCargado;
+                  axios.get(urlStatus).then(response => {
+                  //this.articulos = response.data
+                  alert(urlStatus);
+              });
                 },
         }});
     </script>
