@@ -13,7 +13,7 @@ class SalidaController extends Controller
 
   }
 
-  public function guadar()
+  public function guadar(Request $request)
   {
   dd("entro a los archivos");
 

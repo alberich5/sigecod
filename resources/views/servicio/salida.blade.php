@@ -104,14 +104,16 @@
                         </thead>
                         <tbody>
                           <tr v-for="(total, index) in totalCargado">
-                            <td>@{{ total.fecha_ingreso }}</td>
-                            <td>@{{ total.descripcion }}</td>
-                            <td>@{{ total.marca }}</td>
-                            <td>@{{ total.precio_iva }}</td>
+                            <form action="guardarBD" class="form-horizontal" method="get">
+                            <td name="fecha_ingreso">@{{ total.fecha_ingreso }}</td>
+                            <td name="descripcion">@{{ total.descripcion }}</td>
+                            <td name="marca">@{{ total.marca }}</td>
+                            <td name="precio">@{{ total.precio_iva }}</td>
                             <td><input type="number" min="1" max="5" value="1"></td>
                             <td><button type="button" class="btn btn-danger" v-on:click.prevent="quitarEl(index)">Eliminar</button>
-                                <button type="button" class="btn btn-success" v-on:click.prevent="guadarBD()">ok</button>
+                                <button type="submit" class="btn btn-success">ok</button>
                             </td>
+                          </form>
                           </tr>
                         </tbody>
                       </table>

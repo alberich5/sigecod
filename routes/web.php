@@ -35,6 +35,7 @@ Route::get('mosclientes', 'ClienteController@mostrar');
 Route::get('mostraruser', 'UsersController@mostrar');
 Route::get('mostrararticulos', 'EntradaController@mostrarArticulos');
 Route::get('guardarSalida', 'SalidaController@guadar');
+Route::get('guardarBD', 'SalidaController@guadar');
 
 
 //ruta de Excel
