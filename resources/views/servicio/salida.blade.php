@@ -135,6 +135,7 @@
 
                 </div>
             </div>
+          
             <div v-if="respuesta > 0">
 
               <a href="http://localhost:8000/php/formato1.php?2"><button class="btn btn-success">Descargar</button></a>
@@ -231,6 +232,7 @@
                   //var querystr = jQuery.param(this.totalCargado); // hacemos el querystring tomando los valores
                     //alert(querystr);
                   //  alert("entro");
+
                     var urlGuardar = 'guardarBD';
                     axios.post(urlGuardar,{
                       variable:this.totalCargado

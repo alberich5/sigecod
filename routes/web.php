@@ -36,6 +36,7 @@ Route::get('mostraruser', 'UsersController@mostrar');
 Route::get('mostrararticulos', 'EntradaController@mostrarArticulos');
 Route::get('guardarSalida', 'SalidaController@guadar');
 Route::post('guardarBD', 'SalidaController@guardar');
+Route::get('pruebas', 'SalidaController@pruebas');
 
 
 //ruta de Excel
