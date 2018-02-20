@@ -119,7 +119,7 @@
                             <td name="descripcion" >@{{ total.descripcion }}</td>
                             <td name="marca" >@{{ total.marca }}</td>
                             <td name="precio" v-model="precio">@{{ total.precio_iva }}</td>
-                            <td><input type="number" min="1" max="5" value="1" name="cantidad"></td>
+                            <td>@{{ total.otro }}</td>
                             <td><button type="button" class="btn btn-danger" v-on:click.prevent="quitarEl(index)">Eliminar</button>
                                 <input type="submit"  class="btn btn-success" value="ok" v-on:click.prevent="guadarBD()">
                             </td>
@@ -135,8 +135,15 @@
 
                 </div>
             </div>
+            <div v-if="respuesta > 0">
 
+              <a href="http://localhost:8000/php/formato1.php?2"><button class="btn btn-success">Descargar</button></a>
+            </div>
+            <div v-else>
+
+            </div>
         </div>
+
   </div>
 
 
@@ -159,7 +166,7 @@
             },
             data:{
                 clientes:[],
-                respuesta:'',
+                respuesta:'2',
                 descripcion:'',
                 marca:'',
                 precio:'',
@@ -196,7 +203,8 @@
                     "precio": art.precio,
                     "precio_iva": art.precio_iva,
                     "cantidad": art.cantidad,
-                    "otro": this.cantidad
+                    "otro": this.cantidad,
+                    "cliente": this.clienteSelecionado
                   });
                   //this.totalCargado[index].otro=this.cantidad;
                   swal("Agregado Correctamente", "Se agrego bien", "success");
@@ -213,8 +221,12 @@
                     //alert(querystr);
                   //  alert("entro");
                     var urlGuardar = 'guardarBD';
-                    axios.post(urlGuardar,this.totalCargado).then(response => {
+                    axios.post(urlGuardar,{
+                      variable:this.totalCargado
+                    }).then(response => {
                      this.respuesta = response.data
+                       swal("Se Agregaron "+this.respuesta+" Productos", "Muy Bien", "success");
+
                   });
 
 
