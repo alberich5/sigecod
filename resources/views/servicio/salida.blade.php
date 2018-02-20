@@ -19,7 +19,7 @@
         <div class="form-group">
             <div class="col-sm-6">
               <label for="buscar">Seleciona Cliente:</label>
-              <select name="unidad" class="form-control">
+              <select name="unidad" class="form-control" v-model="clienteSelecionado">
                 <option v-for="cli in clientes" v-bind:value="cli.id" class="lista">
                   @{{ cli.nombre}}
                 </option>
@@ -103,18 +103,20 @@
                           <th>Opciones</th>
                         </thead>
                         <tbody>
+
                           <tr v-for="(total, index) in totalCargado">
                             <form action="guardarBD" class="form-horizontal" method="get">
-                            <td name="fecha_ingreso">@{{ total.fecha_ingreso }}</td>
-                            <td name="descripcion">@{{ total.descripcion }}</td>
-                            <td name="marca">@{{ total.marca }}</td>
-                            <td name="precio">@{{ total.precio_iva }}</td>
-                            <td><input type="number" min="1" max="5" value="1"></td>
+                            <td name="fecha_ingreso" v-model="fecha_ingreso">@{{ total.fecha_ingreso }}</td>
+                            <td name="descripcion" >@{{ total.descripcion }}</td>
+                            <td name="marca" >@{{ total.marca }}</td>
+                            <td name="precio" v-model="precio">@{{ total.precio_iva }}</td>
+                            <td><input type="number" min="1" max="5" value="1" name="cantidad"></td>
                             <td><button type="button" class="btn btn-danger" v-on:click.prevent="quitarEl(index)">Eliminar</button>
-                                <button type="submit" class="btn btn-success">ok</button>
+                                <input type="submit"  class="btn btn-success" value="ok" v-on:click.prevent="guadarBD()">
                             </td>
-                          </form>
+
                           </tr>
+
                         </tbody>
                       </table>
                     </div>
@@ -148,7 +150,14 @@
             },
             data:{
                 clientes:[],
+                respuesta:'',
+                descripcion:'',
+                marca:'',
+                precio:'',
+                cantidad:'1',
                 buscar:'',
+                clienteSelecionado:'',
+                cantidad:'',
                 articulos:[],
                 totalCargado:[],
                 fecha:'',
@@ -179,11 +188,15 @@
                 },
 
                 guadarBD:function(){
-                  var urlStatus = '/guardarSalida?query=' + this.totalCargado;
-                  axios.get(urlStatus).then(response => {
-                  //this.articulos = response.data
-                  alert(urlStatus);
-              });
+                  //var querystr = jQuery.param(this.totalCargado); // hacemos el querystring tomando los valores
+                    //alert(querystr);
+                  //  alert("entro");
+                    var urlGuardar = 'guardarBD';
+                    axios.post(urlGuardar,this.totalCargado).then(response => {
+                     alert("entro");
+                  });
+
+
                 },
         }});
     </script>

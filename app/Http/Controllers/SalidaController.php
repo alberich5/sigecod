@@ -13,9 +13,9 @@ class SalidaController extends Controller
 
   }
 
-  public function guadar(Request $request)
+  public function guardar(Request $request)
   {
-  dd("entro a los archivos");
+  return "llego muy bien";
 
   }
 
