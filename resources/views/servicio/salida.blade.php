@@ -47,10 +47,10 @@
                     <div class="panel-body">
                       <div class="col-sm-5">
                         <label for="buscar">Buscar:</label>
-                          <input type="search" class="form-control" name="buscar" v-model="buscar" style="text-transform: uppercase;">
+                          <input type="search" class="form-control" name="Buscar" v-model="buscar" style="text-transform: uppercase;">
                       </div>
                       <div class="col-sm-3">
-                          <input type="submit" class="btn btn-primary" value="buscar" v-on:click="mostrarArticulos()">
+                          <input type="submit" class="btn btn-primary" value="Buscar" v-on:click="mostrarArticulos()">
                       </div>
                       <table class="table table-striped table-bordered table-condensed table-hover">
                         <thead>
@@ -166,7 +166,7 @@
             },
             data:{
                 clientes:[],
-                respuesta:'2',
+                respuesta:'',
                 descripcion:'',
                 marca:'',
                 precio:'',
@@ -187,27 +187,38 @@
                 });
                 },
                 mostrarArticulos:function(){
+                  if (this.clienteSelecionado>0) {
                     var urlStatus = '/mostrararticulos?query=' + this.buscar;
-                  axios.get(urlStatus).then(response => {
-                  this.articulos = response.data
-                });
+                      axios.get(urlStatus).then(response => {
+                      this.articulos = response.data
+                    });
+                  }else{
+                    swal('Seleciona Cliente','Seleciona','info');
+                  }
+
                 },
                 agregar:function(art, index){
-                  this.totalCargado.push({
-                    "id": art.id,
-                    "id_usuario": art.id_usuario,
-                    "id_unidad": art.id_unidad,
-                    "fecha_ingreso": art.fecha_ingreso,
-                    "descripcion": art.descripcion,
-                    "marca": art.marca,
-                    "precio": art.precio,
-                    "precio_iva": art.precio_iva,
-                    "cantidad": art.cantidad,
-                    "otro": this.cantidad,
-                    "cliente": this.clienteSelecionado
-                  });
-                  //this.totalCargado[index].otro=this.cantidad;
-                  swal("Agregado Correctamente", "Se agrego bien", "success");
+                  if(this.cantidad > 0){
+                    this.totalCargado.push({
+                      "id": art.id,
+                      "id_usuario": art.id_usuario,
+                      "id_unidad": art.id_unidad,
+                      "fecha_ingreso": art.fecha_ingreso,
+                      "descripcion": art.descripcion,
+                      "marca": art.marca,
+                      "precio": art.precio,
+                      "precio_iva": art.precio_iva,
+                      "cantidad": art.cantidad,
+                      "otro": this.cantidad,
+                      "cliente": this.clienteSelecionado
+                    });
+                    //this.totalCargado[index].otro=this.cantidad;
+                    swal("Agregado Correctamente", "Se agrego bien", "success");
+                    this.cantidad="0";
+                  }else{
+                    swal('Agrega cantidad','Agrega cantidad mayor a 0','info');
+                  }
+
                 },
 
                 quitarEl: function(index) {
