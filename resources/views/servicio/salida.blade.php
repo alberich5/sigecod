@@ -59,11 +59,12 @@
                           <th>Descripcion</th>
                           <th>Marca</th>
                           <th>Precio con Iva</th>
+                          <th>Stock</th>
                           <th>Cantidad</th>
                           <th>Opciones</th>
                         </thead>
                         <tbody>
-                          <tr v-for="art in articulos">
+                          <tr v-for="(art, index) in articulos">
                             <td>@{{ art.id }}</td>
                             <td>@{{ art.fecha_ingreso }}</td>
                             <td>@{{ art.descripcion }}</td>
@@ -72,7 +73,15 @@
                             <td>@{{ art.cantidad }}</td>
                             <td>
                               <div v-if="art.cantidad > 0">
-                                <button class="btn btn-primary" v-on:click.prevent="agregar(art)">Agregar</button>
+                                <input type="number" min="1" max="5" value="1" name="cantidad" v-model="cantidad">
+                              </div>
+                              <div v-else>
+                                0
+                              </div>
+                            </td>
+                            <td>
+                              <div v-if="art.cantidad > 0">
+                                <button class="btn btn-primary" v-on:click.prevent="agregar(art, index)">Agregar</button>
                               </div>
                               <div v-else>
                                 No Hay articulos
@@ -176,8 +185,20 @@
                   this.articulos = response.data
                 });
                 },
-                agregar:function(art){
-                  this.totalCargado.push(art);
+                agregar:function(art, index){
+                  this.totalCargado.push({
+                    "id": art.id,
+                    "id_usuario": art.id_usuario,
+                    "id_unidad": art.id_unidad,
+                    "fecha_ingreso": art.fecha_ingreso,
+                    "descripcion": art.descripcion,
+                    "marca": art.marca,
+                    "precio": art.precio,
+                    "precio_iva": art.precio_iva,
+                    "cantidad": art.cantidad,
+                    "otro": this.cantidad
+                  });
+                  //this.totalCargado[index].otro=this.cantidad;
                   swal("Agregado Correctamente", "Se agrego bien", "success");
                 },
 
@@ -193,7 +214,7 @@
                   //  alert("entro");
                     var urlGuardar = 'guardarBD';
                     axios.post(urlGuardar,this.totalCargado).then(response => {
-                     alert("entro");
+                     this.respuesta = response.data
                   });
 
 

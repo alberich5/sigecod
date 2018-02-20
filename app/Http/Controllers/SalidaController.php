@@ -15,7 +15,8 @@ class SalidaController extends Controller
 
   public function guardar(Request $request)
   {
-  return "llego muy bien";
+    $var =$request['id']
+  return $var;
 
   }
 
