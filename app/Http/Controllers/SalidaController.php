@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Response;
 use App\Entrada;
 use App\Salida;
 
@@ -56,6 +57,27 @@ class SalidaController extends Controller
 
         dd($final);
 
+    }
+
+    public function crearWord(){
+$phpWord = new \PhpOffice\PhpWord\PhpWord();
+$section = $phpWord->addSection();
+
+
+$templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1.docx');
+
+$dia=date('d');
+$mes=date('m');
+$ano=date('y');
+
+
+$templateWord->setValue('dia',$dia);
+$templateWord->setValue('mes',$mes);
+$templateWord->setValue('ano',$ano);
+$templateWord->saveAs('salida.docx');
+//$this->historial('Descarga de oficio de alta del elemento '.$id);
+$nombreDocumento=str_replace("  "," ","omar");
+return Response::download('salida.docx',$nombreDocumento.'.docx');
     }
 
 }

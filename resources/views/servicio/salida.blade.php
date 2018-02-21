@@ -135,10 +135,10 @@
 
                 </div>
             </div>
-          
+
             <div v-if="respuesta > 0">
 
-              <a href="http://localhost:8000/php/formato1.php?2"><button class="btn btn-success">Descargar</button></a>
+            <button type="button" name="button" class="btn btn-success" v-on:click="descargar()">Descargar</button>
             </div>
             <div v-else>
 
@@ -167,7 +167,7 @@
             },
             data:{
                 clientes:[],
-                respuesta:'',
+                respuesta:'2',
                 descripcion:'',
                 marca:'',
                 precio:'',
@@ -228,11 +228,11 @@
 
                 },
 
+
                 guadarBD:function(){
                   //var querystr = jQuery.param(this.totalCargado); // hacemos el querystring tomando los valores
                     //alert(querystr);
                   //  alert("entro");
-
                     var urlGuardar = 'guardarBD';
                     axios.post(urlGuardar,{
                       variable:this.totalCargado
@@ -242,6 +242,9 @@
 
                   });
 
+                },
+                descargar: function() {
+                  window.open('crear');
 
                 },
         }});
