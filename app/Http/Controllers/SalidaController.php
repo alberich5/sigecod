@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Response;
 use App\Entrada;
 use App\Salida;
+use App\Cliente;
 
 class SalidaController extends Controller
 {
@@ -59,7 +60,14 @@ class SalidaController extends Controller
 
     }
 
-    public function crearWord(){
+    public function crearWord(Request $request){
+      $client = Cliente::select('id','nombre')
+      ->where('id','=', $request->get('cliente'))
+      ->get();
+      $var="";
+      foreach ($client as $cli) {
+          $var = $cli->nombre;
+      }
 $phpWord = new \PhpOffice\PhpWord\PhpWord();
 $section = $phpWord->addSection();
 
@@ -69,11 +77,16 @@ $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1
 $dia=date('d');
 $mes=date('m');
 $ano=date('y');
-
+ $fecha="2018-02-21" ;
 
 $templateWord->setValue('dia',$dia);
 $templateWord->setValue('mes',$mes);
 $templateWord->setValue('ano',$ano);
+$templateWord->setValue('area',$var);
+     $templateWord->setValue('articulo0',$request->get('articulo'));
+     $templateWord->setValue('unidad0','pieza');
+     $templateWord->setValue('cant0',$request->get('cantidad'));
+
 $templateWord->saveAs('salida.docx');
 //$this->historial('Descarga de oficio de alta del elemento '.$id);
 $nombreDocumento=str_replace("  "," ","omar");

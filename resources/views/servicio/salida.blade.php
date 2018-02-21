@@ -174,6 +174,7 @@
                 buscar:'',
                 clienteSelecionado:'',
                 cantidad:'',
+                cantidad2:'',
                 articulos:[],
                 totalCargado:[],
                 fecha:'',
@@ -214,6 +215,7 @@
                     });
                     //this.totalCargado[index].otro=this.cantidad;
                     swal("Agregado Correctamente", "Se agrego bien", "success");
+                    this.cantidad2=this.cantidad;
                     this.cantidad="0";
                     this.articulos=[];
                   }else{
@@ -250,7 +252,7 @@
 
                 },
                 descargar: function() {
-                  window.open('crear');
+                   window.open('crear?cliente='+this.clienteSelecionado+'&articulo=omar&cantidad='+this.cantidad2);
 
                 },
         }});
