@@ -14,19 +14,20 @@
         @endif
       <div class="salida">
 
-
         <div class="col-md-8 col-md-offset-2">
         <div class="form-group">
-            <div class="col-sm-6">
-              <label for="buscar">Seleciona Cliente:</label>
+            <center>
+            <div class="col-sm-12">
+              <label for="buscar">SELECIONA CLIENTE:</label>
               <select name="unidad" class="form-control" v-model="clienteSelecionado">
                 <option v-for="cli in clientes" v-bind:value="cli.id" class="lista">
                   @{{ cli.nombre}}
                 </option>
               </select>
             </div>
+          </center>
         </div>
-        </div>
+      </div><br><br>
 
         <div class="form-group">
             <div class="col-sm-10">
@@ -42,7 +43,7 @@
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
+                <div class="panel panel-info">
                     <div class="panel-heading">Articulos Buscados</div>
                     <div class="panel-body">
                       <div class="col-sm-5">
@@ -108,7 +109,7 @@
                           <th>Descripcion</th>
                           <th>Marca</th>
                           <th>Precio con Iva</th>
-                          <th>Cantidad</th>
+                          <th>Cantidad a Salir</th>
                           <th>Opciones</th>
                         </thead>
                         <tbody>
@@ -121,7 +122,7 @@
                             <td name="precio" v-model="precio">@{{ total.precio_iva }}</td>
                             <td>@{{ total.otro }}</td>
                             <td><button type="button" class="btn btn-danger" v-on:click.prevent="quitarEl(index)">Eliminar</button>
-                                <input type="submit"  class="btn btn-success" value="ok" v-on:click.prevent="guadarBD()">
+
                             </td>
 
                           </tr>
@@ -129,8 +130,6 @@
                         </tbody>
                       </table>
                     </div>
-
-
 
 
                 </div>
@@ -141,7 +140,7 @@
             <button type="button" name="button" class="btn btn-success" v-on:click="descargar()">Descargar</button>
             </div>
             <div v-else>
-
+              <input type="submit"  class="btn btn-success" value="Guardar" v-on:click.prevent="guadarBD()">
             </div>
         </div>
 
@@ -167,7 +166,7 @@
             },
             data:{
                 clientes:[],
-                respuesta:'2',
+                respuesta:'',
                 descripcion:'',
                 marca:'',
                 precio:'',
@@ -216,6 +215,7 @@
                     //this.totalCargado[index].otro=this.cantidad;
                     swal("Agregado Correctamente", "Se agrego bien", "success");
                     this.cantidad="0";
+                    this.articulos=[];
                   }else{
                     swal('Agrega cantidad','Agrega cantidad mayor a 0','info');
                   }
@@ -233,14 +233,20 @@
                   //var querystr = jQuery.param(this.totalCargado); // hacemos el querystring tomando los valores
                     //alert(querystr);
                   //  alert("entro");
+                  if(this.totalCargado.length == 0){
+                    swal('NO HAY PRODUCTOS','NO HAY PRODUCTOS','info');
+                  }else{
                     var urlGuardar = 'guardarBD';
                     axios.post(urlGuardar,{
                       variable:this.totalCargado
                     }).then(response => {
                      this.respuesta = response.data
                        swal("Se Agregaron "+this.respuesta+" Productos", "Muy Bien", "success");
-
+                       this.totalCargado=[];
                   });
+                  }
+
+
 
                 },
                 descargar: function() {
