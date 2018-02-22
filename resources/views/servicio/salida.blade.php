@@ -115,7 +115,7 @@
                         <tbody>
 
                           <tr v-for="(total, index) in totalCargado">
-                            <form action="guardarBD" class="form-horizontal" method="get">
+                            
                             <td name="fecha_ingreso" v-model="fecha_ingreso">@{{ total.fecha_ingreso }}</td>
                             <td name="descripcion" >@{{ total.descripcion }}</td>
                             <td name="marca" >@{{ total.marca }}</td>
