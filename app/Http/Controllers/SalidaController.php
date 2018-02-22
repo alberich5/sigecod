@@ -77,7 +77,7 @@ $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1
 $dia=date('d');
 $mes=date('m');
 $ano=date('y');
- $fecha="2018-02-21" ;
+$fecha="2018-02-21" ;
 
 $templateWord->setValue('dia',$dia);
 $templateWord->setValue('mes',$mes);

@@ -115,7 +115,7 @@
                         <tbody>
 
                           <tr v-for="(total, index) in totalCargado">
-                            
+
                             <td name="fecha_ingreso" v-model="fecha_ingreso">@{{ total.fecha_ingreso }}</td>
                             <td name="descripcion" >@{{ total.descripcion }}</td>
                             <td name="marca" >@{{ total.marca }}</td>
@@ -137,7 +137,7 @@
 
             <div v-if="respuesta > 0">
 
-            <button type="button" name="button" class="btn btn-success" v-on:click="descargar()">Descargar</button>
+            <!--<button type="button" name="button" class="btn btn-success" v-on:click="descargar()">Descargar</button>-->
             </div>
             <div v-else>
               <input type="submit"  class="btn btn-success" value="Guardar" v-on:click.prevent="guadarBD()">
@@ -243,12 +243,12 @@
                       variable:this.totalCargado
                     }).then(response => {
                      this.respuesta = response.data
+                     this.descargar();
                        swal("Se Agregaron "+this.respuesta+" Productos", "Muy Bien", "success");
                        this.totalCargado=[];
+
                   });
                   }
-
-
 
                 },
                 descargar: function() {
