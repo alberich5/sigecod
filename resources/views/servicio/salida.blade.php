@@ -254,7 +254,7 @@
                 descargar: function() {
 
 
-                   window.open('crear?cliente='+this.clienteSelecionado+'&articulo=omar&cantidad='+this.cantidad2);
+                   window.open('crear?cliente='+this.clienteSelecionado+'&articulo=omar&cantidad='+this.cantidad2+'&todo='+this.totalCargado);
 
                 },
         }});

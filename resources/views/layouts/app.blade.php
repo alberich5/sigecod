@@ -92,6 +92,7 @@
 
                                         <li><a href="{{ url('/articulos') }}">Articulos</a></li>
                                         <li><a href="{{ url('/mosclientes') }}">Clientes</a></li>
+                                        
 
 
                                 </ul>

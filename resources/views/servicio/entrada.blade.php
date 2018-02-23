@@ -35,14 +35,14 @@
         <div class="form-group">
             <div class="col-sm-10">
               <label for="descripcion">Descripcion:</label>
-                <input type="text" class="form-control" name="descripcion" placeholder="Descripcion del producto..." value="{{old('domicilio')}}" style="text-transform: uppercase;">
+                <input type="text" class="form-control" name="descripcion" placeholder="Descripcion del producto..." value="{{old('domicilio')}}" style="text-transform: uppercase;" required>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-sm-10">
               <label for="marca">Marca:</label>
-                <input type="text" class="form-control" name="marca" placeholder="Marca del producto..." value="{{old('domicilio')}}" style="text-transform: uppercase;">
+                <input type="text" class="form-control" name="marca" placeholder="Marca del producto..." value="{{old('domicilio')}}" style="text-transform: uppercase;" required>
             </div>
         </div>
 
@@ -60,14 +60,14 @@
         <div class="form-group">
             <div class="col-sm-10">
               <label for="precio">Precio:</label>
-                <input type="text" class="form-control" name="precio" placeholder="Precio del producto..." value="{{old('domicilio')}}">
+                <input type="text" class="form-control" name="precio" placeholder="Precio del producto..." value="{{old('domicilio')}}" required>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-sm-10">
               <label for="cantidad">Cantidad:</label>
-                <input type="text" class="form-control" name="cantidad" placeholder="Cantidad del producto..." value="{{old('domicilio')}}">
+                <input type="text" class="form-control" name="cantidad" placeholder="Cantidad del producto..." value="{{old('domicilio')}}" required>
             </div>
         </div>
 

@@ -33,6 +33,7 @@ Route::get('unidad', 'UnidadController@index');
 Route::get('articulos', 'EntradaController@mostrar');
 Route::get('mosclientes', 'ClienteController@mostrar');
 Route::get('mostraruser', 'UsersController@mostrar');
+Route::get('mosalidas', 'SalidaController@mostrar');
 Route::get('mostrararticulos', 'EntradaController@mostrarArticulos');
 Route::get('guardarSalida', 'SalidaController@guadar');
 Route::post('guardarBD', 'SalidaController@guardar');
