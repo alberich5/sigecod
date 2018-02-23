@@ -47,6 +47,11 @@ class SalidaController extends Controller
   }
 
     public function pruebas(){
+      $dia=date('d');
+      $mes=date('m');
+      $ano=date('Y');
+      $fecha=$ano.'-'.$mes.'-'.$dia;
+      dd($fecha);
         $unidad = Entrada::select('id','cantidad')
         ->where('id','=', "15")
         ->get();
@@ -76,8 +81,8 @@ $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1
 
 $dia=date('d');
 $mes=date('m');
-$ano=date('y');
-$fecha="2018-02-21" ;
+$ano=date('Y');
+$fecha=$ano.'-'.$mes.'-'.$dia;
 
 $templateWord->setValue('dia',$dia);
 $templateWord->setValue('mes',$mes);
