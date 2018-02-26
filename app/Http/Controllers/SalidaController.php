@@ -109,4 +109,12 @@ $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1
 
     }
 
+    public function mostrarsalidas(Request $request){
+      $salidas = Salida::orderBy('created_at', 'fecha_salida')
+      ->paginate(10);
+
+      return view('servicio.salidashechas',compact("salidas"));
+
+    }
+
 }

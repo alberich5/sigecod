@@ -58,7 +58,7 @@ class EntradaController extends Controller
   public function mostrarArticulos(Request $request)
   {
     $consul=strtoupper($request->get('query'));
-    $entradas = Entrada::orderBy('created_at', 'desc')
+    $entradas = Entrada::orderBy('created_at', 'asc')
     ->where('descripcion','like', "%".$consul."%")
     ->where('status','=', 'activo')
     ->get();

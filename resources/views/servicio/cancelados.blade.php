@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="container" id="articulos">
-    <center><h1>Listado de Articulos</h1></center>
+  <div class="container" id="cancelados">
+    <center><h1>Entradas Canceladas</h1></center>
 <div id="articulo">
     <div class="row">
     	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -15,6 +15,7 @@
     					<th>Marca</th>
     					<th>Precio con Iva</th>
     					<th>Status</th>
+              <th>Opcion</th>
     				</thead>
                    @foreach ($entradas as $entra)
             <tbody>
@@ -32,6 +33,9 @@
     					<td>$ {{ $entra->precio_iva}}</td>
               <td>
                   <span class="label label-danger">{{ $entra->status}}</span>
+              </td>
+              <td>
+                  <button type="button"  class="btn btn-warning" name="button" v-on:click="rea()">Reactivar</button>
               </td>
 
 
@@ -61,6 +65,31 @@
 @endsection
 
 @section('js')
+
+<script type="text/javascript">
+  var vm = new Vue({
+          //id asignado al div en el que funcionara vue
+          el: '#cancelados',
+          //funcion al crear el objet
+          created: function() {
+              this.articulos();
+          },
+          data:{
+              articulos:[],
+              unidad:[],
+              mensaje:'',
+              searchUsuario:{'username':'','nombre':'','paterno':'','materno':''},
+                  },
+          methods:{
+              Eliminar:function(id){
+                var msj = id;
+                alert("eliminar"+msj);
+              },
+              rea:function(){
+                alert("reactivar");
+              },
+      }});
+  </script>
 
 
 @endsection
