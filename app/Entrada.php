@@ -19,6 +19,7 @@ class Entrada extends Model
       'precio',
       'cantidad',
       'cantidadOriginal',
-      'status'
+      'status',
+      'motivo'
    ];
 }

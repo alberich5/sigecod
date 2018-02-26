@@ -31,6 +31,7 @@ class EntradaController extends Controller
       $entrada->cantidad=$request->get('cantidad');
       $entrada->cantidadOriginal=$request->get('cantidad');
       $entrada->status='activo';
+      $entrada->motivo='';
       $entrada->save();
 
       return redirect('articulos');
@@ -53,6 +54,16 @@ class EntradaController extends Controller
 
   }
 
+  public function canceladosvue()
+  {
+    $entradas = Entrada::orderBy('created_at', 'desc')
+    ->where('status','=', 'cancelado')
+    ->get();
+
+    return $entradas;
+
+  }
+
 
 
   public function mostrarArticulos(Request $request)
@@ -64,6 +75,19 @@ class EntradaController extends Controller
     ->get();
 
     return $entradas;
+  }
+
+  public function reactivar(Request $request)
+  {
+    $motivo=strtoupper($request->get('motivo'));
+    $entrada=Entrada::findOrFail($request->get('id'));
+    $entrada->status='activo';
+    $entrada->motivo=$motivo;
+    $entrada->update();
+    
+    return "se reactivo producto";
+
+
   }
 
   public function eliminar($id)

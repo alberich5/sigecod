@@ -57,9 +57,7 @@
     	</div>
     </div>
 
-    <form action="eliminarArticulo" class="form-horizontal" method="get">
-      <input type="submit" class="btn btn-primary" value="Elimiar">
-      </form>
+
 
 </div>
 

@@ -238,6 +238,7 @@
                   if(this.totalCargado.length == 0){
                     swal('NO HAY PRODUCTOS','NO HAY PRODUCTOS','info');
                   }else{
+                    
                     var urlGuardar = 'guardarBD';
                     axios.post(urlGuardar,{
                       variable:this.totalCargado

@@ -17,39 +17,27 @@
     					<th>Status</th>
               <th>Opcion</th>
     				</thead>
-                   @foreach ($entradas as $entra)
-            <tbody>
-    					<td>{{ $entra->id}}</td>
-              <td>{{ $entra->fecha_ingreso}}</td>
-              <td>
-                @if('0'  == $entra->cantidad)
-                  <span class="label label-warning">{{ $entra->descripcion}}</span>
-                @endif
-                @if('0'  < $entra->cantidad)
-                  {{ $entra->descripcion}}
-                @endif
-              </td>
-              <td>{{ $entra->marca}}</td>
-    					<td>$ {{ $entra->precio_iva}}</td>
-              <td>
-                  <span class="label label-danger">{{ $entra->status}}</span>
-              </td>
-              <td>
-                  <button type="button"  class="btn btn-warning" name="button" v-on:click="rea()">Reactivar</button>
-              </td>
-
-
-    				</tbody>
-    				@endforeach
+            <tr v-for="art in articulos">
+             <td >@{{ art.id }}</td>
+             <td >@{{ art.fecha_ingreso }}</td>
+             <td >@{{ art.descripcion }}</td>
+             <td >@{{ art.marca }}</td>
+             <td >@{{ art.precio_iva }}</td>
+               <td ><span class="label label-warning">@{{ art.status }}</span></td>
+             <td><a href="#" class="btn btn-danger btn-sm" v-on:click.prevent="rea(art)">Reativar</a></td>
+           </tr>
     			</table>
     		</div>
     		{{$entradas->render()}}
     	</div>
     </div>
 
-    <form action="eliminarArticulo" class="form-horizontal" method="get">
-      <input type="submit" class="btn btn-primary" value="Elimiar">
-      </form>
+    @include('servicio.revalidacion')
+    <div class="row">
+       <div class="col-xs-12">
+         <pre>@{{$data}}</pre>
+       </div>
+     </div>
 
 </div>
 
@@ -72,11 +60,13 @@
           el: '#cancelados',
           //funcion al crear el objet
           created: function() {
-              this.articulos();
+              this.mostrar();
           },
           data:{
               articulos:[],
-              unidad:[],
+              motivo:'',
+              contra:'',
+              idtemporal:'',
               mensaje:'',
               searchUsuario:{'username':'','nombre':'','paterno':'','materno':''},
                   },
@@ -85,8 +75,28 @@
                 var msj = id;
                 alert("eliminar"+msj);
               },
-              rea:function(){
-                alert("reactivar");
+              rea:function(art){
+                this.idtemporal=art.id;
+                $('#create').modal('show');
+              },
+              mostrar:function(){
+                var urlStatus = '/canceladosvue';
+                  axios.get(urlStatus).then(response => {
+                  this.articulos = response.data
+                });
+              },
+              crearvalidacion:function(){
+                if (this.contra=='12345') {
+                  var urlStatus = '/reactivar?motivo=' + this.motivo+'&id='+this.idtemporal;
+                    axios.get(urlStatus).then(response => {
+                    this.mensaje = response.data
+                    this.idtemporal='';
+                  });
+                  swal('Se reactivo','Se reactivo producto','success');
+                }else{
+
+                  swal('Contraseña Incorrecta...','No se puede reactivar producto','error');
+                }
               },
       }});
   </script>
