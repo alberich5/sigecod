@@ -175,6 +175,7 @@
                 clienteSelecionado:'',
                 cantidad:'',
                 cantidad2:'',
+                veri:'',
                 articulos:[],
                 totalCargado:[],
                 fecha:'',
@@ -238,17 +239,25 @@
                   if(this.totalCargado.length == 0){
                     swal('NO HAY PRODUCTOS','NO HAY PRODUCTOS','info');
                   }else{
-                    
-                    var urlGuardar = 'guardarBD';
-                    axios.post(urlGuardar,{
-                      variable:this.totalCargado
-                    }).then(response => {
-                     this.respuesta = response.data
-                     this.descargar();
-                       swal("Se Agregaron "+this.respuesta+" Productos", "Muy Bien", "success");
-                       this.totalCargado=[];
-
+                    var urlStatus = '/verificarproducto?query='+this.buscar;
+                    axios.get(urlStatus).then(response => {
+                    this.veri = response.data
                   });
+                    if(this.veri<1){
+                      swal('VERIFICA','PUEDES TENER PRODUCTOS ANTIGUOS','info');
+                    }else{
+                      var urlGuardar = 'guardarBD';
+                      axios.post(urlGuardar,{
+                        variable:this.totalCargado
+                      }).then(response => {
+                       this.respuesta = response.data
+                       this.descargar();
+                         swal("Se Agregaron "+this.respuesta+" Productos", "Muy Bien", "success");
+                         this.totalCargado=[];
+
+                    });
+                    }
+
                   }
 
                 },

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Entrada;
+use DB;
 
 class EntradaController extends Controller
 {
@@ -84,10 +85,19 @@ class EntradaController extends Controller
     $entrada->status='activo';
     $entrada->motivo=$motivo;
     $entrada->update();
-    
     return "se reactivo producto";
+  }
 
+  public function verificarproducto(Request $request)
+  {
+          $quey=strtoupper($request->get('query'));
+          $buscado = Entrada::orderBy('created_at', 'asc')
+          ->where('descripcion','like', "%".$quey."%")
+          ->where('status','=', 'activo')
+          ->get();
+           $cnta=count($buscado);
 
+    return $cnta;
   }
 
   public function eliminar($id)

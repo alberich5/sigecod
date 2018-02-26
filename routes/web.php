@@ -33,6 +33,7 @@ Route::get('unidad', 'UnidadController@index');
 Route::get('articulos', 'EntradaController@mostrar');
 Route::get('cancelados', 'EntradaController@cancelados');
 Route::get('canceladosvue', 'EntradaController@canceladosvue');
+Route::get('verificarproducto', 'EntradaController@verificarproducto');
 Route::get('reactivar', 'EntradaController@reactivar');
 Route::get('mostrarsalidas', 'SalidaController@mostrarsalidas');
 
