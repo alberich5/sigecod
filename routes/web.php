@@ -31,6 +31,10 @@ Route::get('salida', 'PostsController@salida');
 Route::get('entrada', 'PostsController@entrada');
 Route::get('unidad', 'UnidadController@index');
 Route::get('articulos', 'EntradaController@mostrar');
+Route::get('cancelados', 'EntradaController@cancelados');
+
+
+
 Route::get('mosclientes', 'ClienteController@mostrar');
 Route::get('mostraruser', 'UsersController@mostrar');
 Route::get('mosalidas', 'SalidaController@mostrar');
@@ -74,6 +78,7 @@ Route::group(['middleware'=> 'Role:admin'], function(){
     Route::post('/posts/editposts/{id}', 'PostsController@update');
 
     Route::get('/users/editprofile/{id}', 'UsersController@show');
+    Route::get('/eliminarArticulo/{id}', 'EntradaController@eliminar');
 
     Route::post('/users/editprofile/{id}', 'UsersController@update');
 

@@ -46,8 +46,6 @@ class SalidaController extends Controller
 
 
 
-    
-
     return $tamano;
 
   }
@@ -70,8 +68,6 @@ class SalidaController extends Controller
         dd($final);
 
     }
-
-
 
 
     public function crearWord(Request $request){

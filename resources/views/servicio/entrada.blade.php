@@ -60,14 +60,14 @@
         <div class="form-group">
             <div class="col-sm-10">
               <label for="precio">Precio:</label>
-                <input type="text" class="form-control" name="precio" placeholder="Precio del producto..." value="{{old('domicilio')}}" required>
+                <input type="text" class="form-control" name="precio" placeholder="Precio del producto..." value="{{old('domicilio')}}" onkeypress="return valida(event)" required>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-sm-10">
               <label for="cantidad">Cantidad:</label>
-                <input type="text" class="form-control" name="cantidad" placeholder="Cantidad del producto..." value="{{old('domicilio')}}" required>
+                <input type="text" class="form-control" name="cantidad" placeholder="Cantidad del producto..." value="{{old('domicilio')}}" onkeypress="return valida(event)" required>
             </div>
         </div>
 
@@ -85,6 +85,21 @@
 @endsection
 
 @section('js')
+<script>
+function valida(e){
+    tecla = (document.all) ? e.keyCode : e.which;
+
+    //Tecla de retroceso para borrar, siempre la permite
+    if (tecla==8){
+        return true;
+    }
+
+    // Patron de entrada, en este caso solo acepta numeros
+    patron =/[0-9]/;
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
+}
+</script>
   <script type="text/javascript">
     var vm = new Vue({
             //id asignado al div en el que funcionara vue

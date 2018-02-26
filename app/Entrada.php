@@ -17,6 +17,8 @@ class Entrada extends Model
       'descripcion',
       'marca',
       'precio',
-      'cantidad'
+      'cantidad',
+      'cantidadOriginal',
+      'status'
    ];
 }

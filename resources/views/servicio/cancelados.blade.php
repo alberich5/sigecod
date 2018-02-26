@@ -14,8 +14,7 @@
     					<th>Descripcion</th>
     					<th>Marca</th>
     					<th>Precio con Iva</th>
-    					<th>Stock</th>
-              <th>Opciones</th>
+    					<th>Status</th>
     				</thead>
                    @foreach ($entradas as $entra)
             <tbody>
@@ -32,18 +31,9 @@
               <td>{{ $entra->marca}}</td>
     					<td>$ {{ $entra->precio_iva}}</td>
               <td>
-                @if('0'  == $entra->cantidad)
-                  <span class="label label-warning">{{ $entra->cantidad}}</span>
-                @endif
-                @if('0'  < $entra->cantidad)
-                  {{ $entra->cantidad}}
-                @endif
+                  <span class="label label-danger">{{ $entra->status}}</span>
               </td>
-              <td>
-                <a href="/eliminarArticulo/{{$entra->id}}">
-                        <button class="btn btn-primary">Eliminar</button>
-                    </a>
-              </td>
+
 
     				</tbody>
     				@endforeach
@@ -59,11 +49,7 @@
 
 </div>
 
-<div class="row">
-   <div class="col-xs-12">
-     <pre>@{{$data}}</pre>
-   </div>
- </div>
+
   </div>
 
 
@@ -75,29 +61,6 @@
 @endsection
 
 @section('js')
-<script type="text/javascript">
-  var vm = new Vue({
-          //id asignado al div en el que funcionara vue
-          el: '#articulos',
-          //funcion al crear el objet
-          created: function() {
-              this.articulos();
-          },
-          data:{
-              articulos:[],
-              unidad:[],
-              mensaje:'',
-              searchUsuario:{'username':'','nombre':'','paterno':'','materno':''},
-                  },
-          methods:{
-              Eliminar:function(id){
-                var msj = id;
-                alert("eliminar"+msj);
-              },
-              articulos:function(){
 
-              },
-      }});
-  </script>
 
 @endsection
