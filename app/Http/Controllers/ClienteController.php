@@ -32,6 +32,13 @@ class ClienteController extends Controller
     return view('servicio.clientes',compact("clientes"));
 
   }
+  public function cargar()
+  {
+    $clientes = Cliente::orderBy('created_at', 'desc')->get();
+
+    return $clientes;
+
+  }
 
   public function traerCliente()
   {

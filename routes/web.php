@@ -38,7 +38,7 @@ Route::get('reactivar', 'EntradaController@reactivar');
 Route::get('mostrarsalidas', 'SalidaController@mostrarsalidas');
 Route::get('graficavue', 'GraficaController@index');
 Route::get('cargarcancelados', 'GraficaController@cargararticulosCancelados');
-
+Route::get('cargarclientes', 'ClienteController@cargar');
 
 Route::get('mosclientes', 'ClienteController@mostrar');
 Route::get('mostraruser', 'UsersController@mostrar');
