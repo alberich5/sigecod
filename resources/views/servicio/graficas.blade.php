@@ -27,7 +27,7 @@
   var vm = new Vue({
           //id asignado al div en el que funcionara vue
           el: '#articulos',
-          //funcion al crear el objet
+          //funcion al crear el objeto
           created: function() {
               this.articuloscancelados();
               this.borrar();
