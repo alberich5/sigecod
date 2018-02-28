@@ -55,6 +55,34 @@ foreach($users as $index => $user) {
 
   }
 
+  public function exportCancelados(Request $request)
+  {
+
+    \Excel::create('Cancelados', function($excel) {
+  $users = Entrada::where('status','=', 'cancelado')
+  ->get();
+
+  $excel->sheet('Users', function($sheet) use($users) {
+
+  $sheet->fromArray($users);
+  $sheet->row(1, [
+    'id', 'Fecha Ingreso', 'Descripcion','Marca', 'precio', 'status'
+  ]);
+  foreach($users as $index => $user) {
+    $sheet->row($index+2, [
+      $user->id, $user->fecha_ingreso, $user->descripcion, $user->marca,$user->precio, $user->status,$user->motivo
+    ]);
+  }
+  });
+  })->export('xlsx');
+
+  }
+
+
+
+
+
+
   public function exportSalidas(Request $request)
   {
 

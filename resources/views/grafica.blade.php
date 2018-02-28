@@ -12,6 +12,11 @@
         <input type="submit" class="btn btn-primary" value="Usuarios Registrados" >
     </form>
     <br><br>
+    <form action="export-cancelado" class="form-horizontal" method="get">
+
+      <input type="submit" class="btn btn-primary" value="Entradas Canceladas" >
+  </form>
+  <br><br>
     <form action="export-entradas" class="form-horizontal" method="get">
     <div class="form-group">
         <div class="col-sm-6">

@@ -17,7 +17,7 @@
             </div>
         <div class="col-md-8 col-md-offset-0">
             <div class="panel panel-default">
-                <div class="panel-heading">Tus Quejas</div>
+                <div class="panel-heading">Informacion</div>
                 <div class="panel-body">
                     <table class="table table-striped">
                         <thead>

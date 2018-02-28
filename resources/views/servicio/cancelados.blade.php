@@ -33,11 +33,11 @@
     </div>
 
     @include('servicio.revalidacion')
-    <div class="row">
+    <!--<div class="row">
        <div class="col-xs-12">
          <pre>@{{$data}}</pre>
        </div>
-     </div>
+     </div>-->
 
 </div>
 

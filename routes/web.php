@@ -36,7 +36,8 @@ Route::get('canceladosvue', 'EntradaController@canceladosvue');
 Route::get('verificarproducto', 'EntradaController@verificarproducto');
 Route::get('reactivar', 'EntradaController@reactivar');
 Route::get('mostrarsalidas', 'SalidaController@mostrarsalidas');
-
+Route::get('graficavue', 'GraficaController@index');
+Route::get('cargarcancelados', 'GraficaController@cargararticulosCancelados');
 
 
 Route::get('mosclientes', 'ClienteController@mostrar');
@@ -55,7 +56,7 @@ Route::get('/export-entradas', 'ExcelController@exportEntradas');
 Route::get('/export-salidas', 'ExcelController@exportSalidas');
 Route::get('/export-productos', 'ExcelController@exportProducto');
 Route::get('/export-mensual', 'ExcelController@exportMensual');
-
+Route::get('/export-cancelado', 'ExcelController@exportCancelados');
 //consumir
 Route::get('traerUnidad', 'UnidadController@traerUnidad');
 Route::get('traerCliente', 'ClienteController@traerCliente');
