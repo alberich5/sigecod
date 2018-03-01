@@ -7,6 +7,7 @@ use Response;
 use App\Entrada;
 use App\Salida;
 use App\Cliente;
+use App\User;
 
 class SalidaController extends Controller
 {
@@ -18,6 +19,10 @@ class SalidaController extends Controller
 
   public function guardar(Request $request)
   {
+    $dia=date('d');
+    $mes=date('m');
+    $ano=date('Y');
+    $fecha=$ano.'-'.$mes.'-'.$dia;
     //Guardar Informacion
     $tamano = count($request->variable);
     for($i=0; $i<$tamano; $i++){
@@ -27,7 +32,7 @@ class SalidaController extends Controller
       $salida->id_cliente=$request->variable[$i]['cliente'];
       $salida->id_usuario=$request->variable[$i]['id_usuario'];
       $salida->cantidad=$request->variable[$i]['otro'];
-      $salida->fecha_salida="2018-02-20";
+      $salida->fecha_salida=$fecha;
       $salida->save();
 
       $unidad = Entrada::select('id','cantidad')
@@ -105,13 +110,25 @@ $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1
     }
 
     public function mostrar(Request $request){
-      dd("aqui se van a mostrar todas las salidas");
+      $dia=date('d');
+      $mes=date('m');
+      $ano=date('Y');
+      $fecha=$ano.'-'.$mes.'-'.$dia;
+
+      dd($fecha);
 
     }
 
     public function mostrarsalidas(Request $request){
       $salidas = Salida::orderBy('created_at', 'fecha_salida')
       ->paginate(10);
+
+      $salidas = Salida::leftjoin('cliente', 'salida.id_cliente', '=', 'cliente.id')
+              ->leftjoin('users', 'salida.id_usuario', '=', 'users.id')
+              ->select('salida.id_entrada','cliente.nombre','users.name','salida.cantidad','salida.fecha_salida')
+                ->orderBy('salida.fecha_salida','desc')
+               ->paginate(10);
+
 
       return view('servicio.salidashechas',compact("salidas"));
 
