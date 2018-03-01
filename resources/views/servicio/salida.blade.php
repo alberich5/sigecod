@@ -244,7 +244,7 @@
                     this.veri = response.data
                   });
                     if(this.veri<1){
-                      swal('VERIFICA','PUEDES TENER PRODUCTOS ANTIGUOS','info');
+                      swal('NOTA','PUEDES QUE TENGAS PRODUCTOS MAS ANTIGUOS','info');
                     }else{
                       var urlGuardar = 'guardarBD';
                       axios.post(urlGuardar,{

@@ -34,7 +34,9 @@ class ClienteController extends Controller
   }
   public function cargar()
   {
-    $clientes = Cliente::orderBy('created_at', 'desc')->get();
+    $clientes = Cliente::orderBy('created_at', 'desc')->get(
+
+    );
 
     return $clientes;
 
