@@ -19,7 +19,7 @@
             <th>Numero</th>
             <th>Cantidad</th>
             <th>Nombre</th>
-            <th>Precio</th>
+            <th>Precio Unitario</th>
             <th>Precio con Iva</th>
           </thead>
                  @foreach ($salidas as $sali)
