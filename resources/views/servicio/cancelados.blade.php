@@ -24,7 +24,15 @@
              <td >@{{ art.marca }}</td>
              <td >@{{ art.precio_iva }}</td>
                <td ><span class="label label-warning">@{{ art.status }}</span></td>
-             <td><a href="#" class="btn btn-danger btn-sm" v-on:click.prevent="rea(art)">Reativar</a></td>
+             <td>
+               @if (Auth::user()->rol == 'admin')
+                       <a href="#" class="btn btn-danger btn-sm" v-on:click.prevent="rea(art)">Reativar</a>
+             		@endif
+                @if (Auth::user()->rol == 'user')
+                        <span class="label label-primary">Reactivar Entrada Admin</span>
+                 @endif
+
+             </td>
            </tr>
     			</table>
     		</div>
