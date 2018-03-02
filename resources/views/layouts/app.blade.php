@@ -94,6 +94,7 @@
                                         <li><a href="{{ url('/mosclientes') }}">Clientes</a></li>
                                         <li><a href="{{ url('/cancelados') }}">Articulos Cancelados</a></li>
                                         <li><a href="{{ url('/mostrarsalidas') }}">Mostrar Salidas</a></li>
+                                        <li><a href="{{ url('/especifico') }}">Especifico</a></li>
 
 
 

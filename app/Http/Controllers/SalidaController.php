@@ -134,4 +134,25 @@ $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1
 
     }
 
+    public function especifico(){
+      $cliente = Cliente::orderBy('created_at', 'fecha_salida')
+      ->get();
+
+      return view('servicio.especifico',compact("cliente"));
+
+    }
+
+    public function historial(Request $request){
+      $salidas = Salida::leftjoin('cliente', 'salida.id_cliente', '=', 'cliente.id')
+              ->leftjoin('entrada', 'salida.id_entrada', '=', 'entrada.id')
+              ->select('salida.cantidad','salida.fecha_salida','cliente.nombre','entrada.descripcion','entrada.precio','entrada.precio_iva')
+                ->where('salida.id_cliente','=', $request->get('cliente'))
+                ->where('salida.fecha_salida','=', '2018-03-02')
+               ->get();
+
+dd($salidas);
+
+      return view('servicio.especificomostrar',compact("salidas"));
+    }
+
 }
