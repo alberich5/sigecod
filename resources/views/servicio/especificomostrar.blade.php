@@ -19,6 +19,7 @@
             <th>Numero</th>
             <th>Cantidad</th>
             <th>Nombre</th>
+            <th>Fecha que Salio</th>
             <th>Precio Unitario</th>
             <th>Precio con Iva</th>
           </thead>
@@ -27,6 +28,7 @@
             <td></td>
             <td>{{ $sali->cantidad}}</td>
             <td>{{ $sali->descripcion}}</td>
+            <td>{{ $sali->fecha_salida}}</td>
             <td>{{ $sali->precio}}</td>
             <td>{{ $sali->precio_iva}}</td>
 
@@ -35,6 +37,7 @@
           @endforeach
           <tr>
             <td><strong>TOTAL</strong></td>
+            <td></td>
             <td></td>
             <td></td>
             <td>@foreach ($precio as $pre)
