@@ -8,6 +8,7 @@ use App\Entrada;
 use App\Salida;
 use App\Cliente;
 use App\User;
+use DB;
 
 class SalidaController extends Controller
 {
@@ -143,6 +144,25 @@ $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1
     }
 
     public function historial(Request $request){
+        $clientes = Cliente::select('nombre')
+        ->where('id','=',$request->get('cliente'))
+        ->get();
+
+        $totalprecio = DB::table('salida as sali')
+         ->leftjoin('cliente as cli','sali.id_cliente','=','cli.id')
+         ->leftjoin('entrada as entra','sali.id_entrada','=','entra.id')
+               ->select(DB::raw('SUM(entra.precio) AS total'))
+               ->where('sali.id_cliente','=',$request->get('cliente'))
+               ->get();
+        $totaliva = DB::table('salida as sali')
+        ->leftjoin('cliente as cli','sali.id_cliente','=','cli.id')
+        ->leftjoin('entrada as entra','sali.id_entrada','=','entra.id')
+              ->select(DB::raw('SUM(entra.precio_iva) AS totaliva'))
+              ->where('sali.id_cliente','=',$request->get('cliente'))
+              ->get();
+
+
+
       $salidas = Salida::leftjoin('cliente', 'salida.id_cliente', '=', 'cliente.id')
               ->leftjoin('entrada', 'salida.id_entrada', '=', 'entrada.id')
               ->select('salida.cantidad','salida.fecha_salida','cliente.nombre','entrada.descripcion','entrada.precio','entrada.precio_iva')
@@ -151,7 +171,9 @@ $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1
                ->get();
 
 
-      return view('servicio.especificomostrar',["salidas"=>$salidas,"final"=>$request->get('fechafinal')]);
+
+
+      return view('servicio.especificomostrar',["salidas"=>$salidas,"cliente"=>$clientes,"precio"=>$totalprecio,"iva"=>$totaliva,"final"=>$request->get('fechafinal'),"inicial"=>$request->get('fechaini')]);
     //  return view('servicio.especificomostrar',compact("salidas"));
     }
 
