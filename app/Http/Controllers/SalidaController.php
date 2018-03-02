@@ -151,8 +151,8 @@ $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1
                ->get();
 
 
-
-      return view('servicio.especificomostrar',compact("salidas"));
+      return view('servicio.especificomostrar',["salidas"=>$salidas,"final"=>$request->get('fechafinal')]);
+    //  return view('servicio.especificomostrar',compact("salidas"));
     }
 
 }

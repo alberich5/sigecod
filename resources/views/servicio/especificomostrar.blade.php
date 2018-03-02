@@ -7,7 +7,7 @@
       <center>
         @foreach ($salidas as $sali)
         <h2>{{ $sali->nombre}}</h2>
-        <h3>{{ $sali->fecha_salida}}</h3>
+        <h3>{{ $sali->fecha_salida}} A {{ $final}}</h3>
          @endforeach
       </center>
       <div class="table-responsive">
