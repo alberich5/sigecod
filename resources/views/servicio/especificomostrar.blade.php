@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container" id="app">
+<div class="container" id="historial">
 
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <center>
@@ -34,7 +34,7 @@
 
           @endforeach
           <tr>
-            <td>TOTAL</td>
+            <td><strong>TOTAL</strong></td>
             <td></td>
             <td></td>
             <td>@foreach ($precio as $pre)
