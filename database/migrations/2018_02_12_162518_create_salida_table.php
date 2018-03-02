@@ -24,7 +24,7 @@ class CreateSalidaTable extends Migration
           $table->integer('id_usuario')->unsigned();
           $table->foreign('id_usuario')
                   ->references('id')->on('users')->onDetele('set null');
-          $table->string('cantidad');
+          $table->integer('cantidad');
           $table->date('fecha_salida')->nullable();
           $table->timestamp('created_at')->nullable();
           $table->timestamp('updated_at')->nullable();

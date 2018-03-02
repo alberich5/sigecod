@@ -153,7 +153,10 @@ $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1
          ->leftjoin('entrada as entra','sali.id_entrada','=','entra.id')
                ->select(DB::raw('SUM(entra.precio) AS total'))
                ->where('sali.id_cliente','=',$request->get('cliente'))
+               ->whereBetween('sali.fecha_salida', array($request->get('fechaini'), $request->get('fechafinal')))
                ->get();
+        dd($totalprecio);
+
         $totaliva = DB::table('salida as sali')
         ->leftjoin('cliente as cli','sali.id_cliente','=','cli.id')
         ->leftjoin('entrada as entra','sali.id_entrada','=','entra.id')
