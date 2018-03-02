@@ -13,7 +13,7 @@
       <div class="table-responsive">
         <table class="table table-striped table-bordered table-condensed table-hover">
           <thead>
-            <th>Id</th>
+            <th>Cantidad</th>
             <th>Nombre</th>
             <th>Precio</th>
             <th>Precio Iva</th>
