@@ -17,8 +17,8 @@
 
  function conectarse(){
      $servidor = "localhost";
-     $usuario = "root";
-     $password ="";
+     $usuario = "postgres";
+     $password ="jarvis";
      $bd ="servicio";
 
      $conectar = new mysqli($servidor,$usuario,$password,$bd);

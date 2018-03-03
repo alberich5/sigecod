@@ -218,7 +218,7 @@ $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1
 
       $salidas = Salida::leftjoin('cliente', 'salida.id_cliente', '=', 'cliente.id')
               ->leftjoin('entrada', 'salida.id_entrada', '=', 'entrada.id')
-              ->select('salida.cantidad','salida.fecha_salida','cliente.nombre','entrada.descripcion','entrada.precio','entrada.precio_iva')
+              ->select('salida.cantidad','salida.fecha_salida','entrada.descripcion','entrada.precio','entrada.precio_iva')
                 ->where('salida.id_cliente','=', $request->get('cliente'))
               //  ->where('salida.fecha_salida','=', $request->get('fechaini'))
                  ->whereBetween('salida.fecha_salida', [$request->get('fechaini'), $request->get('fechafinal')])

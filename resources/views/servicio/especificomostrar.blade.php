@@ -4,7 +4,7 @@
 <div class="container" id="historial">
 
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <center>
+      <center><div class="alert alert-info" role="alert"><h1>BITACORA</h1></div>
 
         <h2> @foreach ($cliente as $cli)
           {{ $cli->nombre}}
@@ -19,7 +19,7 @@
             <th>Numero</th>
             <th>Cantidad</th>
             <th>Nombre</th>
-            <th>Fecha que Salio</th>
+            <th>Fecha de Salida</th>
             <th>Precio Unitario</th>
             <th>Precio con Iva</th>
           </thead>
