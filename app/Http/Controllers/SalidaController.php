@@ -20,13 +20,30 @@ class SalidaController extends Controller
 
   public function guardar(Request $request)
   {
+
+    $phpWord = new \PhpOffice\PhpWord\PhpWord();
+    $section = $phpWord->addSection();
+
+
+    $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1.docx');
+
     $dia=date('d');
     $mes=date('m');
     $ano=date('Y');
     $fecha=$ano.'-'.$mes.'-'.$dia;
+
+    $templateWord->setValue('dia',$dia);
+    $templateWord->setValue('mes',$mes);
+    $templateWord->setValue('ano',$ano);
+    $templateWord->setValue('area',$var);
+
     //Guardar Informacion
     $tamano = count($request->variable);
     for($i=0; $i<$tamano; $i++){
+
+      $templateWord->setValue('articulo0','pruba');
+      $templateWord->setValue('unidad0','pieza');
+      $templateWord->setValue('cant0',$request->variable[$i]['otro']);
 
       $salida=new Salida;
       $salida->id_entrada=$request->variable[$i]['id'];
@@ -50,7 +67,11 @@ class SalidaController extends Controller
 
     }
 
-    return $tamano;
+    $templateWord->saveAs('salida.docx');
+    //$this->historial('Descarga de oficio de alta del elemento '.$id);
+    $nombreDocumento=str_replace("  "," ","omar");
+    return Response::download('salida.docx',$nombreDocumento.'.docx');
+    //return $tamano;
 
   }
 
@@ -108,6 +129,7 @@ $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1
     return Response::download('salida.docx',$nombreDocumento.'.docx');
     }
 
+
     public function mostrar(Request $request){
       $dia=date('d');
       $mes=date('m');
@@ -117,6 +139,8 @@ $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1
       dd($fecha);
 
     }
+
+
 
     public function mostrarsalidas(Request $request){
       $salidas = Salida::orderBy('created_at', 'fecha_salida')
