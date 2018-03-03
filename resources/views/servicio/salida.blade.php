@@ -244,7 +244,7 @@
                     this.veri = response.data
                   });
                     if(this.veri<1){
-                      swal('NOTA','PUEDES QUE TENGAS PRODUCTOS MAS ANTIGUOS','info');
+                      swal('NOTA','PUEDE QUE TENGAS PRODUCTOS MAS ANTIGUOS','info');
                     }else{
                       var urlGuardar = 'guardarBD';
                       axios.post(urlGuardar,{
@@ -264,7 +264,7 @@
                 descargar: function() {
 
 
-                   window.open('crear?cliente='+this.clienteSelecionado+'&articulo=noe&cantidad='+this.cantidad2+'&todo='+this.totalCargado);
+                   window.open('crear?cliente='+this.clienteSelecionado);
 
                 },
         }});

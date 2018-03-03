@@ -31,19 +31,9 @@ class SalidaController extends Controller
     $mes=date('m');
     $ano=date('Y');
     $fecha=$ano.'-'.$mes.'-'.$dia;
-
-    $templateWord->setValue('dia',$dia);
-    $templateWord->setValue('mes',$mes);
-    $templateWord->setValue('ano',$ano);
-    $templateWord->setValue('area',$var);
-
     //Guardar Informacion
     $tamano = count($request->variable);
     for($i=0; $i<$tamano; $i++){
-
-      $templateWord->setValue('articulo0','pruba');
-      $templateWord->setValue('unidad0','pieza');
-      $templateWord->setValue('cant0',$request->variable[$i]['otro']);
 
       $salida=new Salida;
       $salida->id_entrada=$request->variable[$i]['id'];
@@ -67,35 +57,62 @@ class SalidaController extends Controller
 
     }
 
-    $templateWord->saveAs('salida.docx');
-    //$this->historial('Descarga de oficio de alta del elemento '.$id);
-    $nombreDocumento=str_replace("  "," ","omar");
-    return Response::download('salida.docx',$nombreDocumento.'.docx');
-    //return $tamano;
+    return $tamano;
 
   }
 
-    public function pruebas(){
-      $dia=date('d');
-      $mes=date('m');
-      $ano=date('Y');
-      $fecha=$ano.'-'.$mes.'-'.$dia;
-      dd($fecha);
-        $unidad = Entrada::select('id','cantidad')
-        ->where('id','=', "15")
-        ->get();
-        $var="";
-        foreach ($unidad as $uni) {
-            $var = $uni->cantidad;
-        }
-        $final=$var-1;
+    public function pruebas(Request $request){
 
-        dd($final);
+      $time = time();
+      $segundo=date("s");
+      $second=$segundo-2;
+      $second2=$segundo+2;
+
+     $crearini =date("Y-m-d H:i:".$second, $time);
+     $crearfinal =date("Y-m-d H:i:".$second2, $time);
+
+
+
+      $salidas = Salida::leftjoin('cliente', 'salida.id_cliente', '=', 'cliente.id')
+              ->leftjoin('entrada', 'salida.id_entrada', '=', 'entrada.id')
+              ->select('salida.cantidad','salida.fecha_salida','cliente.nombre','entrada.descripcion','entrada.precio','entrada.precio_iva')
+                ->where('salida.id_cliente','=', $request->get('cliente'))
+              //  ->where('salida.fecha_salida','=', $request->get('fechaini'))
+                 ->whereBetween('salida.created_at', ['2018-03-03 11:18:49', '2018-03-03 11:18:50'])
+               ->get();
+               $cantoriginal=0;
+               $cantinicial=0;
+               foreach ($salidas as $entra) {
+                   $cantoriginal = $entra->descripcion;
+                   $cantinicial = $entra->cantidad;
+               }
+
+$tama=count($salidas);
+        dd($cantoriginal.'-'.$cantinicial);
 
     }
 
 
     public function crearWord(Request $request){
+
+      $time = time();
+      $segundo=date("s");
+      $second=$segundo-2;
+      $second2=$segundo+2;
+
+     $crearini =date("Y-m-d H:i:".$second, $time);
+     $crearfinal =date("Y-m-d H:i:".$second2, $time);
+
+
+
+      $salidas = Salida::leftjoin('cliente', 'salida.id_cliente', '=', 'cliente.id')
+              ->leftjoin('entrada', 'salida.id_entrada', '=', 'entrada.id')
+              ->select('salida.cantidad','salida.fecha_salida','cliente.nombre','entrada.descripcion','entrada.precio','entrada.precio_iva')
+                ->where('salida.id_cliente','=', $request->get('cliente'))
+              //  ->where('salida.fecha_salida','=', $request->get('fechaini'))
+                 ->whereBetween('salida.created_at', [$crearini, $crearfinal])
+               ->get();
+
 
       $client = Cliente::select('id','nombre')
       ->where('id','=', $request->get('cliente'))
@@ -119,16 +136,24 @@ $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1
     $templateWord->setValue('mes',$mes);
     $templateWord->setValue('ano',$ano);
     $templateWord->setValue('area',$var);
-         $templateWord->setValue('articulo0',$request->get('articulo'));
-         $templateWord->setValue('unidad0','pieza');
-         $templateWord->setValue('cant0',$request->get('cantidad'));
+     $templateWord->cloneRow('articulo0',count($salidas));
+
+     for ($i=0; $i <count($salidas) ; $i++) {
+
+         $a=$i+1;
+         $templateWord->setValue('articulo0#'.$a, $salidas[$i]['descripcion']);
+         $templateWord->setValue('unidad0#'.$a, 'prueba');
+         $templateWord->setValue('cant0#'.$a, $salidas[$i]['cantidad']);
+
+
+      }
+
 
     $templateWord->saveAs('salida.docx');
     //$this->historial('Descarga de oficio de alta del elemento '.$id);
     $nombreDocumento=str_replace("  "," ","omar");
     return Response::download('salida.docx',$nombreDocumento.'.docx');
     }
-
 
     public function mostrar(Request $request){
       $dia=date('d');
@@ -139,8 +164,6 @@ $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1
       dd($fecha);
 
     }
-
-
 
     public function mostrarsalidas(Request $request){
       $salidas = Salida::orderBy('created_at', 'fecha_salida')
