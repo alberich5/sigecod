@@ -7,6 +7,7 @@ use Response;
 use App\Entrada;
 use App\Salida;
 use App\Cliente;
+use App\Unidad;
 use App\User;
 use DB;
 
@@ -141,6 +142,7 @@ $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1
      for ($i=0; $i <count($salidas) ; $i++) {
 
          $a=$i+1;
+         $templateWord->setValue('n#'.$a,  $a);
          $templateWord->setValue('articulo0#'.$a, $salidas[$i]['descripcion']);
          $templateWord->setValue('unidad0#'.$a, 'prueba');
          $templateWord->setValue('cant0#'.$a, $salidas[$i]['cantidad']);
