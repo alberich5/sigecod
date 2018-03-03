@@ -50,8 +50,6 @@ class SalidaController extends Controller
 
     }
 
-
-
     return $tamano;
 
   }
