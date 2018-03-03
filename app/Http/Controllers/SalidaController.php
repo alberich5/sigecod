@@ -231,4 +231,55 @@ $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1
     //  return view('servicio.especificomostrar',compact("salidas"));
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function historialvue(Request $request){
+        $clientes = Cliente::select('nombre')
+        ->where('id','=',$request->get('cliente'))
+        ->get();
+
+        $totalprecio = DB::table('salida as sali')
+         ->leftjoin('cliente as cli','sali.id_cliente','=','cli.id')
+         ->leftjoin('entrada as entra','sali.id_entrada','=','entra.id')
+               ->select(DB::raw('SUM(entra.precio*sali.cantidad) AS total'))
+               ->where('sali.id_cliente','=',$request->get('cliente'))
+               ->whereBetween('sali.fecha_salida', array($request->get('fechaini'), $request->get('fechafinal')))
+               ->get();
+
+
+        $totaliva = DB::table('salida as sali')
+        ->leftjoin('cliente as cli','sali.id_cliente','=','cli.id')
+        ->leftjoin('entrada as entra','sali.id_entrada','=','entra.id')
+               ->select(DB::raw('SUM(entra.precio_iva*sali.cantidad) AS totaliva'))
+              ->where('sali.id_cliente','=',$request->get('cliente'))
+              ->whereBetween('sali.fecha_salida', array($request->get('fechaini'), $request->get('fechafinal')))
+              ->get();
+
+
+
+      $salidas = Salida::leftjoin('cliente', 'salida.id_cliente', '=', 'cliente.id')
+              ->leftjoin('entrada', 'salida.id_entrada', '=', 'entrada.id')
+              ->select('salida.cantidad','salida.fecha_salida','entrada.descripcion','entrada.precio','entrada.precio_iva')
+                ->where('salida.id_cliente','=', $request->get('cliente'))
+              //  ->where('salida.fecha_salida','=', $request->get('fechaini'))
+                 ->whereBetween('salida.fecha_salida', [$request->get('fechaini'), $request->get('fechafinal')])
+               ->get();
+
+               return $salidas;
+      //return view('servicio.especificomostrar',["salidas"=>$salidas,"cliente"=>$clientes,"precio"=>$totalprecio,"iva"=>$totaliva,"final"=>$request->get('fechafinal'),"inicial"=>$request->get('fechaini')]);
+    //  return view('servicio.especificomostrar',compact("salidas"));
+    }
+
 }
