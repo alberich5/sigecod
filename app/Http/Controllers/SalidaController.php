@@ -76,7 +76,8 @@ class SalidaController extends Controller
 
       $salidas = Salida::leftjoin('cliente', 'salida.id_cliente', '=', 'cliente.id')
               ->leftjoin('entrada', 'salida.id_entrada', '=', 'entrada.id')
-              ->select('salida.cantidad','salida.fecha_salida','cliente.nombre','entrada.descripcion','entrada.precio','entrada.precio_iva')
+              ->leftjoin('unidad', 'entrada.id_unidad', '=', 'unidad.id')
+              ->select('salida.cantidad','salida.fecha_salida','unidad.nombre','entrada.descripcion','entrada.precio','entrada.precio_iva')
                 ->where('salida.id_cliente','=', $request->get('cliente'))
               //  ->where('salida.fecha_salida','=', $request->get('fechaini'))
                  ->whereBetween('salida.created_at', ['2018-03-03 11:18:49', '2018-03-03 11:18:50'])
@@ -89,7 +90,7 @@ class SalidaController extends Controller
                }
 
 $tama=count($salidas);
-        dd($cantoriginal.'-'.$cantinicial);
+        dd($salidas);
 
     }
 
@@ -108,7 +109,8 @@ $tama=count($salidas);
 
       $salidas = Salida::leftjoin('cliente', 'salida.id_cliente', '=', 'cliente.id')
               ->leftjoin('entrada', 'salida.id_entrada', '=', 'entrada.id')
-              ->select('salida.cantidad','salida.fecha_salida','cliente.nombre','entrada.descripcion','entrada.precio','entrada.precio_iva')
+              ->leftjoin('unidad', 'entrada.id_unidad', '=', 'unidad.id')
+              ->select('salida.cantidad','salida.fecha_salida','unidad.nombre','entrada.descripcion','entrada.precio','entrada.precio_iva')
                 ->where('salida.id_cliente','=', $request->get('cliente'))
               //  ->where('salida.fecha_salida','=', $request->get('fechaini'))
                  ->whereBetween('salida.created_at', [$crearini, $crearfinal])
@@ -144,7 +146,7 @@ $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1
          $a=$i+1;
          $templateWord->setValue('n#'.$a,  $a);
          $templateWord->setValue('articulo0#'.$a, $salidas[$i]['descripcion']);
-         $templateWord->setValue('unidad0#'.$a, 'prueba');
+         $templateWord->setValue('unidad0#'.$a, $salidas[$i]['nombre']);
          $templateWord->setValue('cant0#'.$a, $salidas[$i]['cantidad']);
 
 
