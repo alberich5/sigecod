@@ -59,6 +59,7 @@ Route::get('/export-salidas', 'ExcelController@exportSalidas');
 Route::get('/export-productos', 'ExcelController@exportProducto');
 Route::get('/export-mensual', 'ExcelController@exportMensual');
 Route::get('/export-cancelado', 'ExcelController@exportCancelados');
+Route::get('/export-prueba', 'ExcelController@pruebaexcel');
 //consumir
 Route::get('traerUnidad', 'UnidadController@traerUnidad');
 Route::get('traerCliente', 'ClienteController@traerCliente');

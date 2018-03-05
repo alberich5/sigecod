@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Entrada;
 use App\Salida;
+use App\Log;
+use DB;
 
 class ExcelController extends Controller
 {
@@ -161,25 +163,58 @@ foreach($users as $index => $user) {
             break;
 
         }
-  $users = Entrada::where('fecha_ingreso','>=', $inicio)
-  ->where('fecha_ingreso','<=', $fin)
-  ->get();
-  dd($users);
+        //consulta de la entrada
 
-  $excel->sheet('Users', function($sheet) use($users) {
 
-  $sheet->fromArray($users);
-  $sheet->row(1, [
-    'Fecha', 'Descripcion', 'Marca','Precio', 'cantidad'
-]);
-foreach($users as $index => $user) {
-    $sheet->row($index+2, [
-        $user->fecha_ingreso, $user->descripcion, $user->marca,$user->precio, $user->cantidad
-    ]);
-}
-});
+      $users = DB::table('entrada as entra')
+      ->leftjoin('unidad as uni','entra.id_unidad','=','uni.id')
+      ->leftjoin('log as lo','entra.id','=','lo.id_entrada')
+      ->select('entra.fecha_ingreso','entra.descripcion','entra.marca','uni.nombre','entra.precio','entra.precio_iva','lo.cantidad_inicial as existenciaini',DB::raw('(lo.cantidad_inicial - entra.cantidad) as salidas'),'entra.cantidad as existenciafina',DB::raw('(entra.precio*entra.cantidad) as costo_final'))
+      ->get();
+
+      $data = array();
+      foreach ($users as $result) {
+        $data[] = (array)$result;
+      }
+
+      $excel->sheet('Sheetname', function($sheet) use($data) {
+          $sheet->setFontFamily('Calibri');
+          $sheet->setFontSize(13);
+          $sheet->setBorder('A1:J1', 'thin');
+          $sheet->fromArray($data);
+
+      });
+
+
+
 })->export('xlsx');
 
+  }
+
+
+  public function pruebaexcel(){
+    $users = DB::table('entrada as entra')
+    ->leftjoin('unidad as uni','entra.id_unidad','=','uni.id')
+    ->leftjoin('log as lo','entra.id','=','lo.id_entrada')
+    ->select('entra.fecha_ingreso','entra.descripcion','entra.marca','uni.nombre','entra.precio','entra.precio_iva','lo.cantidad_inicial as existencia_inicial',DB::raw('(lo.cantidad_inicial - entra.cantidad) as salidas'),'entra.cantidad as existencia_final',DB::raw('(entra.precio*entra.cantidad) as costo_final'))
+    ->get();
+
+    $data = array();
+    foreach ($users as $result) {
+      $data[] = (array)$result;
+    }
+
+
+
+\Excel::create('Filename', function($excel) use($data) {
+
+    $excel->sheet('Sheetname', function($sheet) use($data) {
+
+         $sheet->loadView('servicio.excel');
+
+    });
+
+})->export('xls');
   }
 
 

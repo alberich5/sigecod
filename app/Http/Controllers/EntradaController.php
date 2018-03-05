@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Entrada;
+use App\Log;
 use DB;
 
 class EntradaController extends Controller
@@ -34,6 +35,25 @@ class EntradaController extends Controller
       $entrada->status='activo';
       $entrada->motivo='';
       $entrada->save();
+
+
+
+      $entradas = Entrada::orderBy('created_at', 'desc')
+      ->limit(1)->get();
+      $identrada="";
+      $canti_ini="";
+      foreach ($entradas as $entra) {
+          $identrada = $entra->id;
+          $canti_ini = $entra->cantidad;
+      }
+
+      $log=new Log;
+      $log->id_entrada=$identrada;
+      $log->cantidad_inicial=$canti_ini;
+      $log->tipo='entrada';
+      $log->fecha_log=$request->get('fecha');
+      $log->save();
+
 
       return redirect('articulos');
   }

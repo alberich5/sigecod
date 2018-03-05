@@ -13,7 +13,7 @@ class UnidadesSeeder extends Seeder
     public function run()
     {
       Unidad::create([
-          'nombre' => 'BLOCK'
+          'nombre' => 'PIEZA'
       ]);
       Unidad::create([
           'nombre' => 'BOLSA'
@@ -46,7 +46,7 @@ class UnidadesSeeder extends Seeder
           'nombre' => 'PAR'
       ]);
       Unidad::create([
-          'nombre' => 'PIEZA'
+          'nombre' => 'BLOCK'
       ]);
 
     }
