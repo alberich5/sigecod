@@ -164,6 +164,7 @@ foreach($users as $index => $user) {
   $users = Entrada::where('fecha_ingreso','>=', $inicio)
   ->where('fecha_ingreso','<=', $fin)
   ->get();
+  dd($users);
 
   $excel->sheet('Users', function($sheet) use($users) {
 
