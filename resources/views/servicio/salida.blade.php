@@ -147,11 +147,11 @@
   </div>
 
 
-    <!--<div class="row">
+    <div class="row">
        <div class="col-xs-12">
          <pre>@{{$data}}</pre>
        </div>
-     </div>-->
+     </div>
   </div>
 @endsection
 
@@ -254,7 +254,7 @@
                        this.descargar();
                          swal("Se Agregaron "+this.respuesta+" Productos", "Muy Bien", "success");
                          this.totalCargado=[];
-
+                         this.respuesta="";
                     });
                     }
 
@@ -262,8 +262,6 @@
 
                 },
                 descargar: function() {
-
-
                    window.open('crear?cliente='+this.clienteSelecionado);
 
                 },
