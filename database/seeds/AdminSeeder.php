@@ -15,6 +15,7 @@ class AdminSeeder extends Seeder
         User::create([
             'name' => 'Antonio',
             'email' => 'antonio958@hotmail.com',
+            'username' => 'antoni123',
             'password' => bcrypt(123456),
             'rol' => 'admin',
             'remember_token' => bcrypt(date('YmdHms'))
@@ -22,6 +23,7 @@ class AdminSeeder extends Seeder
         User::create([
             'name' => 'omar',
             'email' => 'alberto34plus@gmail.com',
+            'username' => 'omar123',
             'password' => bcrypt(123456),
             'rol' => 'user',
             'remember_token' => bcrypt(date('YmdHms'))

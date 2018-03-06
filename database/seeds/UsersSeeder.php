@@ -19,6 +19,7 @@ class UsersSeeder extends Seeder
             $id = \DB::table('users')->insertGetId([
                     $name = 'name' => $faker->firstName,
                     'email' => $faker->unique()->safeEmail,
+                      'username' => $faker->unique()->userName,
                     'password' => bcrypt(123456),
                     'rol' => 'user',
                     'remember_token' => bcrypt(date('YmdHms'))
