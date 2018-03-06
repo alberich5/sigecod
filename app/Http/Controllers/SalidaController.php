@@ -151,12 +151,12 @@ $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1
 
 
       }
+      $tim =time();
 
-
-    $templateWord->saveAs('salida.docx');
+    $templateWord->saveAs('log/salida'.$var.'.docx'.$tim);
     //$this->historial('Descarga de oficio de alta del elemento '.$id);
     $nombreDocumento=str_replace("  "," ","Entrega para ".$var." del ".$fecha);
-    return Response::download('salida.docx',$nombreDocumento.'.docx');
+    return Response::download('log/salida'.$var.'.docx'.$tim,$nombreDocumento.'.docx');
     }
 
     public function mostrar(Request $request){
