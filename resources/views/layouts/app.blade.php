@@ -109,7 +109,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/home') }}">Inicio</a></li>
+                                  <!--  <li><a href="{{ url('/home') }}">Inicio</a></li>-->
                                     @if(Auth::user()->rol == 'admin')
                                         <li><a href="{{ url('/users/manageprofiles') }}">Administrar</a></li>
                                         @endif

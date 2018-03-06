@@ -59,7 +59,7 @@
 
         <div class="form-group">
             <div class="col-sm-10">
-              <label for="precio">Precio:</label>
+              <label for="precio">Precio Unitario:</label>
                 <input type="text" class="form-control" name="precio" placeholder="Precio del producto..." value="{{old('domicilio')}}" onkeypress="return valida(event)" required>
             </div>
         </div>
