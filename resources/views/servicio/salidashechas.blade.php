@@ -23,18 +23,20 @@
     		<div class="table-responsive">
     			<table class="table table-striped table-bordered table-condensed table-hover">
     				<thead>
-              <th>Id Entrada</th>
+              <!---<th>Id Entrada</th>-->
               <th>Nombre del Cliente</th>
-              <th>Nombre del Usuario</th>
-              <th>Cantidad</th>
-              <th>Fecha_salida</th>
+              <th>Usuario que Entrego</th>
+              <th>Cantidad que Salio</th>
+              <th>Producto</th>
+              <th>Fecha de Salida</th>
     				</thead>
                    @foreach ($salidas as $sali)
     				<tr>
-              <td>{{ $sali->id_entrada}}</td>
+              <!--<td>{{ $sali->id_entrada}}</td>-->
                 <td>{{ $sali->nombre}}</td>
               <td>{{ $sali->name}}</td>
               <td>{{ $sali->cantidad}}</td>
+              <td>{{ $sali->descripcion}}</td>
               <td>{{ $sali->fecha_salida}}</td>
     				</tr>
 

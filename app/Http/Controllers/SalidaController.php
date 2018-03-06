@@ -155,7 +155,7 @@ $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1
 
     $templateWord->saveAs('salida.docx');
     //$this->historial('Descarga de oficio de alta del elemento '.$id);
-    $nombreDocumento=str_replace("  "," ","omar");
+    $nombreDocumento=str_replace("  "," ","Entrega para ".$var." del ".$fecha);
     return Response::download('salida.docx',$nombreDocumento.'.docx');
     }
 
@@ -175,7 +175,8 @@ $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1
 
       $salidas = Salida::leftjoin('cliente', 'salida.id_cliente', '=', 'cliente.id')
               ->leftjoin('users', 'salida.id_usuario', '=', 'users.id')
-              ->select('salida.id_entrada','cliente.nombre','users.name','salida.cantidad','salida.fecha_salida')
+              ->leftjoin('entrada', 'salida.id_entrada', '=', 'entrada.id')
+              ->select('salida.id_entrada','cliente.nombre','users.name','salida.cantidad','salida.fecha_salida','entrada.descripcion')
                 ->orderBy('salida.fecha_salida','desc')
                ->paginate(10);
 
