@@ -88,24 +88,31 @@ foreach($users as $index => $user) {
   public function exportSalidas(Request $request)
   {
 
-    \Excel::create('Salida', function($excel) {
-$consul = request()->get('fecha');
-  $users = Salida::where('fecha_salida','=', $consul)
-  ->get();
+    $consul = request()->get('fecha');
+    \Excel::create('Salida'.$consul, function($excel) {
+      $consul = request()->get('fecha');
+      $final = DB::table('salida as sali')
+      ->leftjoin('entrada as entra','sali.id_entrada','=','entra.id')
+      ->leftjoin('cliente as cli','sali.id_cliente','=','cli.id')
+      ->leftjoin('unidad as uni','entra.id_unidad','=','uni.id')
+      ->select('sali.cantidad','entra.descripcion as articulo','uni.nombre as tipo','cli.nombre as cliente','sali.fecha_salida as Fecha_Salida')
+      ->where('fecha_salida','=',$consul )
+      ->get();
 
-  $excel->sheet('Users', function($sheet) use($users) {
+      $data = array();
+      foreach ($final as $result) {
+        $data[] = (array)$result;
+      }
 
-  $sheet->fromArray($users);
-  $sheet->row(1, [
-    'Fecha Salida', 'Descripcion', 'Marca','Precio', 'cantidad'
-]);
-foreach($users as $index => $user) {
-    $sheet->row($index+2, [
-        $user->fecha_salida, $user->descripcion, $user->marca,$user->precio, $user->cantidad
-    ]);
-}
-});
-})->export('xlsx');
+      $excel->sheet('Sheetname', function($sheet) use($data) {
+          $sheet->setFontFamily('Calibri');
+          $sheet->setFontSize(13);
+          $sheet->setBorder('A1:E1', 'thin');
+          $sheet->fromArray($data);
+
+      });
+
+    })->export('xlsx');
 
   }
 
