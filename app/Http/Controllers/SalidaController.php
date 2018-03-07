@@ -41,6 +41,7 @@ class SalidaController extends Controller
       $salida->id_cliente=$request->variable[$i]['cliente'];
       $salida->id_usuario=$request->variable[$i]['id_usuario'];
       $salida->cantidad=$request->variable[$i]['otro'];
+      $salida->status='activo';
       $salida->fecha_salida=$fecha;
       $salida->save();
 
@@ -176,7 +177,8 @@ $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1
       $salidas = Salida::leftjoin('cliente', 'salida.id_cliente', '=', 'cliente.id')
               ->leftjoin('users', 'salida.id_usuario', '=', 'users.id')
               ->leftjoin('entrada', 'salida.id_entrada', '=', 'entrada.id')
-              ->select('salida.id_entrada','cliente.nombre','users.name','salida.cantidad','salida.fecha_salida','entrada.descripcion')
+              ->select('salida.id_entrada','cliente.nombre','users.name','salida.cantidad','salida.fecha_salida','entrada.descripcion','salida.id')
+              ->where('salida.status','=','activo')
                 ->orderBy('salida.fecha_salida','desc')
                ->paginate(10);
 
@@ -234,7 +236,38 @@ $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/formato1
 
 
 
+public function cancelarsalida($id){
 
+
+    $salidas = Salida::where('id','=',$id)
+    ->get();
+
+    $identrada=0;
+    $cantidadentrada=0;
+    foreach ($salidas as $entra) {
+        $identrada = $entra->id_entrada;
+        $cantidadentrada = $entra->cantidad;
+    }
+    $entrada = Entrada::where('id','=',$identrada)
+    ->get();
+    $cantidadoriginal=0;
+    foreach ($entrada as $entra) {
+        $cantidadoriginal = $entra->cantidad;
+    }
+    //dd($cantidadoriginal);
+
+    $entrada=Entrada::findOrFail($identrada);
+    $entrada->cantidad=$cantidadoriginal+$cantidadentrada;
+    $entrada->update();
+
+    $sali=Salida::findOrFail($id);
+    $sali->status='cancelado';
+    $sali->update();
+
+      return redirect()->back();
+
+
+}
 
 
 

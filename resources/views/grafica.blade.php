@@ -40,15 +40,7 @@
     </form>
 
     <br>
-    <form action="export-productos" class="form-horizontal" method="get">
-    <div class="form-group">
-        <div class="col-sm-6">
-          <label for="fecha">Productos en 0:</label><br>
-            <input type="submit" class="btn btn-primary" value="Productos en Cero" >
-        </div>
-
-    </div>
-    </form>
+  
 
     <br>
     <form action="export-mensual" class="form-horizontal" method="get">

@@ -97,6 +97,7 @@ foreach($users as $index => $user) {
       ->leftjoin('unidad as uni','entra.id_unidad','=','uni.id')
       ->select('sali.cantidad','entra.descripcion as articulo','uni.nombre as tipo','cli.nombre as cliente','sali.fecha_salida as Fecha_Salida')
       ->where('fecha_salida','=',$consul )
+      ->where('sali.status','=','activo' )
       ->get();
 
       $data = array();

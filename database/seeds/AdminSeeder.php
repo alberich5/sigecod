@@ -13,10 +13,10 @@ class AdminSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'Antonio',
-            'email' => 'antonio958@hotmail.com',
-            'username' => 'antoni123',
-            'password' => bcrypt(123456),
+            'name' => 'Nestor',
+            'email' => 'nestor@hotmail.com',
+            'username' => 'nestor123',
+            'password' => bcrypt('admin123'),
             'rol' => 'admin',
             'remember_token' => bcrypt(date('YmdHms'))
         ]);
@@ -24,6 +24,14 @@ class AdminSeeder extends Seeder
             'name' => 'omar',
             'email' => 'alberto34plus@gmail.com',
             'username' => 'omar123',
+            'password' => bcrypt(123456),
+            'rol' => 'user',
+            'remember_token' => bcrypt(date('YmdHms'))
+        ]);
+        User::create([
+            'name' => 'corsi',
+            'email' => 'corsi@gmail.com',
+            'username' => 'corsi123',
             'password' => bcrypt(123456),
             'rol' => 'user',
             'remember_token' => bcrypt(date('YmdHms'))
