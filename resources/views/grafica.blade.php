@@ -6,7 +6,7 @@
       <div class="descargas">
 
 
-
+@if(Auth::user()->rol == 'admin')
       <form action="export-users" class="form-horizontal" method="get">
         <center><h3>Reportes</h3></center>
         <input type="submit" class="btn btn-primary" value="Usuarios Registrados" >
@@ -16,6 +16,18 @@
 
       <input type="submit" class="btn btn-primary" value="Entradas Canceladas" >
   </form>
+  <br>
+  <form action="export-productos" class="form-horizontal" method="get">
+  <div class="form-group">
+      <div class="col-sm-6">
+        <label for="fecha">Productos en 0:</label><br>
+          <input type="submit" class="btn btn-primary" value="Productos en Cero" >
+      </div>
+
+  </div>
+  </form>
+@endif
+
   <br><br>
     <form action="export-entradas" class="form-horizontal" method="get">
     <div class="form-group">
@@ -39,8 +51,7 @@
     </div>
     </form>
 
-    <br>
-  
+
 
     <br>
     <form action="export-mensual" class="form-horizontal" method="get">

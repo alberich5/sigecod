@@ -23,6 +23,8 @@
                             <label>Nombre:</label>
                             <input type="hidden" class="form-control" name="id" value="{{ $user->id }}">
                             <input type="text" class="form-control" name="name" value="{{ $user->name }}">
+                            <label>Usuario:</label>
+                            <input type="text" class="form-control" name="username" value="{{ $user->username }}">
                                 <label>Email:</label>
                                 <input type="text" class="form-control" name="email" readonly="readonly" value="{{ $user->email }}">
                                 <label>Contraseña:</label>

@@ -100,5 +100,6 @@ Route::group(['middleware'=> 'Role:admin'], function(){
 Route::group(['middleware'=> 'Role:admin'], function(){
 
     Route::get('users/manageprofiles', 'UsersController@index');
+    Route::get('users/guardaruser', 'UsersController@guardaruser');
 
 });

@@ -54,4 +54,15 @@ class UsersController extends Controller
         return redirect("/home");
 
     }
+    public function guardaruser(Request $request){
+
+      $email=$request->get('name')."@gmail.com";
+      $user=new User;
+      $user->name=$request->get('name');
+      $user->username=$request->get('usuario');
+      $user->email=$email;
+      $user->password=bcrypt($request->get('password'));
+      $user->save();
+      return redirect("/users/manageprofiles");
+    }
 }
