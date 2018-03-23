@@ -2,16 +2,22 @@
 
 @section('content')
 @if(Auth::user()->rol == 'admin')
-                                        
+
 
   <div class="container" id="app">
+
     <center><h1>Listado de Personal</h1></center>
     <div id="articulo">
+      @if(Session::has('success'))
+      <div class="alert alert-success" role="alert">
+        <center><strong>Bien Hecho!</strong> Se Agrego Personal</center>
+        </div>
+      @endif
     <div class="row">
-      
+
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <form action="crearpersonal" method="post">
-                
+
                 <input type="submit" class="btn btn-success" value="Crear Personal" >
         </form>
         <br>
@@ -53,7 +59,7 @@
     </div>
 
     </div>
-    
+
   </div>
 
 @endif

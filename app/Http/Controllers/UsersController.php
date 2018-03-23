@@ -61,6 +61,7 @@ class UsersController extends Controller
       $user->name=$request->get('name');
       $user->username=$request->get('usuario');
       $user->email=$email;
+      $user->rol=$request->get('rol');
       $user->password=bcrypt($request->get('password'));
       $user->save();
       return redirect("/users/manageprofiles");

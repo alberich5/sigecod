@@ -20,17 +20,17 @@
                             @endif
                             <input type="hidden" class="form-control" name="id_personal" value="{{ $personal->id }}" >
                             <label>Nombre:</label>
-                            <input type="text" class="form-control" name="nombre" value="{{ $personal->nombre }}">
+                            <input type="text" class="form-control" name="nombre" value="{{ $personal->nombre }}" style="text-transform: uppercase;">
                             <label>Apellido Parteno:</label>
-                            <input type="text" class="form-control" name="ap" value="{{ $personal->apellido_paterno }}">
+                            <input type="text" class="form-control" name="ap" value="{{ $personal->apellido_paterno }}" style="text-transform: uppercase;">
                             <label>Apellido Marteno:</label>
-                            <input type="text" class="form-control" name="am" value="{{ $personal->apellido_materno }}">
+                            <input type="text" class="form-control" name="am" value="{{ $personal->apellido_materno }}" style="text-transform: uppercase;">
                             <label>Tipo:</label>
                             <select name="tipo" class="form-control">
                                 <option value="administrativo">Administrativo</option>
                                 <option value="operativo">Operativo</option>
                             </select>
-                            
+
                             <label>Status:</label>
                             <select name="status" class="form-control">
                                 <option value="activo">Activo</option>

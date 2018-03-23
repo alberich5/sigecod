@@ -84,8 +84,8 @@
                           <div class="col-md-12">
                             <label>Rol:</label>
                             <select class="form-control" name="rol" id="rol">
-                                <option>User</option>
-                                <option>Admin</option>
+                                <option value="user">User</option>
+                                <option value="admin">Admin</option>
                             </select>
                           </div>
                       </div>

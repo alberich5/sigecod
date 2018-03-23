@@ -18,19 +18,19 @@
                                     </ul>
                                 </div>
                             @endif
-                            
+
                             <label>Nombre:</label>
-                            <input type="text" class="form-control" name="nombre" required>
+                            <input type="text" class="form-control" name="nombre" style="text-transform: uppercase;" required>
                             <label>Apellido Parteno:</label>
-                            <input type="text" class="form-control" name="ap" required>
+                            <input type="text" class="form-control" name="ap" style="text-transform: uppercase;" required>
                             <label>Apellido Marteno:</label>
-                            <input type="text" class="form-control" name="am" required>
+                            <input type="text" class="form-control" name="am" style="text-transform: uppercase;" required>
                             <label>Tipo:</label>
                             <select name="tipo" class="form-control">
                                 <option value="administrativo">Administrativo</option>
                                 <option value="operativo">Operativo</option>
                             </select>
-                            
+
                             <label>Status:</label>
                             <select name="status" class="form-control">
                                 <option value="activo">Activo</option>
