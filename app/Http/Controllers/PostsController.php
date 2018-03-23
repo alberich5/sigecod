@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Volante;
 use App\Datosvolante;
+use App\Personal;
 
 class PostsController extends Controller
 {
@@ -112,6 +113,36 @@ class PostsController extends Controller
     
     return view('posts/buscar',compact('vola'));
 
+  }
+    //metodos de personal
+
+   public function mostrarvistapersonal(Request $request)
+  {
+    $personal = Personal::orderBy('id', 'desc')->paginate(10);
+   
+     return view('personal/index',compact("personal"));
+
+  }
+
+  public function editarpersonal(Request $request)
+  {
+    $personal=Personal::findOrFail($request->get('id_personal'));
+     return view('personal/editar',compact("personal"));
+  }
+
+   public function actualpersonal(Request $request)
+  {
+    
+      $per = Personal::findOrFail($request->get('id_personal'));
+        $per->nombre=$request->get('nombre');
+        $per->apellido_paterno=$request->get('ap');
+        $per->apellido_materno=$request->get('am');
+        $per->tipo=$request->get('tipo');
+        $per->activo=$request->get('status');
+        $per->update();
+
+        return redirect("personal");
+     
   }
 
 }

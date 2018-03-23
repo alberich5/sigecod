@@ -69,7 +69,20 @@
                             <li><a href="{{ url('/howto') }}">Como usar ?</a></li>
                         @else
                           <li><a href="{{ url('/buscar') }}">buscar</a></li>
-                            <li><a href="{{ url('/salida') }}">Administrador</a></li>
+                            
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    Administrador <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+
+                                        <li><a href="{{ url('/personal') }}">personal</a></li>
+                                        <li><a href="{{ url('/cierre') }}">cierre</a></li>
+                                        
+
+                                </ul>
+                            </li>
                             
                             
 

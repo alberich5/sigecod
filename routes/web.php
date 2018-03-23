@@ -26,6 +26,11 @@ Route::post('guardarBD', 'PostsController@guardar');
 Route::get('buscar', 'PostsController@buscar');
 Route::post('editar', 'PostsController@editar');
 
+//rutas de personal
+Route::get('personal', 'PostsController@mostrarvistapersonal');
+Route::post('editarpersonal', 'PostsController@editarpersonal');
+Route::get('actualizapersonal', 'PostsController@actualpersonal');
+
 
 
 Route::get('howto', function (){
