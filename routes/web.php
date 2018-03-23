@@ -30,7 +30,8 @@ Route::post('editar', 'PostsController@editar');
 Route::get('personal', 'PostsController@mostrarvistapersonal');
 Route::post('editarpersonal', 'PostsController@editarpersonal');
 Route::get('actualizapersonal', 'PostsController@actualpersonal');
-
+Route::post('crearpersonal', 'PostsController@crearpersonal');
+Route::post('insertarpersonal', 'PostsController@insertarpersonal');
 //folios
 Route::get('cierre', 'PostsController@mostrarcierre');
 

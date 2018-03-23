@@ -144,6 +144,23 @@ class PostsController extends Controller
         return redirect("personal");
      
   }
+  public function crearpersonal(Request $request)
+  { 
+     return view('personal/crear');
+  }
+
+  public function insertarpersonal(Request $request)
+  { 
+    
+    $per=new Personal;
+      $per->nombre=$request->get('nombre');
+      $per->apellido_paterno=strtoupper($request->get('ap'));
+      $per->apellido_materno=strtoupper($request->get('am'));
+      $per->tipo=$request->get('tipo');
+      $per->activo=$request->get('status');
+      $per->save();
+     return redirect("personal");
+  }
 
    public function mostrarcierre(Request $request)
   {
