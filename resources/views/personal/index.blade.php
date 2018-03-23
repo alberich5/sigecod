@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+@if(Auth::user()->rol == 'admin')
+                                        
+
   <div class="container" id="app">
     <center><h1>Listado de Personal</h1></center>
     <div id="articulo">
@@ -53,7 +56,7 @@
     
   </div>
 
-
+@endif
 @endsection
 
 @section('js')

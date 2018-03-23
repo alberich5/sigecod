@@ -167,10 +167,20 @@
             data:{
                 errors:[],
                 personal:[],
-                terminos:[{'nombre':'termino'},{'nombre':'Urgente'},{'nombre':'para conocimiento'}],
+                terminos:[{'nombre':'TERMINO'},{'nombre':'URGENTE'},{'nombre':'pARA CONOCIMIENTO'}],
                 area:[{'nombre':'sistemas'},{'nombre':'unidad Administrativa'},{'nombre':'recursos humanos'}],
-                tipos:[{'nombre':'oficio 1'},{'nombre':'atente nota'},{'nombre':'escrito'}],
-               procedencias:[{'nombre':'procedencia 1'},{'nombre':'procedencia 2'}],
+                tipos:[{'nombre':'OFICIO'},{'nombre':'ATENTA NOTA'},{'nombre':'ESCRITO'},{'nombre':'TARJETA INFORMATIVA'},{'nombre':'VOLANTE'}],
+               procedencias:[{'nombre':'DIRECCION GENERAL DE ASUNTOS JURIDICOS'}
+               ,{'nombre':'OFICIALIA MAYOR'}
+               ,{'nombre':'LICENCIA OFICIAL COLECTIVA'}
+               ,{'nombre':'FISCALIA GENERAL DEL ESTADO'}
+               ,{'nombre':'PROCURADURIA GENERAL DE LA REPLUBLICA'}
+               ,{'nombre':'JUZGADO DE DISTRITO'}
+               ,{'nombre':'JUZGADO CIVIL'}
+               ,{'nombre':'JUZGADO PENAL'}
+               ,{'nombre':'SECRETARIA DE ADMINISTRACION'}
+               ,{'nombre':'SECRETARIA DE LA CONTRALORIA Y TRANSPARENCIA GUBERNAMENTAL'}
+               ],
                 tipo:'',
                 referencia:'',
                 fecha_recepcion:'',

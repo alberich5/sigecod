@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@if(Auth::user()->rol == 'admin')
   <div class="container" id="app">
     cierre folios
 
@@ -13,7 +14,7 @@
     <<button type="">Finalizar</button>
   </div>
 
-
+@endif
 @endsection
 
 @section('js')
