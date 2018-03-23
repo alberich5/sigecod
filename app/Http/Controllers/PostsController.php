@@ -81,35 +81,77 @@ class PostsController extends Controller
         return redirect("quejas");
     }
 
+    public function prueba(Request $request)
+    {
+      $volantes = Volante::where('anio','=','2018')
+      ->orderBy('num', 'desc')
+      ->take(1)
+      ->get();
+      $numero=0;
+      $id=0;
+      foreach ($volantes as $entra) {
+          $numero = $entra->num;
+          $id = $entra->folio;
+      }
+      $numero=$numero+1;
+      dd($id);
+    }
+
     public function guardar(Request $request)
   {
-    $tamano = count($request->variable);
+    //funcion para obtener el ultimo numero para el folio
+    $volantes = Volante::where('anio','=','2018')
+    ->orderBy('num', 'desc')
+    ->take(1)
+    ->get();
+    $numero=0;
+    $id=0;
+    foreach ($volantes as $entra) {
+        $numero = $entra->num;
+        $id = $entra->folio;
+    }
+    $numero=$numero+1;
+    $id=$id+1;
 
+    $tamano = count($request->variable);
       for($i=0; $i<$tamano; $i++){
         if (empty($request->variable[$i]['procedencia'])) {
         DB::table('volante')->insert(
            ['tipo' => $request->variable[$i]['tipo'],
-            'referencia' => $request->variable[$i]['referencia'],
+            'referencia' => strtoupper($request->variable[$i]['referencia']),
             'fecha_recepcion' => $request->variable[$i]['fecha_recepcion'],
-            'procedimiento' => $request->variable[$i]['otro1'],
-            'asunto' => $request->variable[$i]['asunto'],
-            'anio' => '2018'
+            'procedimiento' => strtoupper($request->variable[$i]['otro1']),
+            'asunto' => strtoupper($request->variable[$i]['asunto']),
+            'anio' => '2018',
+            'num' => $numero
           ]
          );
        }else{
          DB::table('volante')->insert(
             ['tipo' => $request->variable[$i]['tipo'],
-             'referencia' => $request->variable[$i]['referencia'],
+             'referencia' => strtoupper($request->variable[$i]['referencia']),
              'fecha_recepcion' => $request->variable[$i]['fecha_recepcion'],
-             'procedimiento' => $request->variable[$i]['procedencia'],
-             'asunto' => $request->variable[$i]['asunto'],
-             'anio' => '2018'
+             'procedimiento' => strtoupper($request->variable[$i]['procedencia']),
+             'asunto' => strtoupper($request->variable[$i]['asunto']),
+             'anio' => '2018',
+             'num' => $numero
            ]
           );
+          DB::table('datos_volante')->insert(
+             ['datos_atencion_area_turnada' => $request->variable[$i]['area_turnada'],
+              'fecha_entrega' => $request->variable[$i]['fecha_entrega'],
+              'fecha_limite' => $request->variable[$i]['fecha_limite'],
+              'termino' => strtoupper($request->variable[$i]['termino']),
+              'copias' => $request->variable[$i]['copias'],
+              'instrucciones' => $request->variable[$i]['instrucciones'],
+              'turna' => strtoupper($request->variable[$i]['turna']),
+              'recibe' => strtoupper($request->variable[$i]['recibe']),
+              'volante_id' => $id,
+              'personas_copias' => strtoupper($request->variable[$i]['para'])
+            ]
+           );
        }
       }
-
-
 
     return $tamano;
 

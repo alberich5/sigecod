@@ -35,6 +35,11 @@ Route::post('insertarpersonal', 'PostsController@insertarpersonal');
 //folios
 Route::get('cierre', 'PostsController@mostrarcierre');
 
+
+///ruta para mis prueba
+
+Route::get('prueba', 'PostsController@prueba');
+
 Route::get('howto', function (){
 
     return view('howto');
@@ -46,7 +51,7 @@ Route::group(['middleware'=> 'Role:admin'], function(){
     Route::get('posts/delete/{id}', 'PostsController@destroy');
 
     Route::post('posts', 'PostsController@store');
-    
+
 
     Route::get('/posts/editposts/{id}', 'PostsController@show');
 

@@ -63,89 +63,96 @@
           <div class="form-group">
               <div class="col-sm-12">
                 Asunto:
-                    <textarea class="form-control"   v-model="asunto" cols="50" rows="5" style="text-transform: uppercase;"  required></textarea> 
+                    <textarea class="form-control"   v-model="asunto" cols="50" rows="5" style="text-transform: uppercase;"  required></textarea>
               </div>
           </div>
             <br><br>
-          <div class="form-group">
-              <div class="col-sm-7">
-                Area turnada:
-                  <select v-model="area_turnada" class="form-control">
-                    <option v-for="a in area" v-bind:value="a.nombre" class="lista">
-                      @{{ a.nombre}}
-                    </option>
-                  </select>
-              </div>
-              <div class="col-sm-4">
-                Otro:
-                   <input type="text" class="form-control" v-model="otro2"   style="text-transform: uppercase;" required>
+            <div class="panel panel-info">
+              <div class="panel-heading">DATOS DE ATENCION</div>
+              <div class="panel-body">
+                  <!---AQUI VA LA INFORMACION PARA LA SEGUNDA PARTE DE FORMULARIO-->
+                  <div class="form-group">
+                      <div class="col-sm-7">
+                        Area turnada:
+                          <select v-model="area_turnada" class="form-control">
+                            <option v-for="a in area" v-bind:value="a.nombre" class="lista">
+                              @{{ a.nombre}}
+                            </option>
+                          </select>
+                      </div>
+                      <div class="col-sm-4">
+                        Otro:
+                           <input type="text" class="form-control" v-model="otro2"   style="text-transform: uppercase;" required>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <div class="col-sm-4">
+                        Fecha de Entrega:
+                          <input type="date" class="form-control" v-model="fecha_entrega" value="<?php echo date("Y-m-d");?>" >
+                      </div>
+                       <div class="col-sm-4">
+                        Fecha Limite:
+                          <input type="date" class="form-control" v-model="fecha_limite" value="<?php echo date("Y-m-d");?>" >
+                      </div>
+                      <div class="col-sm-4">
+                        Termino:
+                          <select v-model="termino" class="form-control">
+                            <option v-for="ter in terminos" v-bind:value="ter.nombre" class="lista">
+                              @{{ ter.nombre}}
+                            </option>
+                          </select>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <div class="col-sm-4">
+                        Copias para:
+                          <select v-model="copias" class="form-control" id="">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                          </select>
+                      </div>
+                      <div class="col-sm-7">
+                           <input type="text" class="form-control" v-model="para"   style="text-transform: uppercase;" required>
+                      </div>
+                  </div>
+
+                   <div class="form-group">
+                      <div class="col-sm-10">
+                        Intrucciones:
+                            <textarea class="form-control"   v-model="instrucciones" cols="50" rows="5" style="text-transform: uppercase;"  required></textarea>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="col-sm-4">
+                         Turna:
+                          <select v-model="turna" class="form-control">
+                            <option v-for="per in personal" v-bind:value="per.nombre " class="lista">
+                              @{{ per.nombre}} @{{ per.apellido_paterno}} @{{ per.apellido_materno}}
+                            </option>
+                          </select>
+                      </div>
+                      <div class="col-sm-7">
+                        Recibe:
+                           <input type="text" class="form-control" v-model="recibe"   style="text-transform: uppercase;" required>
+                      </div>
+                  </div>
               </div>
           </div>
 
-          <div class="form-group">
-              <div class="col-sm-4">
-                Fecha de Entrega:
-                  <input type="date" class="form-control" v-model="fecha_entrega" value="<?php echo date("Y-m-d");?>" >
-              </div>
-               <div class="col-sm-4">
-                Fecha Limite:
-                  <input type="date" class="form-control" v-model="fecha_limite" value="<?php echo date("Y-m-d");?>" >
-              </div>
-              <div class="col-sm-4">
-                Termino:
-                  <select v-model="termino" class="form-control">
-                    <option v-for="ter in terminos" v-bind:value="ter.nombre" class="lista">
-                      @{{ ter.nombre}}
-                    </option>
-                  </select>
-              </div>
-          </div>
-
-          <div class="form-group">
-              <div class="col-sm-4">
-                Copias para:
-                  <select v-model="copias" class="form-control" id="">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                  </select>
-              </div>
-              <div class="col-sm-7">
-                   <input type="text" class="form-control" v-model="para"   style="text-transform: uppercase;" required>
-              </div>
-          </div>
-
-           <div class="form-group">
-              <div class="col-sm-10">
-                Intrucciones:
-                    <textarea class="form-control"   v-model="instrucciones" cols="50" rows="5" style="text-transform: uppercase;"  required></textarea> 
-              </div>
-          </div>
-          <div class="form-group">
-              <div class="col-sm-4">
-                 Turna:
-                  <select v-model="turna" class="form-control">
-                    <option v-for="per in personal" v-bind:value="per.nombre" class="lista">
-                      @{{ per.nombre}} @{{ per.apellido_paterno}} @{{ per.apellido_materno}}
-                    </option>
-                  </select>
-              </div>
-              <div class="col-sm-7">
-                Recibe:
-                   <input type="text" class="form-control" v-model="recibe"   style="text-transform: uppercase;" required>
-              </div>
-          </div>
 
         <input type="submit" class="btn btn-primary" value="Guardar" v-on:click.prevent="agregar()">
 
         </div>
 
 
-        
+
     </form>
     </div>
-    
+
     <div class="row">
        <div class="col-xs-12">
          <pre>@{{$data}}</pre>
@@ -253,6 +260,7 @@
                     this.guardarDB();
                     swal("Agregado Correctamente", "Se agrego bien", "success");
                     this.limpiar();
+                    //this.totalCargado='';
                   }
 
                 },
