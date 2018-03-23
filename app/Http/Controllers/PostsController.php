@@ -84,17 +84,32 @@ class PostsController extends Controller
     public function guardar(Request $request)
   {
     $tamano = count($request->variable);
-    for($i=0; $i<$tamano; $i++){
-      DB::table('volante')->insert(
-         ['tipo' => $request->variable[$i]['tipo'],
-          'referencia' => $request->variable[$i]['referencia'],
-          'fecha_recepcion' => $request->variable[$i]['fecha_recepcion'],
-          'procedimiento' => $request->variable[$i]['procedencia'],
-          'asunto' => $request->variable[$i]['asunto'],
-          'anio' => '2018'
-        ]
+
+      for($i=0; $i<$tamano; $i++){
+        if (empty($request->variable[$i]['procedencia'])) {
+        DB::table('volante')->insert(
+           ['tipo' => $request->variable[$i]['tipo'],
+            'referencia' => $request->variable[$i]['referencia'],
+            'fecha_recepcion' => $request->variable[$i]['fecha_recepcion'],
+            'procedimiento' => $request->variable[$i]['otro1'],
+            'asunto' => $request->variable[$i]['asunto'],
+            'anio' => '2018'
+          ]
          );
-    }
+       }else{
+         DB::table('volante')->insert(
+            ['tipo' => $request->variable[$i]['tipo'],
+             'referencia' => $request->variable[$i]['referencia'],
+             'fecha_recepcion' => $request->variable[$i]['fecha_recepcion'],
+             'procedimiento' => $request->variable[$i]['procedencia'],
+             'asunto' => $request->variable[$i]['asunto'],
+             'anio' => '2018'
+           ]
+          );
+       }
+      }
+
+
 
     return $tamano;
 
