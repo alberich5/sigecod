@@ -31,7 +31,8 @@ Route::get('personal', 'PostsController@mostrarvistapersonal');
 Route::post('editarpersonal', 'PostsController@editarpersonal');
 Route::get('actualizapersonal', 'PostsController@actualpersonal');
 
-
+//folios
+Route::get('cierre', 'PostsController@mostrarcierre');
 
 Route::get('howto', function (){
 

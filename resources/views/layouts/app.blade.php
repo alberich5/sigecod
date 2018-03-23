@@ -77,8 +77,8 @@
 
                                 <ul class="dropdown-menu" role="menu">
 
-                                        <li><a href="{{ url('/personal') }}">personal</a></li>
-                                        <li><a href="{{ url('/cierre') }}">cierre</a></li>
+                                        <li><a href="{{ url('/personal') }}">Personal</a></li>
+                                        <li><a href="{{ url('/cierre') }}">Cierre< Folios</a></li>
                                         
 
                                 </ul>

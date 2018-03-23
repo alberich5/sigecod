@@ -145,4 +145,10 @@ class PostsController extends Controller
      
   }
 
+   public function mostrarcierre(Request $request)
+  {
+    
+     return view('personal/cierre');
+  }
+
 }
