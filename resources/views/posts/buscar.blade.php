@@ -28,7 +28,8 @@
         <div class="table-responsive">
           <table class="table table-striped table-bordered table-condensed table-hover">
             <thead>
-              
+
+              <th>Id</th>
               <th>Folio</th>
               <th>Tipo</th>
               <th>Asunto</th>
@@ -40,6 +41,7 @@
                    @foreach ($vola as $vo)
             <tr>
 
+              <td>{{ $vo->folio}}</td>
               <td>{{ $vo->num}}/{{ $vo->anio}}</td>
               <td>{{ $vo->tipo}}</td>
               <td>{{ $vo->asunto}}</td>
