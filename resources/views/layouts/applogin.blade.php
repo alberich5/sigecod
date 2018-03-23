@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('ServiciosGenerales', 'ServiciosGenerales') }}</title>
+    <title>{{ config('Sigecod', 'Sigecod') }}</title>
 
     <!-- Styles -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -47,7 +47,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('Sericio', 'Servicio') }}
+                        {{ config('Sigecod', 'Sigecod') }}
                     </a>
                 </div>
 
@@ -62,9 +62,9 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <!--<li><a href="{{ url('/posts') }}">Atenciones</a></li>-->
-                            <li><a href="{{ url('/login') }}">Login</a></li>
+                            <!--<<li><a href="{{ url('/login') }}">Login</a></li>-->
                             <!--<li><a href="{{ url('/register') }}">Register</a></li>-->
-                            <li><a href="{{ url('/howto') }}">Como usar ?</a></li>
+                            
                         @else
                           <li><a href="{{ url('/posts') }}">Agregar</a></li>
                             <li><a href="{{ url('/quejas') }}">Servicios</a></li>

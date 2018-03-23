@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Servicios Generales</title>
+        <title>Sigecod</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -59,6 +59,16 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
+            #welcome{
+               background-image: url("img/playa2.jpg");
+              background-attachment: fixed;
+              background-repeat: no-repeat;
+              background-size:100% 100%;
+            }
+            #login{
+              color: #636b6f !important;
+              text-decoration:none !important;
+            }
 
             .m-b-md {
                 margin-bottom: 30px;
@@ -66,7 +76,7 @@
         </style>
         <script type="text/javascript" src="js/nieve.js"></script>
     </head>
-    <body>
+    <body id="welcome">
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -76,7 +86,7 @@
                         <a href="{{ url('/howto') }}">Como usar?</a>
                     @else
                         <!--<a href="{{ url('/posts') }}">Atenciones</a>-->
-                        <a href="{{ url('/login') }}">Login</a>
+                        <!--<a href="{{ url('/login') }}">Login</a>-->
                         <!--<a href="{{ url('/register') }}">Registrarse</a>-->
                         <!--<a href="{{ url('/howto') }}">Como usar?</a>-->
                     @endif
@@ -85,10 +95,10 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    SERVICIOS GENERALES
+                    <a href="{{ url('/login') }}" id="login"><h4>SIGEDCOD</h4></a>
                 </div>
                 <div>
-                    <img src="{{ asset('img/goldfinch.jpg') }}">
+                    
                 </div>
             </div>
         </div>

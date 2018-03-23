@@ -4,9 +4,10 @@
   font-weight: bold;
 }
 #entrada{
-  width: 90%;
+  width: 98%;
   box-shadow: 10px 10px 35px -8px rgba(0,0,0,0.75);
   padding-left: 8%;
+  padding-right: 5%;
   padding-bottom: 3%;
   border-radius: 3%;
   background-color: white;

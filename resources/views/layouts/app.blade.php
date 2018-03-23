@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('ServiciosGenerales', 'ServiciosGenerales') }}</title>
+    <title>{{ config('Sigecod', 'Sigecod') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
@@ -26,7 +26,7 @@
     </script>
     <style media="screen">
     #welcome{
-       background-image: url("img/prueba2.jpg");
+       background-image: url("img/playa2.jpg");
       background-attachment: fixed;
       background-repeat: no-repeat;
       background-size:100% 100%;
@@ -68,41 +68,11 @@
                            <!-- <li><a href="{{ url('/register') }}">Register</a></li>-->
                             <li><a href="{{ url('/howto') }}">Como usar ?</a></li>
                         @else
-                          <li><a href="{{ url('/entrada') }}">Entrada</a></li>
-                            <li><a href="{{ url('/salida') }}">Salida</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    Agregar <span class="caret"></span>
-                                </a>
+                          <li><a href="{{ url('/buscar') }}">buscar</a></li>
+                            <li><a href="{{ url('/salida') }}">Administrador</a></li>
+                            
+                            
 
-                                <ul class="dropdown-menu" role="menu">
-
-                                        <li><a href="{{ url('/cliente') }}">Cliente</a></li>
-                                        <li><a href="{{ url('/unidad') }}">Unidad</a></li>
-
-
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    Ver <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-
-                                        <li><a href="{{ url('/articulos') }}">Articulos</a></li>
-                                        <li><a href="{{ url('/mosclientes') }}">Clientes</a></li>
-                                        <li><a href="{{ url('/cancelados') }}">Entradas Cancelados</a></li>
-                                        <li><a href="{{ url('/mostrarsalidas') }}">Mostrar Salidas</a></li>
-                                        <li><a href="{{ url('/especifico') }}">Bitacora</a></li>
-
-
-
-                                </ul>
-                            </li>
-
-                            <li><a href="{{ url('/grafica') }}">Descargar</a></li>
-                          <!--  <li><a href="{{ url('/filtro') }}">Filtro</a></li>-->
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -126,7 +96,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="{{ url('/howto') }}">Como usar ?</a></li>
+                            
                         @endif
                     </ul>
                 </div>

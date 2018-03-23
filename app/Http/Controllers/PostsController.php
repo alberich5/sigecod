@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
-use App\Status;
+
 use Illuminate\Http\Request;
+use DB;
+use App\Volante;
+use App\Datosvolante;
 
 class PostsController extends Controller
 {
@@ -16,65 +18,20 @@ class PostsController extends Controller
     //funcion para mostrar el index
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
-        return view('posts',compact("posts"));
+        //$posts = Post::orderBy('created_at', 'desc')->paginate(10);
+        return view('posts');
     }
-    //funcion para mostrar las quejas
-    public function queja()
-    {
-        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
-        return view('quejas',compact("posts"));
-    }
-
-    //funcion para salidas
-    public function salida()
-    {
-        return view('servicio.salida');
-    }
-    //funcion para entradas
-    public function entrada()
-    {
-        return view('servicio.entrada');
-    }
-    //funcion para entradas
-    public function cliente()
-    {
-        return view('servicio.cliente');
-    }
-
-    //funcion para mostrar las graficas
-    public function grafica()
+    
+    //funcion para mostrar el index
+    public function traerpersonal()
     {
 
-        return view('grafica');
+        $personal = DB::table('personal')
+               ->get();
+        return $personal;
+        
     }
 
-    //funcion para mostrar filtro
-    public function filtro()
-    {
-
-        return view('filtro');
-    }
-
-    //funcion para mostrar quejas atendidas
-    public function atendida()
-    {
-        $posts = Post::select('nombre_usuario','contenido','status')->where('status','atendida')->get();
-        return $posts;
-    }
-
-    public function status()
-    {
-         $status = Status::all();
-        return $status;
-    }
-
-     //funcion para mostrar quejas pendientes
-    public function pendiente()
-    {
-        $posts = Post::select('nombre_usuario','contenido','status')->where('status','pendiente')->get();
-        return $posts;
-    }
 
     public function store(Request $request)
     {
@@ -122,5 +79,39 @@ class PostsController extends Controller
 
         return redirect("quejas");
     }
+
+    public function guardar(Request $request)
+  {
+    
+    $tamano = count($request->variable);
+    for($i=0; $i<$tamano; $i++){
+
+    }
+
+    return $tamano;
+
+  }
+
+   public function editar(Request $request)
+  {
+    
+     return view('posts/actualizar');
+
+  }
+
+  public function buscar(Request $request)
+  {
+    
+   
+    $vola = Datosvolante::leftjoin('volante', 'datos_volante.volante_id', '=', 'volante.folio')
+    ->select('volante.tipo','volante.referencia','volante.fecha_recepcion','volante.procedimiento','volante.asunto','volante.anio','volante.num','datos_volante.datos_atencion_area_turnada','datos_volante.fecha_entrega','datos_volante.fecha_limite','datos_volante.termino','datos_volante.copias','datos_volante.instrucciones','datos_volante.turna','datos_volante.recibe','datos_volante.volante_id','datos_volante.personas_copias','datos_volante.id_datos')
+    ->orderBy('datos_volante.id_datos','desc')
+    ->paginate(8);
+
+
+    
+    return view('posts/buscar',compact('vola'));
+
+  }
 
 }
