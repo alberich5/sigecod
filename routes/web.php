@@ -25,6 +25,9 @@ Route::get('traerpersonal', 'PostsController@traerpersonal');
 Route::post('guardarBD', 'PostsController@guardar');
 Route::get('buscar', 'PostsController@buscar');
 Route::post('editar', 'PostsController@editar');
+Route::post('imprimir', 'PostsController@imprimir');
+
+
 Route::get('nuevoguardar', 'PostsController@nuevoguardar');
 
 

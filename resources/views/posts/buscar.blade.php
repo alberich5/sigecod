@@ -36,7 +36,8 @@
               <th>Fecha Recepcion</th>
               <th>Turna</th>
               <th>Termino</th>
-              <th>Opciones</th>
+              <th>Actualizar</th>
+              <th>Reimprimir</th>
             </thead>
                    @foreach ($vola as $vo)
             <tr>
@@ -51,6 +52,10 @@
               <td><form action="editar" method="post">
                 <input type="hidden" class="form-control" name="id" value="{{ $vo->id_datos }}">
                 <button type="submit" class="btn btn-info">Actualizar</button>
+              </form></td>
+              <td><form action="imprimir" method="post">
+                <input type="hidden" class="form-control" name="id" value="{{ $vo->id_datos }}">
+                <button type="submit" class="btn btn-success">imprimrir</button>
               </form></td>
             </tr>
 
