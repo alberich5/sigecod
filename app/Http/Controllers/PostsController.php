@@ -238,9 +238,12 @@ class PostsController extends Controller
 
   public function nuevoguardar(Request $request)
  {
-    dd($request);
-
-    return redirect("personal");
+   $vola = Datosvolante::leftjoin('volante', 'datos_volante.volante_id', '=', 'volante.folio')
+   ->select('volante.folio','volante.tipo','volante.referencia','volante.fecha_recepcion','volante.procedimiento','volante.asunto','volante.anio','volante.num','datos_volante.datos_atencion_area_turnada','datos_volante.fecha_entrega','datos_volante.fecha_limite','datos_volante.termino','datos_volante.copias','datos_volante.instrucciones','datos_volante.turna','datos_volante.recibe','datos_volante.volante_id','datos_volante.personas_copias','datos_volante.id_datos')
+   ->where('datos_volante.id_datos','=',$request->get('id_datos'))
+   ->get();
+   dd($vola);
+    return redirect("buscar");
  }
 
 }
