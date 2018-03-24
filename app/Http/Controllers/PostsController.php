@@ -164,7 +164,6 @@ class PostsController extends Controller
     ->where('datos_volante.id_datos','=',$request->get('id'))
     ->get();
 
-
      return view('posts/actualizar',compact('vola'));
 
   }
@@ -236,5 +235,12 @@ class PostsController extends Controller
 
      return view('personal/cierre');
   }
+
+  public function nuevoguardar(Request $request)
+ {
+    dd($request);
+
+    return redirect("personal");
+ }
 
 }
