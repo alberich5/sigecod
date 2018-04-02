@@ -8,6 +8,7 @@ use DB;
 use App\Volante;
 use App\Datosvolante;
 use App\Personal;
+use App\Administrador;
 use Response;
 
 class PostsController extends Controller
@@ -20,8 +21,26 @@ class PostsController extends Controller
     //funcion para mostrar el index
     public function index()
     {
-        //$posts = Post::orderBy('created_at', 'desc')->paginate(10);
-        return view('posts');
+      $admin = Administrador::where('id','=','1')
+      ->take(1)
+      ->get();
+      $anio='';
+      foreach ($admin as $entra) {
+          $anio = $entra->anio_actual;
+      }
+      $volantes = Volante::where('anio','=',$anio)
+      ->orderBy('num', 'desc')
+      ->take(1)
+      ->get();
+
+      $numero=0;
+      foreach ($volantes as $entra) {
+          $numero = $entra->num;
+      }
+      $numero=$numero+1;
+
+        return view('posts',["numero"=>$numero,"anio"=>$anio]);
+
     }
 
     //funcion para mostrar el index

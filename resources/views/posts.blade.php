@@ -23,7 +23,11 @@
                   <input type="hidden" class="form-control" name="nombre_usuario" value="{{ Auth::user()->name }}">
               </div>
           </div>
-
+          <div class="form-group">
+              <div class="col-sm-8">
+                <label for="">FOLIO:{{ $numero}}/{{ $anio}}</label>
+              </div>
+          </div>
 
           <div class="form-group">
               <div class="col-sm-4">
