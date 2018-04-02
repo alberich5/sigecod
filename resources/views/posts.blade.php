@@ -50,18 +50,25 @@
 
 
           <div class="form-group">
-              <div class="col-sm-7">
+              <div class="col-sm-6">
                 Procedencias:
                   <select v-model="procedencia" class="form-control" required>
                     <option v-for="pro in procedencias" v-bind:value="pro.nombre" class="lista">
                       @{{ pro.nombre}}
                     </option>
                   </select>
+
               </div>
               <div class="col-sm-4">
                 Otro:
-                   <input type="text" class="form-control" v-model="otro1"   style="text-transform: uppercase;" required>
+                  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
               </div>
+
+              <div class="col-sm-4" >
+                <p v-show="checkedNames">
+                   <input type="text" class="form-control" v-model="otro1"   style="text-transform: uppercase;" required></p>
+              </div>
+
           </div>
 
           <div class="form-group">
@@ -76,7 +83,7 @@
               <div class="panel-body">
                   <!---AQUI VA LA INFORMACION PARA LA SEGUNDA PARTE DE FORMULARIO-->
                   <div class="form-group">
-                      <div class="col-sm-7">
+                      <div class="col-sm-6">
                         Area turnada:
                           <select v-model="area_turnada" class="form-control">
                             <option v-for="a in area" v-bind:value="a.nombre" class="lista">
@@ -86,7 +93,11 @@
                       </div>
                       <div class="col-sm-4">
                         Otro:
-                           <input type="text" class="form-control" v-model="otro2"   style="text-transform: uppercase;" required>
+                          <input type="checkbox" id="jack" value="Jack" v-model="checkedNames2">
+                      </div>
+                      <div class="col-sm-4">
+                          <p v-show="checkedNames2">
+                           <input type="text" class="form-control" v-model="otro2"   style="text-transform: uppercase;" required></p>
                       </div>
                   </div>
 
@@ -178,6 +189,8 @@
             },
             data:{
                 errors:[],
+                checkedNames: '',
+                checkedNames2: '',
                 personal:[],
                 terminos:[{'nombre':'TERMINO'},{'nombre':'URGENTE'},{'nombre':'pARA CONOCIMIENTO'}],
                 area:[{'nombre':'sistemas'},{'nombre':'unidad Administrativa'},{'nombre':'recursos humanos'}],
@@ -242,7 +255,7 @@
                 },
                 agregar:function(){
                   if(!this.fecha_recepcion){
-                    alert("vacio");
+                    alert("Rellena los campos");
                   }else{
                     this.totalCargado.push({
                       "tipo": this.tipo,
