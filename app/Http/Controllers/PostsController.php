@@ -113,9 +113,28 @@ class PostsController extends Controller
     }
     $numero=$numero+1;
     $id=$id+1;
+    //valores de word
 
+    $referencia='';
+    $fecha_recepcion='';
+    $area_turnada='';
+    $asunto='';
+    $fecha_entrega='';
+    $fecha_limite='';
+    $termino='';
+    $instruciones='';
+    $turna='';
     $tamano = count($request->variable);
       for($i=0; $i<$tamano; $i++){
+        $fecha_recepcion=$request->variable[$i]['fecha_recepcion'];
+        $area_turnada=$request->variable[$i]['area_turnada'];
+        $referencia=$request->variable[$i]['referencia'];
+        $asunto=$request->variable[$i]['asunto'];
+        $fecha_entrega=$request->variable[$i]['fecha_entrega'];
+        $fecha_limite=$request->variable[$i]['fecha_limite'];
+        $termino=$request->variable[$i]['termino'];
+        $instruciones=$request->variable[$i]['instrucciones'];
+        $turna=$request->variable[$i]['turna'];
         if (empty($request->variable[$i]['procedencia'])) {
         DB::table('volante')->insert(
            ['tipo' => $request->variable[$i]['tipo'],
@@ -153,8 +172,32 @@ class PostsController extends Controller
            );
        }
       }
+      $folio=$numero.'/2018';
+      $phpWord = new \PhpOffice\PhpWord\PhpWord();
+      $section = $phpWord->addSection();
+      $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/plantilla_sigecod.docx');
+      $templateWord->setValue('folio',$folio);
+     $templateWord->setValue('fecha_recep',$fecha_recepcion);
+     $templateWord->setValue('tipo',$tipo);
+     $templateWord->setValue('referencia',$referencia);
+     $templateWord->setValue('procedencia',$procedencia);
+     $templateWord->setValue('area_turnada',$area_turnada);
+     $templateWord->setValue('fecha_entrega',$fecha_entrega);
+     $templateWord->setValue('fecha_limte',$fecha_limite);
+     $templateWord->setValue('asunto',$asunto);
+     $templateWord->setValue('termino',$termino);
+     $templateWord->setValue('copias',$copias);
+     $templateWord->setValue('intrucciones',$instruciones);
+      $templateWord->setValue('turna',$turna);
+      $templateWord->setValue('recibe',$recibe);
+     $tim =time();
 
-    return $tamano;
+   $templateWord->saveAs('log/salida'.$tim.'.docx'.$tim);
+   //$this->historial('Descarga de oficio de alta del elemento '.$id);
+   $nombreDocumento=str_replace("  "," ","Acuse para del ".$procedencia);
+   return Response::download('log/salida'.$tim.'.docx'.$tim,$nombreDocumento.'.docx');
+
+    //return $tamano;
 
   }
 
@@ -294,6 +337,15 @@ class PostsController extends Controller
   public function crearpersonal(Request $request)
   {
      return view('personal/crear');
+  }
+
+  public function guardarAnio(Request $request)
+  {
+     $res = $request->get('anio');
+     DB::table('administrador')
+            ->where('id', 1)
+            ->update(['anio_actual' => $res]);
+     return $res;
   }
 
   public function insertarpersonal(Request $request)
