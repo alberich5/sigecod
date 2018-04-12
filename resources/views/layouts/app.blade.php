@@ -49,7 +49,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/posts') }}">
-                        {{ config('Servicios', 'Servicios') }}
+                        {{ config('Nuevo', 'Nuevo') }}
                     </a>
                 </div>
 

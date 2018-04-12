@@ -12,7 +12,7 @@ class Personal extends Model
     *
     * @var array
     */
-
+    public $timestamps = false;
   protected $primaryKey='id';
    protected $fillable = [
       'nombre',

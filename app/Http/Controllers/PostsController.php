@@ -182,7 +182,7 @@ class PostsController extends Controller
               'fecha_limite' => $request->variable[$i]['fecha_limite'],
               'termino' => strtoupper($request->variable[$i]['termino']),
               'copias' => $request->variable[$i]['copias'],
-              'instrucciones' => $request->variable[$i]['instrucciones'],
+              'instrucciones' => strtoupper($request->variable[$i]['instrucciones']),
               'turna' => strtoupper($request->variable[$i]['turna']),
               'recibe' => strtoupper($request->variable[$i]['recibe']),
               'volante_id' => $id,
@@ -194,7 +194,7 @@ class PostsController extends Controller
       $folio=$numero.'/2018';
       $phpWord = new \PhpOffice\PhpWord\PhpWord();
       $section = $phpWord->addSection();
-      $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/plantilla_sigecod.docx');
+      $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/plantilla2018.docx');
       $templateWord->setValue('folio',$folio);
      $templateWord->setValue('fecha_recep',$fecha_recepcion);
      $templateWord->setValue('tipo',$tipo);
@@ -274,7 +274,7 @@ class PostsController extends Controller
    $section = $phpWord->addSection();
 
 
-   $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/plantilla_sigecod.docx');
+   $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/plantilla2018.docx');
 
    $dia=date('d');
    $mes=date('m');

@@ -169,11 +169,11 @@
     </form>
     </div>
 
-    <div class="row">
+    <!---<div class="row">
        <div class="col-xs-12">
          <pre>@{{$data}}</pre>
        </div>
-     </div>
+     </div>-->
   </div>
 @endsection
 
@@ -192,8 +192,8 @@
                 checkedNames: '',
                 checkedNames2: '',
                 personal:[],
-                terminos:[{'nombre':'TERMINO'},{'nombre':'URGENTE'},{'nombre':'pARA CONOCIMIENTO'}],
-                area:[{'nombre':'sistemas'},{'nombre':'unidad Administrativa'},{'nombre':'recursos humanos'}],
+                terminos:[{'nombre':'TERMINO'},{'nombre':'URGENTE'},{'nombre':'PARA CONOCIMIENTO'}],
+                area:[{'nombre':'UNIDAD ADMINISTRATIVA'},{'nombre':'RECURSOS HUMANOS'},{'nombre':'OPERACION Y CONTROL'},{'nombre':'RECLUTAMIENTO'},{'nombre':'AUDITORIA'},{'nombre':'SISTEMAS'},{'nombre':'COBRANZAS'},{'nombre':'RECURSOS FINANCIEROS'},{'nombre':'JURIDICO'},{'nombre':'SERVICIOS GENERALES'},{'nombre':'COORDINACION OPERATIVA'},{'nombre':'ARMAMENTO'},{'nombre':'DELEGACION DE VALLES CENTRALES'}],
                 tipos:[{'nombre':'OFICIO'},{'nombre':'ATENTA NOTA'},{'nombre':'ESCRITO'},{'nombre':'TARJETA INFORMATIVA'},{'nombre':'VOLANTE'}],
                procedencias:[{'nombre':'DIRECCION GENERAL DE ASUNTOS JURIDICOS'}
                ,{'nombre':'OFICIALIA MAYOR'}
@@ -205,6 +205,11 @@
                ,{'nombre':'JUZGADO PENAL'}
                ,{'nombre':'SECRETARIA DE ADMINISTRACION'}
                ,{'nombre':'SECRETARIA DE LA CONTRALORIA Y TRANSPARENCIA GUBERNAMENTAL'}
+               ,{'nombre':'SECRETARIA DE SEGURIDAD PUBLICA'}
+               ,{'nombre':'SECRETARIA DE FINANZAS '}
+               ,{'nombre':'CENTRO DE CONTROL, COMANDO Y COMUNICACION '}
+               ,{'nombre':'CENTRO ESTATAL DE EVALUACION Y CONTROL DE CONFIANZA '}
+               ,{'nombre':'CONSEJO ESTATAL DE DESARROLLO POLICIAL '}
                ],
                 tipo:'',
                 referencia:'',
