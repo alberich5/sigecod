@@ -169,11 +169,12 @@
     </form>
     </div>
 
-    <div class="row">
+    <!--<div class="row">
        <div class="col-xs-12">
          <pre>@{{$data}}</pre>
        </div>
-     </div>
+     </div>-->
+
   </div>
 @endsection
 
@@ -193,21 +194,22 @@
                 checkedNames2: '',
                 personal:[],
                 terminos:[{'nombre':'TERMINO'},{'nombre':'URGENTE'},{'nombre':'PARA CONOCIMIENTO'}],
-                area:[{'nombre':'UNIDAD ADMINISTRATIVA'},{'nombre':'RECURSOS HUMANOS'},{'nombre':'OPERACION Y CONTROL'},{'nombre':'RECLUTAMIENTO'},{'nombre':'AUDITORIA'},{'nombre':'SISTEMAS'},{'nombre':'COBRANZAS'},{'nombre':'RECURSOS FINANCIEROS'},{'nombre':'JURIDICO'},{'nombre':'SERVICIOS GENERALES'},{'nombre':'COORDINACION OPERATIVA'},{'nombre':'ARMAMENTO'},{'nombre':'DELEGACION DE VALLES CENTRALES'}],
+                area:[{'nombre':'UNIDAD ADMINISTRATIVA'},{'nombre':'RECURSOS HUMANOS'},{'nombre':'OPERACIÓN Y CONTROL'},{'nombre':'RECLUTAMIENTO'},{'nombre':'AUDITORIA'},{'nombre':'SISTEMAS'},{'nombre':'COMUNICACIÓN SOCIAL'},{'nombre':'COMERCIALIZACIÓN'},{'nombre':'COBRANZAS'},{'nombre':'RECURSOS FINANCIEROS'},{'nombre':'JURÍDICO'},{'nombre':'SERVICIOS GENERALES'},{'nombre':'COORDINACIÓN OPERATIVA'},{'nombre':'ARMAMENTO'},{'nombre':'DELEGACION DE VALLES CENTRALES'}],
                 tipos:[{'nombre':'OFICIO'},{'nombre':'ATENTA NOTA'},{'nombre':'ESCRITO'},{'nombre':'TARJETA INFORMATIVA'},{'nombre':'VOLANTE'}],
-               procedencias:[{'nombre':'DIRECCION GENERAL DE ASUNTOS JURIDICOS'}
-               ,{'nombre':'OFICIALIA MAYOR'}
+               procedencias:[{'nombre':'DIRECCIÓN DE ASUNTOS INTERNOS'}
+               ,{'nombre':'DIRECCIÓN GENERAL DE ASUNTOS JURIDICOS'}
+               ,{'nombre':'OFICIALÍA MAYOR'}
                ,{'nombre':'LICENCIA OFICIAL COLECTIVA'}
-               ,{'nombre':'FISCALIA GENERAL DEL ESTADO'}
-               ,{'nombre':'PROCURADURIA GENERAL DE LA REPLUBLICA'}
+               ,{'nombre':'FISCALÍA GENERAL DEL ESTADO'}
+               ,{'nombre':'PROCURADURÍA GENERAL DE LA REPLUBLICA'}
                ,{'nombre':'JUZGADO DE DISTRITO'}
                ,{'nombre':'JUZGADO CIVIL'}
                ,{'nombre':'JUZGADO PENAL'}
-               ,{'nombre':'SECRETARIA DE ADMINISTRACION'}
-               ,{'nombre':'SECRETARIA DE LA CONTRALORIA Y TRANSPARENCIA GUBERNAMENTAL'}
-               ,{'nombre':'SECRETARIA DE SEGURIDAD PUBLICA'}
+               ,{'nombre':'SECRETARIA DE ADMINISTRACIÓN'}
+               ,{'nombre':'SECRETARIA DE LA CONTRALORÍA Y TRANSPARENCIA GUBERNAMENTAL'}
+               ,{'nombre':'SECRETARIA DE SEGURIDAD PÚBLICA'}
                ,{'nombre':'SECRETARIA DE FINANZAS '}
-               ,{'nombre':'CENTRO DE CONTROL, COMANDO Y COMUNICACION '}
+               ,{'nombre':'CENTRO DE CONTROL, COMANDO Y COMUNICACIÓN '}
                ,{'nombre':'CENTRO ESTATAL DE EVALUACION Y CONTROL DE CONFIANZA '}
                ,{'nombre':'CONSEJO ESTATAL DE DESARROLLO POLICIAL '}
                ],
@@ -270,11 +272,11 @@
                     if(this.turna == 2){
                       this.turna2='MAYRA EDITH CORTEZ REYES';
                     }
-                    if(this.turna == 3){
+                    if(this.turna == 4){
                       this.turna2='SHAARON ANDREA LÓPEZ ZÁRATE';
                     }
 
-                    if(this.turna == 4){
+                    if(this.turna == 5){
                       this.turna2='NADIA BERENICE AGUIRRE HERNANDEZ';
                     }
                     this.totalCargado.push({
