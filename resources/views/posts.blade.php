@@ -146,7 +146,7 @@
                       <div class="col-sm-4">
                          Turna:
                           <select v-model="turna" class="form-control">
-                            <option v-for="per in personal" v-bind:value="per.nombre " class="lista">
+                            <option v-for="per in personal" v-bind:value="per.id " class="lista">
                               @{{ per.nombre}} @{{ per.apellido_paterno}} @{{ per.apellido_materno}}
                             </option>
                           </select>
@@ -169,11 +169,11 @@
     </form>
     </div>
 
-    <!---<div class="row">
+    <div class="row">
        <div class="col-xs-12">
          <pre>@{{$data}}</pre>
        </div>
-     </div>-->
+     </div>
   </div>
 @endsection
 
@@ -226,6 +226,7 @@
                 para:'',
                 instrucciones:'',
                 turna:'',
+                turna2:'',
                 recibe:'',
                 respuesta:'',
                 totalCargado:[],
@@ -262,6 +263,19 @@
                   if(!this.fecha_recepcion){
                     alert("Rellena los campos");
                   }else{
+                    if(this.turna == 1){
+                      this.turna2='EDGAR JAIME HERNÁNDEZ ZÁRATE';
+                    }
+                    if(this.turna == 2){
+                      this.turna2='MAYRA EDITH CORTEZ REYES';
+                    }
+                    if(this.turna == 3){
+                      this.turna2='SHAARON ANDREA LÓPEZ ZÁRATE';
+                    }
+
+                    if(this.turna == 4){
+                      this.turna2='NADIA BERENICE AGUIRRE HERNANDEZ';
+                    }
                     this.totalCargado.push({
                       "tipo": this.tipo,
                       "referencia": this.referencia,
@@ -277,7 +291,7 @@
                       "copias": this.copias,
                       "para": this.para,
                       "instrucciones": this.instrucciones,
-                      "turna": this.turna,
+                      "turna": this.turna2,
                       "recibe": this.recibe
                     });
                     this.guardarDB();

@@ -103,6 +103,13 @@ class PostsController extends Controller
 
     public function prueba(Request $request)
     {
+      $fecha='2017-05-9';
+      $ano= substr($fecha, 0, 4);
+      $mes= substr($fecha, 5, 2);
+      $dia= substr($fecha, 8, 2);
+      $fch_fina=$dia.'/'.$mes.'/'.$ano;
+      dd($fch_fina);
+
       $volantes = Volante::where('anio','=','2018')
       ->orderBy('num', 'desc')
       ->take(1)
@@ -281,14 +288,29 @@ class PostsController extends Controller
    $ano=date('Y');
    $fecha=$ano.'-'.$mes.'-'.$dia;
 
+   $ano= substr($fecha_recepcion, 0, 4);
+   $mes= substr($fecha_recepcion, 5, 2);
+   $dia= substr($fecha_recepcion, 8, 2);
+   $fch_recepcion=$dia.'/'.$mes.'/'.$ano;
+
+   $ano= substr($fecha_entrega, 0, 4);
+   $mes= substr($fecha_entrega, 5, 2);
+   $dia= substr($fecha_entrega, 8, 2);
+   $fch_entrega=$dia.'/'.$mes.'/'.$ano;
+
+   $ano= substr($fecha_limite, 0, 4);
+   $mes= substr($fecha_limite, 5, 2);
+   $dia= substr($fecha_limite, 8, 2);
+   $fch_limite=$dia.'/'.$mes.'/'.$ano;
+
     $templateWord->setValue('folio',$folio);
-   $templateWord->setValue('fecha_recep',$fecha_recepcion);
+   $templateWord->setValue('fecha_recep',$fch_recepcion);
    $templateWord->setValue('tipo',$tipo);
    $templateWord->setValue('referencia',$referencia);
    $templateWord->setValue('procedencia',$procedencia);
    $templateWord->setValue('area_turnada',$area_turnada);
-   $templateWord->setValue('fecha_entrega',$fecha_entrega);
-   $templateWord->setValue('fecha_limte',$fecha_limite);
+   $templateWord->setValue('fecha_entrega',$fch_entrega);
+   $templateWord->setValue('fecha_limte',$fch_limite);
    $templateWord->setValue('asunto',$asunto);
    $templateWord->setValue('termino',$termino);
    $templateWord->setValue('copias',$copias);
@@ -379,6 +401,37 @@ class PostsController extends Controller
       $per->save();
      return redirect("personal")->with('success','muy bien');
   }
+
+
+  public function buscarfolio(Request $request)
+  {
+    $folio=$request->get('folio');
+    $fecha_ini=$request->get('fecha_ini');
+    $fecha_final=$request->get('fecha_final');
+
+    if(empty($folio)){
+      $vola = Datosvolante::leftjoin('volante', 'datos_volante.volante_id', '=', 'volante.folio')
+        ->select('volante.folio','volante.tipo','volante.referencia','volante.fecha_recepcion','volante.procedimiento','volante.asunto','volante.anio','volante.num','datos_volante.datos_atencion_area_turnada','datos_volante.fecha_entrega','datos_volante.fecha_limite','datos_volante.termino','datos_volante.copias','datos_volante.instrucciones','datos_volante.turna','datos_volante.recibe','datos_volante.volante_id','datos_volante.personas_copias','datos_volante.id_datos')
+        ->where('volante.fecha_recepcion','>=', $fecha_ini)
+        ->where('volante.fecha_recepcion','<=', $fecha_final)
+        ->orderBy('datos_volante.id_datos','desc')
+        ->paginate(8);
+      
+      }else{
+        $vola = Datosvolante::leftjoin('volante', 'datos_volante.volante_id', '=', 'volante.folio')
+        ->select('volante.folio','volante.tipo','volante.referencia','volante.fecha_recepcion','volante.procedimiento','volante.asunto','volante.anio','volante.num','datos_volante.datos_atencion_area_turnada','datos_volante.fecha_entrega','datos_volante.fecha_limite','datos_volante.termino','datos_volante.copias','datos_volante.instrucciones','datos_volante.turna','datos_volante.recibe','datos_volante.volante_id','datos_volante.personas_copias','datos_volante.id_datos')
+        ->where('volante.num','=', $folio)
+        ->orderBy('datos_volante.id_datos','desc')
+        ->paginate(8);
+      }
+
+
+    
+
+    return view('posts/buscar',compact('vola'));
+  }
+
+
 
    public function mostrarcierre(Request $request)
   {

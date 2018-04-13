@@ -38,6 +38,8 @@ Route::post('editarpersonal', 'PostsController@editarpersonal');
 Route::get('actualizapersonal', 'PostsController@actualpersonal');
 Route::post('crearpersonal', 'PostsController@crearpersonal');
 Route::post('insertarpersonal', 'PostsController@insertarpersonal');
+
+Route::post('buscarfolio', 'PostsController@buscarfolio');
 //folios
 Route::get('cierre', 'PostsController@mostrarcierre');
 

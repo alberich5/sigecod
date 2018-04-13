@@ -3,26 +3,24 @@
 @section('content')
   <div class="container" id="historial">
    <div class="form-group">
-              <div class="col-sm-3">
-                Tipo:
-                  <select name="ano" class="form-control" required>
-                    <option value="2017">2017</option>
-                    <option value="2018"selected>2018</option>
-                    <option  value="2019">2019</option>
-                  </select>
-              </div>
+              <form action="buscarfolio" class="form-horizontal" method="post">
               <div class="col-sm-3">
                 Folio:
-                  <input type="text" class="form-control"  placeholder="Folio" style="text-transform: uppercase;" required>
+                  <input type="text" class="form-control"  name="folio" placeholder="Folio" style="text-transform: uppercase;" >
               </div>
                <div class="col-sm-3">
                 Fecha Inicial:
-                  <input type="date" class="form-control"  value="<?php echo date("Y-m-d");?>" >
+                  <input type="date" class="form-control" name="fecha_ini" value="<?php echo date("Y-m-d");?>" >
               </div>
               <div class="col-sm-3">
                 Fecha Final:
-                  <input type="date" class="form-control" value="<?php echo date("Y-m-d");?>" >
+                  <input type="date" class="form-control" name="fecha_final" value="<?php echo date("Y-m-d");?>" >
               </div>
+              <div class="col-sm-3">
+                <input type="submit" class="btn btn-primary" value="Buscar">
+              </div>
+              
+              </form>
           </div>
 
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -47,7 +45,7 @@
               <td>{{ $vo->num}}/{{ $vo->anio}}</td>
               <td>{{ $vo->tipo}}</td>
               <td>{{ $vo->asunto}}</td>
-              <td>{{ $vo->fecha_recepcion}}</td>
+              <td width="30">{{ $vo->fecha_recepcion}}</td>
               <td>{{ $vo->turna}}</td>
               <td>{{ $vo->termino}}</td>
               <td><form action="editar" method="post">

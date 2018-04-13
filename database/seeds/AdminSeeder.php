@@ -28,6 +28,22 @@ class AdminSeeder extends Seeder
             'rol' => 'admin',
             'remember_token' => bcrypt(date('YmdHms'))
         ]);
+        User::create([
+            'name' => 'SHAARON ANDREA',
+            'email' => 'shaaron@gmail.com',
+            'username' => 'shaaron',
+            'password' => bcrypt(123456),
+            'rol' => 'user',
+            'remember_token' => bcrypt(date('YmdHms'))
+        ]);
+        User::create([
+            'name' => 'EDGAR JAIME',
+            'email' => 'edgar@gmail.com',
+            'username' => 'edgar',
+            'password' => bcrypt(123456),
+            'rol' => 'user',
+            'remember_token' => bcrypt(date('YmdHms'))
+        ]);
 
     }
 }
