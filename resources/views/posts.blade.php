@@ -15,68 +15,74 @@
             </div>
         @endif
         <div id="entrada">
-
-
-          <div class="form-group">
-              <div class="col-sm-10">
-                  <input type="hidden" class="form-control" name="id_usuario" value="{{ Auth::user()->id }}">
-                  <input type="hidden" class="form-control" name="nombre_usuario" value="{{ Auth::user()->name }}">
+          <br><br>
+          <div class="panel panel-info">
+            <div class="panel-heading">DATOS DE VOLANTE</div>
+            <div class="panel-body">
+              <div class="form-group">
+                  <div class="col-sm-10">
+                      <input type="hidden" class="form-control" name="id_usuario" value="{{ Auth::user()->id }}">
+                      <input type="hidden" class="form-control" name="nombre_usuario" value="{{ Auth::user()->name }}">
+                  </div>
               </div>
+              <div class="form-group">
+                  <div class="col-sm-8">
+                    <label for="">FOLIO:{{ $numero}}/{{ $anio}}</label>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="col-sm-4">
+                    Tipo:
+                      <select v-model="tipo" class="form-control" required>
+                        <option v-for="ti in tipos" v-bind:value="ti.nombre" class="lista">
+                          @{{ ti.nombre}}
+                        </option>
+                      </select>
+                  </div>
+                  <div class="col-sm-4">
+                    Referencia:
+                      <input type="text" class="form-control" v-model="referencia" placeholder="Referencia" style="text-transform: uppercase;" required>
+                  </div>
+                   <div class="col-sm-4">
+                    Fecha Repcion:
+                      <input type="date" class="form-control" v-model="fecha_recepcion" value="<?php echo date("Y-m-d");?>" >
+                  </div>
+              </div>
+
+
+              <div class="form-group">
+                  <div class="col-sm-6">
+                    Procedencias:
+                      <select v-model="procedencia" class="form-control" required>
+                        <option v-for="pro in procedencias" v-bind:value="pro.nombre" class="lista">
+                          @{{ pro.nombre}}
+                        </option>
+                      </select>
+
+                  </div>
+                  <div class="col-sm-4">
+                    Otro:
+                      <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+                  </div>
+
+                  <div class="col-sm-4" >
+                    <p v-show="checkedNames">
+                       <input type="text" class="form-control" v-model="otro1"   style="text-transform: uppercase;" required></p>
+                  </div>
+
+              </div>
+
+              <div class="form-group">
+                  <div class="col-sm-12">
+                    Asunto:
+                        <textarea class="form-control"   v-model="asunto" cols="50" rows="5" style="text-transform: uppercase;"  required></textarea>
+                  </div>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-              <div class="col-sm-8">
-                <label for="">FOLIO:{{ $numero}}/{{ $anio}}</label>
-              </div>
-          </div>
-
-          <div class="form-group">
-              <div class="col-sm-4">
-                Tipo:
-                  <select v-model="tipo" class="form-control" required>
-                    <option v-for="ti in tipos" v-bind:value="ti.nombre" class="lista">
-                      @{{ ti.nombre}}
-                    </option>
-                  </select>
-              </div>
-              <div class="col-sm-4">
-                Referencia:
-                  <input type="text" class="form-control" v-model="referencia" placeholder="Referencia" style="text-transform: uppercase;" required>
-              </div>
-               <div class="col-sm-4">
-                Fecha Repcion:
-                  <input type="date" class="form-control" v-model="fecha_recepcion" value="<?php echo date("Y-m-d");?>" >
-              </div>
-          </div>
 
 
-          <div class="form-group">
-              <div class="col-sm-6">
-                Procedencias:
-                  <select v-model="procedencia" class="form-control" required>
-                    <option v-for="pro in procedencias" v-bind:value="pro.nombre" class="lista">
-                      @{{ pro.nombre}}
-                    </option>
-                  </select>
-
-              </div>
-              <div class="col-sm-4">
-                Otro:
-                  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
-              </div>
-
-              <div class="col-sm-4" >
-                <p v-show="checkedNames">
-                   <input type="text" class="form-control" v-model="otro1"   style="text-transform: uppercase;" required></p>
-              </div>
-
-          </div>
-
-          <div class="form-group">
-              <div class="col-sm-12">
-                Asunto:
-                    <textarea class="form-control"   v-model="asunto" cols="50" rows="5" style="text-transform: uppercase;"  required></textarea>
-              </div>
-          </div>
             <br><br>
             <div class="panel panel-info">
               <div class="panel-heading">DATOS DE ATENCION</div>
@@ -169,11 +175,11 @@
     </form>
     </div>
 
-    <div class="row">
+    <!---<div class="row">
        <div class="col-xs-12">
          <pre>@{{$data}}</pre>
        </div>
-     </div>
+     </div>-->
 
   </div>
 @endsection
@@ -261,7 +267,7 @@
                   this.turna='';
                   this.turna2='';
                   this.recibe='';
-                  this.totalCargado='';
+                  this.totalCargado=[];
                 },
                 agregar:function(){
                   if(!this.fecha_recepcion){
