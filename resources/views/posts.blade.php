@@ -169,11 +169,11 @@
     </form>
     </div>
 
-    <!--<div class="row">
+    <div class="row">
        <div class="col-xs-12">
          <pre>@{{$data}}</pre>
        </div>
-     </div>-->
+     </div>
 
   </div>
 @endsection
@@ -259,6 +259,7 @@
                   this.para='';
                   this.instrucciones='';
                   this.turna='';
+                  this.turna2='';
                   this.recibe='';
                   this.totalCargado='';
                 },
