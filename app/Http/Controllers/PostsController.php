@@ -150,6 +150,7 @@ class PostsController extends Controller
     $termino='';
     $instruciones='';
     $turna='';
+    $otro1='';
     $tamano = count($request->variable);
       for($i=0; $i<$tamano; $i++){
         $fecha_recepcion=$request->variable[$i]['fecha_recepcion'];
@@ -161,6 +162,7 @@ class PostsController extends Controller
         $termino=$request->variable[$i]['termino'];
         $instruciones=$request->variable[$i]['instrucciones'];
         $turna=$request->variable[$i]['turna'];
+        $otro1=$request->variable[$i]['otro1'];
         if (empty($request->variable[$i]['procedencia'])) {
         DB::table('volante')->insert(
            ['tipo' => $request->variable[$i]['tipo'],

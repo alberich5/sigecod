@@ -175,7 +175,7 @@
     </form>
     </div>
 
-    <!---<div class="row">
+    <!--<div class="row">
        <div class="col-xs-12">
          <pre>@{{$data}}</pre>
        </div>
@@ -215,9 +215,12 @@
                ,{'nombre':'SECRETARIA DE LA CONTRALORÍA Y TRANSPARENCIA GUBERNAMENTAL'}
                ,{'nombre':'SECRETARIA DE SEGURIDAD PÚBLICA'}
                ,{'nombre':'SECRETARIA DE FINANZAS '}
+               ,{'nombre':'SECRETARÍA DE ECONOMÍA'}
                ,{'nombre':'CENTRO DE CONTROL, COMANDO Y COMUNICACIÓN '}
                ,{'nombre':'CENTRO ESTATAL DE EVALUACION Y CONTROL DE CONFIANZA '}
                ,{'nombre':'CONSEJO ESTATAL DE DESARROLLO POLICIAL '}
+               ,{'nombre':'TRIBUNAL DE JUSTICIA ADMINISTRATIVA DEL ESTADO DE OAXACA'}
+               ,{'nombre':'POLICÍA VIAL ESTATAL '}
                ],
                 tipo:'',
                 referencia:'',
@@ -285,6 +288,9 @@
 
                     if(this.turna == 5){
                       this.turna2='NADIA BERENICE AGUIRRE HERNANDEZ';
+                    }
+                    if(this.checkedNames=='true'){
+                      this.procedencia='';
                     }
                     this.totalCargado.push({
                       "tipo": this.tipo,
