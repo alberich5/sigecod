@@ -43,6 +43,8 @@ Route::post('buscarfolio', 'PostsController@buscarfolio');
 //folios
 Route::get('cierre', 'PostsController@mostrarcierre');
 
+Route::get('descargardoc', 'PostsController@descargardoc');
+
 
 ///ruta para mis prueba
 

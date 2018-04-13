@@ -432,7 +432,7 @@ class PostsController extends Controller
         ->where('volante.fecha_recepcion','<=', $fecha_final)
         ->orderBy('datos_volante.id_datos','desc')
         ->paginate(8);
-      
+
       }else{
         $vola = Datosvolante::leftjoin('volante', 'datos_volante.volante_id', '=', 'volante.folio')
         ->select('volante.folio','volante.tipo','volante.referencia','volante.fecha_recepcion','volante.procedimiento','volante.asunto','volante.anio','volante.num','datos_volante.datos_atencion_area_turnada','datos_volante.fecha_entrega','datos_volante.fecha_limite','datos_volante.termino','datos_volante.copias','datos_volante.instrucciones','datos_volante.turna','datos_volante.recibe','datos_volante.volante_id','datos_volante.personas_copias','datos_volante.id_datos')
@@ -443,7 +443,7 @@ class PostsController extends Controller
       }
 
 
-    
+
 
     return view('posts/buscar',compact('vola'));
   }
@@ -455,6 +455,104 @@ class PostsController extends Controller
 
      return view('personal/cierre');
   }
+
+
+  public function descargardoc()
+ {
+
+   $vola = Datosvolante::leftjoin('volante', 'datos_volante.volante_id', '=', 'volante.folio')
+  ->select('volante.tipo','volante.referencia','volante.fecha_recepcion','volante.procedimiento','volante.asunto','volante.anio','volante.num','datos_volante.datos_atencion_area_turnada','datos_volante.fecha_entrega','datos_volante.fecha_limite','datos_volante.termino','datos_volante.copias','datos_volante.instrucciones','datos_volante.turna','datos_volante.recibe','datos_volante.volante_id','datos_volante.personas_copias','datos_volante.id_datos')
+ ->orderBy('volante.folio','desc')
+  ->take(1)
+  ->get();
+
+  $folio='';
+  $tipo='';
+  $referencia='';
+  $fecha_recepcion='';
+  $procedencia='';
+  $asunto='';
+  $area_turnada='';
+  $fecha_entrega='';
+  $fecha_limite='';
+  $termino='';
+  $copias='';
+  $instruciones='';
+  $turna='';
+  $recibe='';
+
+foreach ($vola as $po) {
+  $folio=$po->num."/".$po->anio;
+    $tipo = $po->tipo;
+    $referencia = $po->referencia;
+    $fecha_recepcion = $po->fecha_recepcion;
+    $procedencia = $po->procedimiento;
+    $asunto = $po->asunto;
+    $area_turnada = $po->datos_atencion_area_turnada;
+    $fecha_entrega = $po->fecha_entrega;
+    $fecha_limite = $po->fecha_limite;
+    $termino = $po->termino;
+    $copias = $po->copias;
+    $instruciones = $po->instrucciones;
+    $turna = $po->turna;
+    $recibe = $po->recibe;
+}
+if($copias==0){
+   $copias='';
+ }
+
+$phpWord = new \PhpOffice\PhpWord\PhpWord();
+$section = $phpWord->addSection();
+
+
+$templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/plantilla2018.docx');
+
+$dia=date('d');
+$mes=date('m');
+$ano=date('Y');
+$fecha=$ano.'-'.$mes.'-'.$dia;
+
+$ano= substr($fecha_recepcion, 0, 4);
+$mes= substr($fecha_recepcion, 5, 2);
+$dia= substr($fecha_recepcion, 8, 2);
+$fch_recepcion=$dia.'/'.$mes.'/'.$ano;
+
+$ano= substr($fecha_entrega, 0, 4);
+$mes= substr($fecha_entrega, 5, 2);
+$dia= substr($fecha_entrega, 8, 2);
+$fch_entrega=$dia.'/'.$mes.'/'.$ano;
+
+$ano= substr($fecha_limite, 0, 4);
+$mes= substr($fecha_limite, 5, 2);
+$dia= substr($fecha_limite, 8, 2);
+$fch_limite=$dia.'/'.$mes.'/'.$ano;
+
+ $templateWord->setValue('folio',$folio);
+$templateWord->setValue('fecha_recep',$fch_recepcion);
+$templateWord->setValue('tipo',$tipo);
+$templateWord->setValue('referencia',$referencia);
+$templateWord->setValue('procedencia',$procedencia);
+$templateWord->setValue('area_turnada',$area_turnada);
+$templateWord->setValue('fecha_entrega',$fch_entrega);
+$templateWord->setValue('fecha_limte',$fch_limite);
+$templateWord->setValue('asunto',$asunto);
+$templateWord->setValue('termino',$termino);
+$templateWord->setValue('copias',$copias);
+$templateWord->setValue('intrucciones',$instruciones);
+ $templateWord->setValue('turna',$turna);
+ $templateWord->setValue('recibe',$recibe);
+
+
+
+$tim =time();
+
+$templateWord->saveAs('log/salida'.$tim.'.docx'.$tim);
+//$this->historial('Descarga de oficio de alta del elemento '.$id);
+$nombreDocumento=str_replace("  "," ","Acuse para del ".$procedencia);
+return Response::download('log/salida'.$tim.'.docx'.$tim,$nombreDocumento.'.docx');
+
+
+ }
 
   public function nuevoguardar(Request $request)
  {

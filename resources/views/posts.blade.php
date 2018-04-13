@@ -166,7 +166,7 @@
           </div>
 
 
-        <input type="submit" class="btn btn-primary" value="Guardar" v-on:click.prevent="agregar()">
+        <input type="submit" class="btn btn-primary" value="Guardar" v-on:click="agregar()">
 
         </div>
 
@@ -305,10 +305,15 @@
                       "recibe": this.recibe
                     });
                     this.guardarDB();
+                    this.descargar();
                     swal("Agregado Correctamente", "Se agrego bien", "success");
                     this.limpiar();
                     //this.totalCargado='';
                   }
+
+                },
+                descargar: function() {
+                   window.open('descargardoc');
 
                 },
                 guardarDB:function(){
@@ -319,6 +324,7 @@
                        this.respuesta = response.data
                     });
                 },
+
         }});
     </script>
 
