@@ -258,6 +258,7 @@
                   this.instrucciones='';
                   this.turna='';
                   this.recibe='';
+                  this.totalCargado='';
                 },
                 agregar:function(){
                   if(!this.fecha_recepcion){

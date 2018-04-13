@@ -45,7 +45,7 @@
               <td>{{ $vo->num}}/{{ $vo->anio}}</td>
               <td>{{ $vo->tipo}}</td>
               <td>{{ $vo->asunto}}</td>
-              <td width="30">{{ $vo->fecha_recepcion}}</td>
+              <td WIDTH="10%">{{ $vo->fecha_recepcion}}</td>
               <td>{{ $vo->turna}}</td>
               <td>{{ $vo->termino}}</td>
               <td><form action="editar" method="post">

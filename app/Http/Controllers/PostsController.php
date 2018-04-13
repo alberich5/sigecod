@@ -172,6 +172,19 @@ class PostsController extends Controller
             'num' => $numero
           ]
          );
+        DB::table('datos_volante')->insert(
+             ['datos_atencion_area_turnada' => $request->variable[$i]['area_turnada'],
+              'fecha_entrega' => $request->variable[$i]['fecha_entrega'],
+              'fecha_limite' => $request->variable[$i]['fecha_limite'],
+              'termino' => strtoupper($request->variable[$i]['termino']),
+              'copias' => $request->variable[$i]['copias'],
+              'instrucciones' => strtoupper($request->variable[$i]['instrucciones']),
+              'turna' => strtoupper($request->variable[$i]['turna']),
+              'recibe' => strtoupper($request->variable[$i]['recibe']),
+              'volante_id' => $id,
+              'personas_copias' => strtoupper($request->variable[$i]['para'])
+            ]
+           );
        }else{
          DB::table('volante')->insert(
             ['tipo' => $request->variable[$i]['tipo'],
