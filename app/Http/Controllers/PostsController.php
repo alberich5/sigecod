@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use DB;
 use App\Volante;
@@ -562,7 +562,38 @@ return Response::download('log/salida'.$tim.'.docx'.$tim,$nombreDocumento.'.docx
    ->select('volante.folio','volante.tipo','volante.referencia','volante.fecha_recepcion','volante.procedimiento','volante.asunto','volante.anio','volante.num','datos_volante.datos_atencion_area_turnada','datos_volante.fecha_entrega','datos_volante.fecha_limite','datos_volante.termino','datos_volante.copias','datos_volante.instrucciones','datos_volante.turna','datos_volante.recibe','datos_volante.volante_id','datos_volante.personas_copias','datos_volante.id_datos')
    ->where('datos_volante.id_datos','=',$request->get('id_datos'))
    ->get();
-   dd($vola);
+
+
+   $folio='';
+
+   $id_datos='';
+
+ foreach ($vola as $po) {
+   $folio=$po->folio;
+
+    $id_datos=$po->id_datos;
+ }
+
+ DB::table('volante')
+             ->where('folio', $folio)
+             ->update(['tipo' =>strtoupper($request->get('tipo')),
+             'referencia' => strtoupper($request->get('referencia')),
+             'fecha_recepcion' => strtoupper($request->get('fecha_recepcion')),
+             'procedimiento' => strtoupper($request->get('procedencia')),
+             'asunto' => strtoupper($request->get('asunto'))]);
+
+             DB::table('datos_volante')
+                         ->where('id_datos', $id_datos)
+                         ->update(['datos_atencion_area_turnada' => strtoupper($request->get('area_turnada')),
+                         'fecha_entrega' => strtoupper($request->get('fecha_entrega')),
+                         'fecha_limite' => strtoupper($request->get('fecha_limite')),
+                         'termino' => strtoupper($request->get('termino')),
+                         'copias' => strtoupper($request->get('copias')),
+                         'instrucciones' => strtoupper($request->get('instrucciones')),
+                         'turna' => strtoupper($request->get('turna')),
+                       ]);
+
+
     return redirect("buscar");
  }
 

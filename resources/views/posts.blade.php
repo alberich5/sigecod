@@ -199,6 +199,7 @@
                 checkedNames: '',
                 checkedNames2: '',
                 personal:[],
+                idusuario:'',
                 terminos:[{'nombre':'TERMINO'},{'nombre':'URGENTE'},{'nombre':'PARA CONOCIMIENTO'}],
                 area:[{'nombre':'UNIDAD ADMINISTRATIVA'},{'nombre':'RECURSOS HUMANOS'},{'nombre':'OPERACIÓN Y CONTROL'},{'nombre':'RECLUTAMIENTO'},{'nombre':'AUDITORIA'},{'nombre':'SISTEMAS'},{'nombre':'COMUNICACIÓN SOCIAL'},{'nombre':'COMERCIALIZACIÓN'},{'nombre':'COBRANZAS'},{'nombre':'RECURSOS FINANCIEROS'},{'nombre':'JURÍDICO'},{'nombre':'SERVICIOS GENERALES'},{'nombre':'COORDINACIÓN OPERATIVA'},{'nombre':'ARMAMENTO'},{'nombre':'DELEGACION DE VALLES CENTRALES'}],
                 tipos:[{'nombre':'OFICIO'},{'nombre':'ATENTA NOTA'},{'nombre':'ESCRITO'},{'nombre':'TARJETA INFORMATIVA'},{'nombre':'VOLANTE'}],
@@ -247,6 +248,12 @@
                     var urlPersonal = '/traerpersonal';
                     axios.get(urlPersonal).then(response => {
                     this.personal = response.data
+                  });
+                },
+                pnuevo:function(){
+                    var urlPersonal = '/traerusuario';
+                    axios.get(urlPersonal).then(response => {
+                    this.idusuario = response.data
                   });
                 },
                 guardar:function(){

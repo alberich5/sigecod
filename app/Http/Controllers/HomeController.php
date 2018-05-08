@@ -25,8 +25,8 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $posts=Post::where('id_usuario','=',$request->user()->id)->orderBy('created_at', 'desc')->paginate(10);
 
-        return view('home',compact("posts"));
+
+        return redirect("posts");
     }
 }

@@ -14,11 +14,11 @@
  <div class="form-group">
      <div class="col-sm-4">
        <strong>Tipo:</strong>
-          <input type="text" class="form-control" value=" {{ $vo->tipo}}" name="tipo" style="text-transform: uppercase;" required>
+          <input type="text" class="form-control" value="{{ $vo->tipo}}" name="tipo" style="text-transform: uppercase;" required>
      </div>
      <div class="col-sm-4">
        <strong>Referencia:</strong>
-         <input type="text" class="form-control" value=" {{ $vo->referencia}}" name="referencia" style="text-transform: uppercase;" required>
+         <input type="text" class="form-control" value="{{ $vo->referencia}}" name="referencia" style="text-transform: uppercase;" required>
      </div>
       <div class="col-sm-4">
       <strong> Fecha Repcion:</strong>
@@ -29,7 +29,7 @@
  <div class="form-group">
      <div class="col-sm-7">
        <strong>Procedencia:</strong>
-         <input type="text" class="form-control" value=" {{ $vo->procedimiento}}" name="procedencia" style="text-transform: uppercase;" required>
+         <input type="text" class="form-control" value="{{ $vo->procedimiento}}" name="procedencia" style="text-transform: uppercase;" required>
      </div>
 
  </div>
@@ -37,7 +37,7 @@
  <div class="form-group">
      <div class="col-sm-12">
        <strong>Asunto:</strong>
-           <input type="text" class="form-control" value=" {{ $vo->asunto}}" name="asunto" style="text-transform: uppercase;" required>
+           <input type="text" class="form-control" value="{{$vo->asunto}}" name="asunto" style="text-transform: uppercase;" required>
      </div>
  </div>
 
@@ -45,21 +45,21 @@
 <div class="form-group">
    <div class="col-sm-7">
     <strong> Area turnada:</strong>
-       <input type="text" class="form-control" value=" {{ $vo->datos_atencion_area_turnada}}" name="area_turnada" style="text-transform: uppercase;" required>
+       <input type="text" class="form-control" value=" {{$vo->datos_atencion_area_turnada}}" name="area_turnada" style="text-transform: uppercase;" required>
    </div>
 
    <div class="form-group">
        <div class="col-sm-4">
          <strong>Fecha de Entrega:</strong>
-           <input type="text" class="form-control" value=" {{ $vo->fecha_entrega}}" name="fecha_entrega" required >
+           <input type="text" class="form-control" value="{{$vo->fecha_entrega}}" name="fecha_entrega" required >
        </div>
         <div class="col-sm-4">
          <strong>Fecha Limite:</strong>
-           <input type="text" class="form-control" value=" {{ $vo->fecha_limite}}" name="fecha_limite" required>
+           <input type="text" class="form-control" value="{{$vo->fecha_limite}}" name="fecha_limite" required>
        </div>
        <div class="col-sm-4">
          <strong>Termino:</strong>
-           <input type="text" class="form-control" value=" {{ $vo->termino}}" name="termino" required>
+           <input type="text" class="form-control" value="{{$vo->termino}}" name="termino" required>
        </div>
    </div>
 

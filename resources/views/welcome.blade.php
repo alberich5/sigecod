@@ -95,10 +95,10 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    <a href="{{ url('/login') }}" id="login"><h4>SIGEDCOD</h4></a>
+                    <a href="{{ url('/login') }}" id="login"><h4>SIGECOD</h4></a>
                 </div>
                 <div>
-                    
+
                 </div>
             </div>
         </div>
