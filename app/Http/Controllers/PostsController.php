@@ -151,6 +151,7 @@ class PostsController extends Controller
     $instruciones='';
     $turna='';
     $otro1='';
+    $otro2='';
     $tamano = count($request->variable);
       for($i=0; $i<$tamano; $i++){
         $fecha_recepcion=$request->variable[$i]['fecha_recepcion'];
@@ -163,6 +164,12 @@ class PostsController extends Controller
         $instruciones=$request->variable[$i]['instrucciones'];
         $turna=$request->variable[$i]['turna'];
         $otro1=$request->variable[$i]['otro1'];
+        $otro2=$request->variable[$i]['otro2'];
+        if(empty($request->variable[$i]['otro2'])){
+        }else{
+          //entra si la area turnada no aparece
+          $area_turnada=strtoupper($request->variable[$i]['otro2']);
+        }
         if (empty($request->variable[$i]['procedencia'])) {
         DB::table('volante')->insert(
            ['tipo' => $request->variable[$i]['tipo'],
@@ -175,7 +182,7 @@ class PostsController extends Controller
           ]
          );
         DB::table('datos_volante')->insert(
-             ['datos_atencion_area_turnada' => $request->variable[$i]['area_turnada'],
+             ['datos_atencion_area_turnada' => $area_turnada,
               'fecha_entrega' => $request->variable[$i]['fecha_entrega'],
               'fecha_limite' => $request->variable[$i]['fecha_limite'],
               'termino' => strtoupper($request->variable[$i]['termino']),
@@ -199,7 +206,7 @@ class PostsController extends Controller
            ]
           );
           DB::table('datos_volante')->insert(
-             ['datos_atencion_area_turnada' => $request->variable[$i]['area_turnada'],
+             ['datos_atencion_area_turnada' => $area_turnada,
               'fecha_entrega' => $request->variable[$i]['fecha_entrega'],
               'fecha_limite' => $request->variable[$i]['fecha_limite'],
               'termino' => strtoupper($request->variable[$i]['termino']),
@@ -213,11 +220,12 @@ class PostsController extends Controller
            );
        }
       }
-      $folio=$numero.'/2018';
-      $phpWord = new \PhpOffice\PhpWord\PhpWord();
-      $section = $phpWord->addSection();
-      $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/plantilla2018.docx');
-      $templateWord->setValue('folio',$folio);
+
+     $folio=$numero.'/2018';
+     $phpWord = new \PhpOffice\PhpWord\PhpWord();
+     $section = $phpWord->addSection();
+     $templateWord = new \PhpOffice\PhpWord\TemplateProcessor('plantillasDoc/plantilla2018.docx');
+     $templateWord->setValue('folio',$folio);
      $templateWord->setValue('fecha_recep',$fecha_recepcion);
      $templateWord->setValue('tipo',$tipo);
      $templateWord->setValue('referencia',$referencia);

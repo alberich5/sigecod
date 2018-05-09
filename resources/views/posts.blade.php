@@ -175,11 +175,11 @@
     </form>
     </div>
 
-    <!--<div class="row">
+    <div class="row">
        <div class="col-xs-12">
          <pre>@{{$data}}</pre>
        </div>
-     </div>-->
+     </div>
 
   </div>
 @endsection
@@ -278,6 +278,8 @@
                   this.turna2='';
                   this.recibe='';
                   this.totalCargado=[];
+                  this.checkedNames='';
+                  this.checkedNames2='';
                 },
                 agregar:function(){
                   if(!this.fecha_recepcion){
