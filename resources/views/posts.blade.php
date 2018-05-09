@@ -283,7 +283,7 @@
                 },
                 agregar:function(){
                   if(!this.fecha_recepcion){
-                    alert("Rellena los campos");
+                      swal("FALTO SELECCIONAR", "FECHA RECEPCION", "error");
                   }else{
                     if(this.turna == 1){
                       this.turna2='EDGAR JAIME HERNÁNDEZ ZÁRATE';
@@ -301,6 +301,8 @@
                     if(this.checkedNames=='true'){
                       this.procedencia='';
                     }
+
+                    /*
                     this.totalCargado.push({
                       "tipo": this.tipo,
                       "referencia": this.referencia,
@@ -323,6 +325,7 @@
                     this.descargar();
                     swal("Agregado Correctamente", "Se agrego bien", "success");
                     this.limpiar();
+                    */
                     //this.totalCargado='';
                   }
 
