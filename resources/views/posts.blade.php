@@ -34,7 +34,7 @@
               <div class="form-group">
                   <div class="col-sm-4">
                     Tipo:
-                      <select v-model="tipo" class="form-control" required>
+                      <select v-model="tipo" class="form-control" >
                         <option v-for="ti in tipos" v-bind:value="ti.nombre" class="lista">
                           @{{ ti.nombre}}
                         </option>
@@ -42,7 +42,7 @@
                   </div>
                   <div class="col-sm-4">
                     Referencia:
-                      <input type="text" class="form-control" v-model="referencia" placeholder="Referencia" style="text-transform: uppercase;" required>
+                      <input type="text" class="form-control" v-model="referencia" placeholder="Referencia" style="text-transform: uppercase;" >
                   </div>
                    <div class="col-sm-4">
                     Fecha Repcion:
@@ -54,7 +54,7 @@
               <div class="form-group">
                   <div class="col-sm-6">
                     Procedencias:
-                      <select v-model="procedencia" class="form-control" required>
+                      <select v-model="procedencia" class="form-control" >
                         <option v-for="pro in procedencias" v-bind:value="pro.nombre" class="lista">
                           @{{ pro.nombre}}
                         </option>
@@ -68,7 +68,7 @@
 
                   <div class="col-sm-4" >
                     <p v-show="checkedNames">
-                       <input type="text" class="form-control" v-model="otro1"   style="text-transform: uppercase;" required></p>
+                       <input type="text" class="form-control" v-model="otro1"   style="text-transform: uppercase;" ></p>
                   </div>
 
               </div>
@@ -76,7 +76,7 @@
               <div class="form-group">
                   <div class="col-sm-12">
                     Asunto:
-                        <textarea class="form-control"   v-model="asunto" cols="50" rows="5" style="text-transform: uppercase;"  required></textarea>
+                        <textarea class="form-control"   v-model="asunto" cols="50" rows="5" style="text-transform: uppercase;"  ></textarea>
                   </div>
               </div>
             </div>
@@ -103,7 +103,7 @@
                       </div>
                       <div class="col-sm-4">
                           <p v-show="checkedNames2">
-                           <input type="text" class="form-control" v-model="otro2"   style="text-transform: uppercase;" required></p>
+                           <input type="text" class="form-control" v-model="otro2"   style="text-transform: uppercase;" ></p>
                       </div>
                   </div>
 
@@ -138,20 +138,20 @@
                           </select>
                       </div>
                       <div class="col-sm-7">
-                           <input type="text" class="form-control" v-model="para"   style="text-transform: uppercase;" required>
+                           <input type="text" class="form-control" v-model="para"   style="text-transform: uppercase;" >
                       </div>
                   </div>
 
                    <div class="form-group">
                       <div class="col-sm-10">
                         Intrucciones:
-                            <textarea class="form-control"   v-model="instrucciones" cols="50" rows="5" style="text-transform: uppercase;"  required></textarea>
+                            <textarea class="form-control"   v-model="instrucciones" cols="50" rows="5" style="text-transform: uppercase;"  ></textarea>
                       </div>
                   </div>
                   <div class="form-group">
                       <div class="col-sm-4">
                          Turna:
-                          <select v-model="turna" class="form-control">
+                          <select v-model="turna" class="form-control" required>
                             <option v-for="per in personal" v-bind:value="per.id " class="lista">
                               @{{ per.nombre}} @{{ per.apellido_paterno}} @{{ per.apellido_materno}}
                             </option>
@@ -159,7 +159,7 @@
                       </div>
                       <div class="col-sm-7">
                         Recibe:
-                           <input type="text" class="form-control" v-model="recibe"   style="text-transform: uppercase;" required>
+                           <input type="text" class="form-control" v-model="recibe"   style="text-transform: uppercase;" >
                       </div>
                   </div>
               </div>
@@ -175,11 +175,11 @@
     </form>
     </div>
 
-    <div class="row">
+    <!--<div class="row">
        <div class="col-xs-12">
          <pre>@{{$data}}</pre>
        </div>
-     </div>
+     </div>-->
 
   </div>
 @endsection
@@ -285,48 +285,83 @@
                   if(!this.fecha_recepcion){
                       swal("FALTO SELECCIONAR", "FECHA RECEPCION", "error");
                   }else{
-                    if(this.turna == 1){
-                      this.turna2='EDGAR JAIME HERNÁNDEZ ZÁRATE';
-                    }
-                    if(this.turna == 2){
-                      this.turna2='MAYRA EDITH CORTEZ REYES';
-                    }
-                    if(this.turna == 4){
-                      this.turna2='SHAARON ANDREA LÓPEZ ZÁRATE';
-                    }
+                    if(!this.tipo){
+                      swal("FALTO SELECCIONAR", "TIPO", "error");
+                    }else{
+                        if(!this.referencia){
+                          swal("FALTO AGREGAR", "REFERENCIA", "error");
+                        }else{
+                          if(!this.asunto){
+                              swal("FALTO AGREGAR", "ASUNTO", "error");
+                          }else{
+                            if(!this.fecha_entrega){
+                              swal("FALTO AGREGAR", "FECHA ENTREGA", "error");
+                            }else{
+                              if(!this.fecha_limite){
+                                  swal("FALTO AGREGAR", "FECHA LIMITE", "error");
+                              }else{
+                                if(!this.termino){
+                                  swal("FALTO SELECCIONAR", "TERMINO", "error");
+                                }else{
+                                  if(!this.copias){
+                                    swal("FALTO AGREGAR", "COPIAS", "error");
+                                  }else{
+                                    if(!this.instrucciones){
+                                      swal("FALTO AGREGAR", "INSTRUCCIONES", "error");
+                                    }else{
+                                      if(!this.turna){
+                                        swal("FALTO SELECCIONAR", "TURNA", "error");
+                                      }else{
+                                        //Aqui ya se puede mandar
+                                        if(this.turna == 1){
+                                          this.turna2='EDGAR JAIME HERNÁNDEZ ZÁRATE';
+                                        }
+                                        if(this.turna == 2){
+                                          this.turna2='MAYRA EDITH CORTEZ REYES';
+                                        }
+                                        if(this.turna == 4){
+                                          this.turna2='SHAARON ANDREA LÓPEZ ZÁRATE';
+                                        }
 
-                    if(this.turna == 5){
-                      this.turna2='NADIA BERENICE AGUIRRE HERNANDEZ';
-                    }
-                    if(this.checkedNames=='true'){
-                      this.procedencia='';
-                    }
+                                        if(this.turna == 5){
+                                          this.turna2='NADIA BERENICE AGUIRRE HERNANDEZ';
+                                        }
+                                        if(this.checkedNames=='true'){
+                                          this.procedencia='';
+                                        }
+                                        this.totalCargado.push({
+                                          "tipo": this.tipo,
+                                          "referencia": this.referencia,
+                                          "fecha_recepcion": this.fecha_recepcion,
+                                          "procedencia": this.procedencia,
+                                          "otro1": this.otro1,
+                                          "asunto": this.asunto,
+                                          "area_turnada": this.area_turnada,
+                                          "otro2": this.otro2,
+                                          "fecha_entrega": this.fecha_entrega,
+                                          "fecha_limite": this.fecha_limite,
+                                          "termino": this.termino,
+                                          "copias": this.copias,
+                                          "para": this.para,
+                                          "instrucciones": this.instrucciones,
+                                          "turna": this.turna2,
+                                          "recibe": this.recibe
+                                        });
+                                        this.guardarDB();
+                                        this.descargar();
+                                        swal("Agregado Correctamente", "Se agrego bien", "success");
+                                        this.limpiar();
+                                        //this.totalCargado='';
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
 
-                    /*
-                    this.totalCargado.push({
-                      "tipo": this.tipo,
-                      "referencia": this.referencia,
-                      "fecha_recepcion": this.fecha_recepcion,
-                      "procedencia": this.procedencia,
-                      "otro1": this.otro1,
-                      "asunto": this.asunto,
-                      "area_turnada": this.area_turnada,
-                      "otro2": this.otro2,
-                      "fecha_entrega": this.fecha_entrega,
-                      "fecha_limite": this.fecha_limite,
-                      "termino": this.termino,
-                      "copias": this.copias,
-                      "para": this.para,
-                      "instrucciones": this.instrucciones,
-                      "turna": this.turna2,
-                      "recibe": this.recibe
-                    });
-                    this.guardarDB();
-                    this.descargar();
-                    swal("Agregado Correctamente", "Se agrego bien", "success");
-                    this.limpiar();
-                    */
-                    //this.totalCargado='';
+                        }
+                    }
                   }
 
                 },
