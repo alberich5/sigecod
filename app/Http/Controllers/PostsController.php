@@ -428,7 +428,6 @@ class PostsController extends Controller
      return redirect("personal")->with('success','muy bien');
   }
 
-
   public function buscarfolio(Request $request)
   {
     //son las variables que recibe para mostrar las consultas
@@ -454,11 +453,8 @@ class PostsController extends Controller
       }
 
 
-
-
     return view('posts/buscar',compact('vola'));
   }
-
 
 
    public function mostrarcierre(Request $request)

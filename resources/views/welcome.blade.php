@@ -77,6 +77,7 @@
         <script type="text/javascript" src="js/nieve.js"></script>
     </head>
     <body id="welcome">
+      
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
