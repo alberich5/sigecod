@@ -10,7 +10,7 @@
               </div>
                <div class="col-sm-3">
                 Fecha Inicial:
-                  <input type="date" class="form-control" name="fecha_ini" value="<?php echo date("Y-m-d");?>" >
+                  <input type="date" class="form-control" name="fecha_ini" value="<?php echo date("Y-m-d");?>" > 
               </div>
               <div class="col-sm-3">
                 Fecha Final:
@@ -19,7 +19,7 @@
               <div class="col-sm-3">
                 <input type="submit" class="btn btn-primary" value="Buscar">
               </div>
-              
+
               </form>
           </div>
 

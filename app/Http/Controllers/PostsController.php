@@ -431,6 +431,7 @@ class PostsController extends Controller
 
   public function buscarfolio(Request $request)
   {
+    //son las variables que recibe para mostrar las consultas
     $folio=$request->get('folio');
     $fecha_ini=$request->get('fecha_ini');
     $fecha_final=$request->get('fecha_final');
