@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -31,7 +30,6 @@ Route::get('guardarAnio', 'PostsController@guardarAnio');
 Route::get('nuevoguardar', 'PostsController@nuevoguardar');
 
 
-
 //rutas de personal
 Route::get('personal', 'PostsController@mostrarvistapersonal');
 Route::post('editarpersonal', 'PostsController@editarpersonal');
@@ -44,7 +42,6 @@ Route::post('buscarfolio', 'PostsController@buscarfolio');
 Route::get('cierre', 'PostsController@mostrarcierre');
 
 Route::get('descargardoc', 'PostsController@descargardoc');
-
 
 ///ruta para mis prueba
 

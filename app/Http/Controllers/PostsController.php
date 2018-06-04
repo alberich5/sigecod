@@ -355,24 +355,18 @@ class PostsController extends Controller
 
  }
 
-
-
   public function buscar(Request $request)
   {
-
 
     $vola = Datosvolante::leftjoin('volante', 'datos_volante.volante_id', '=', 'volante.folio')
     ->select('volante.folio','volante.tipo','volante.referencia','volante.fecha_recepcion','volante.procedimiento','volante.asunto','volante.anio','volante.num','datos_volante.datos_atencion_area_turnada','datos_volante.fecha_entrega','datos_volante.fecha_limite','datos_volante.termino','datos_volante.copias','datos_volante.instrucciones','datos_volante.turna','datos_volante.recibe','datos_volante.volante_id','datos_volante.personas_copias','datos_volante.id_datos')
     ->orderBy('datos_volante.id_datos','desc')
     ->paginate(8);
 
-
-
     return view('posts/buscar',compact('vola'));
 
   }
     //metodos de personal
-
    public function mostrarvistapersonal(Request $request)
   {
     $personal = Personal::orderBy('id', 'desc')->paginate(10);
@@ -434,24 +428,53 @@ class PostsController extends Controller
     $folio=$request->get('folio');
     $fecha_ini=$request->get('fecha_ini');
     $fecha_final=$request->get('fecha_final');
+    $comprobarfolio=0;
+    $comfolio=0;
+    $cominicial=0;
+    $comfinal=0;
+    //validar lo que llega
+    if(empty($folio)){}else{ $comfolio=1;}
+    if(empty($fecha_ini)){}else{ $cominicial=2;}
+    if(empty($fecha_final)){}else{ $comfinal=2;}
 
-    if(empty($folio)){
+
+    $comprobarfolio=$comfolio+$cominicial+$comfinal;
+    switch ($comprobarfolio) {
+      case 0:
+      $vola = Datosvolante::leftjoin('volante', 'datos_volante.volante_id', '=', 'volante.folio')
+      ->select('volante.folio','volante.tipo','volante.referencia','volante.fecha_recepcion','volante.procedimiento','volante.asunto','volante.anio','volante.num','datos_volante.datos_atencion_area_turnada','datos_volante.fecha_entrega','datos_volante.fecha_limite','datos_volante.termino','datos_volante.copias','datos_volante.instrucciones','datos_volante.turna','datos_volante.recibe','datos_volante.volante_id','datos_volante.personas_copias','datos_volante.id_datos')
+      ->orderBy('datos_volante.id_datos','desc')
+      ->paginate(8);
+        break;
+      case 1:
+      $vola = Datosvolante::leftjoin('volante', 'datos_volante.volante_id', '=', 'volante.folio')
+      ->select('volante.folio','volante.tipo','volante.referencia','volante.fecha_recepcion','volante.procedimiento','volante.asunto','volante.anio','volante.num','datos_volante.datos_atencion_area_turnada','datos_volante.fecha_entrega','datos_volante.fecha_limite','datos_volante.termino','datos_volante.copias','datos_volante.instrucciones','datos_volante.turna','datos_volante.recibe','datos_volante.volante_id','datos_volante.personas_copias','datos_volante.id_datos')
+      ->where('volante.num','=', $folio)
+      ->where('volante.anio','=', '2018')
+      ->orderBy('datos_volante.id_datos','desc')
+      ->paginate(8);
+        break;
+      case 2:
+      $vola = Datosvolante::leftjoin('volante', 'datos_volante.volante_id', '=', 'volante.folio')
+      ->select('volante.folio','volante.tipo','volante.referencia','volante.fecha_recepcion','volante.procedimiento','volante.asunto','volante.anio','volante.num','datos_volante.datos_atencion_area_turnada','datos_volante.fecha_entrega','datos_volante.fecha_limite','datos_volante.termino','datos_volante.copias','datos_volante.instrucciones','datos_volante.turna','datos_volante.recibe','datos_volante.volante_id','datos_volante.personas_copias','datos_volante.id_datos')
+      ->orderBy('datos_volante.id_datos','desc')
+      ->paginate(8);
+        break;
+      case 4:
       $vola = Datosvolante::leftjoin('volante', 'datos_volante.volante_id', '=', 'volante.folio')
         ->select('volante.folio','volante.tipo','volante.referencia','volante.fecha_recepcion','volante.procedimiento','volante.asunto','volante.anio','volante.num','datos_volante.datos_atencion_area_turnada','datos_volante.fecha_entrega','datos_volante.fecha_limite','datos_volante.termino','datos_volante.copias','datos_volante.instrucciones','datos_volante.turna','datos_volante.recibe','datos_volante.volante_id','datos_volante.personas_copias','datos_volante.id_datos')
         ->where('volante.fecha_recepcion','>=', $fecha_ini)
         ->where('volante.fecha_recepcion','<=', $fecha_final)
         ->orderBy('datos_volante.id_datos','desc')
         ->paginate(8);
-
-      }else{
-        $vola = Datosvolante::leftjoin('volante', 'datos_volante.volante_id', '=', 'volante.folio')
-        ->select('volante.folio','volante.tipo','volante.referencia','volante.fecha_recepcion','volante.procedimiento','volante.asunto','volante.anio','volante.num','datos_volante.datos_atencion_area_turnada','datos_volante.fecha_entrega','datos_volante.fecha_limite','datos_volante.termino','datos_volante.copias','datos_volante.instrucciones','datos_volante.turna','datos_volante.recibe','datos_volante.volante_id','datos_volante.personas_copias','datos_volante.id_datos')
-        ->where('volante.num','=', $folio)
-        ->where('volante.anio','=', '2018')
-        ->orderBy('datos_volante.id_datos','desc')
-        ->paginate(8);
-      }
-
+        break;
+      default:
+      $vola = Datosvolante::leftjoin('volante', 'datos_volante.volante_id', '=', 'volante.folio')
+      ->select('volante.folio','volante.tipo','volante.referencia','volante.fecha_recepcion','volante.procedimiento','volante.asunto','volante.anio','volante.num','datos_volante.datos_atencion_area_turnada','datos_volante.fecha_entrega','datos_volante.fecha_limite','datos_volante.termino','datos_volante.copias','datos_volante.instrucciones','datos_volante.turna','datos_volante.recibe','datos_volante.volante_id','datos_volante.personas_copias','datos_volante.id_datos')
+      ->orderBy('datos_volante.id_datos','desc')
+      ->paginate(8);
+      break;
+    }
 
     return view('posts/buscar',compact('vola'));
   }
@@ -549,8 +572,6 @@ $templateWord->setValue('intrucciones',$instruciones);
  $templateWord->setValue('turna',$turna);
  $templateWord->setValue('recibe',$recibe);
 
-
-
 $tim =time();
 
 $templateWord->saveAs('log/salida'.$tim.'.docx'.$tim);
@@ -598,8 +619,8 @@ return Response::download('log/salida'.$tim.'.docx'.$tim,$nombreDocumento.'.docx
                          'turna' => strtoupper($request->get('turna')),
                        ]);
 
-
     return redirect("buscar");
  }
+
 
 }
