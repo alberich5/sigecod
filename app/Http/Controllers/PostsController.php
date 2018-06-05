@@ -424,7 +424,7 @@ class PostsController extends Controller
 
   public function buscarfolio(Request $request)
   {
-    //son las variables que recibe para mostrar las consultas
+    //Son las variables que recibe para mostrar las consultas
     $folio=$request->get('folio');
     $fecha_ini=$request->get('fecha_ini');
     $fecha_final=$request->get('fecha_final');
@@ -436,9 +436,9 @@ class PostsController extends Controller
     if(empty($folio)){}else{ $comfolio=1;}
     if(empty($fecha_ini)){}else{ $cominicial=2;}
     if(empty($fecha_final)){}else{ $comfinal=2;}
-
-
+    //SUMAR PARA COMPROBAR
     $comprobarfolio=$comfolio+$cominicial+$comfinal;
+    //Aqui se verifica lo que pidio el usuario durante la busqueda
     switch ($comprobarfolio) {
       case 0:
       $vola = Datosvolante::leftjoin('volante', 'datos_volante.volante_id', '=', 'volante.folio')
@@ -466,7 +466,7 @@ class PostsController extends Controller
         ->where('volante.fecha_recepcion','>=', $fecha_ini)
         ->where('volante.fecha_recepcion','<=', $fecha_final)
         ->orderBy('datos_volante.id_datos','desc')
-        ->paginate(8);
+        ->paginate(10);
         break;
       default:
       $vola = Datosvolante::leftjoin('volante', 'datos_volante.volante_id', '=', 'volante.folio')
@@ -475,10 +475,8 @@ class PostsController extends Controller
       ->paginate(8);
       break;
     }
-
     return view('posts/buscar',compact('vola'));
   }
-
 
    public function mostrarcierre(Request $request)
   {
@@ -589,9 +587,7 @@ return Response::download('log/salida'.$tim.'.docx'.$tim,$nombreDocumento.'.docx
    ->where('datos_volante.id_datos','=',$request->get('id_datos'))
    ->get();
 
-
    $folio='';
-
    $id_datos='';
 
  foreach ($vola as $po) {
